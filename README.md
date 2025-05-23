@@ -2,7 +2,7 @@
 This repository contains the official implementation for the paper: **Object-centric Self-improving Preference Optimization for Text-to-Image Generation**.
 
 
-## About OSPO
+## About
 **OSPO** is a self-improving prefernece optimization framework for compositional text-to-image generation, allowing an MLLM to improve its fine-grained image generation capability without needing any data or external model. 
 
 
@@ -12,7 +12,7 @@ We provide conda configuration file to easily set up the environment.
 
 ## Inference
 For inference, please download the weights from the following link:
-- Janus-Pro-7B trained by **OSPO** Framework: [Google Drive](https://drive.google.com/file/d/1XnGDSZoRh8x-JSScrD9OD-WH6hS1uMmg/view?usp=sharing)
+- Janus-Pro-7B trained by **OSPO** Framework: [Google Drive](https://drive.google.com/file/d/1AI42LfljJ5nl2YZ-AVuD0sziYs0KB_yx/view?usp=sharing)
 
 
 ## Acknowledgement
