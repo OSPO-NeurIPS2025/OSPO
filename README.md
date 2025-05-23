@@ -20,8 +20,8 @@ We thank the authors of [Janus-Pro](https://github.com/deepseek-ai/Janus?tab=rea
 
 
 ## TODO
-- [] Release the OSPO framework code.
-- [] Release the train dataset.
+- [ ] Release the OSPO framework code.
+- [ ] Release the train dataset.
 - [x] Release the model checkpoint.
 - [x] Release the inference code for text-to-image generation.
-- [] Release the evaluation code.
+- [ ] Release the evaluation code.
