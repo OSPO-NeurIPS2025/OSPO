@@ -1,0 +1,9 @@
+model_path: 
+ckpt_path: 
+cache_dir: ./cache
+precision: ${precision}
+
+generation_cfg:
+    parallel_size: 1
+    temperature: 1.0
+    cfg_weight: 5.0

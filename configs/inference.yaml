@@ -1,0 +1,15 @@
+save_path: 
+exp_name: 
+task_name: 
+data_path: ./examples/prompts.json
+
+precision: bf16
+device: cuda
+
+seed: [42]
+
+defaults:
+- model: janus
+- peft: lora
+- trainer: trainer
+- data: inference
