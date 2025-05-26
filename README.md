@@ -43,7 +43,7 @@ pip install -r requirements.txt
 
 4. Run inference
 ```bash
-bash scripts/inference.sh
+bash scripts/run_inference.sh
 ```
 Results will be saved in `./results`
 
