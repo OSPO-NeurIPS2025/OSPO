@@ -108,10 +108,7 @@ class JanusProTestWrapper(LightningModule):
     ):
         
         if seed is not None:
-            torch.manual_seed(seed)
-            torch.cuda.manual_seed_all(seed)
-            np.random.seed(seed)
-            random.seed(seed)
+            seed_everything(seed)
 
         batch_size = len(prompt_list) 
         input_ids_list = []
@@ -182,7 +179,7 @@ class JanusProTestWrapper(LightningModule):
                     PIL.Image.fromarray(image).save(save_path_list[inner_idx].replace(".png",f"_{seed}.png"))
                     
                 except OSError:
-                    idx_in_path = save_path_list[inner_idx].split("_")[1] # 01.png
+                    idx_in_path = save_path_list[inner_idx].split("_")[1]
                     alternative_path = f"longprompt_{idx_in_path}"
 
                     PIL.Image.fromarray(image).save(alternative_path)
@@ -258,7 +255,7 @@ def get_trainer(config, device):
         accelerator=device,
         devices=config.world_size,
         strategy="ddp",
-        max_epochs=1, # config.experiment.epoch,
+        max_epochs=1,
         precision=config.precision,
         callbacks=[ModelSummary(max_depth=2)],
         logger=False,
@@ -267,7 +264,7 @@ def get_trainer(config, device):
 
 def args_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", type=str, default="./checkpoints/janus-pro-7B") # Janus-8B path
+    parser.add_argument("--model_path", type=str, default="./checkpoints/janus-pro-7B") # Janus-7B path
     parser.add_argument("--ckpt_path", type=str, default="./checkpoints/ospo-epoch1.ckpt") # ospo ckpt path
     parser.add_argument("--save_path", type=str, default="./results")
 
@@ -302,13 +299,10 @@ def main():
 
     config=load_config()
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    
-    seed_everything(config.seed[0], workers=True)
+    device = config.device if torch.cuda.is_available() else "cpu"
 
     vl_chat_processor, tokenizer, model = get_model(config.model)
     
-    config.model.ckpt_path = "/nas2/checkpoints/janus_dpo/final/0507_simpo_base_lr_4e_5_beta_10_gamma_0_5/step=000100.ckpt"
     if not os.path.exists(config.model.ckpt_path):
         raise ValueError("Check model.ckpt_path !")
     
