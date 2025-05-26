@@ -29,10 +29,10 @@ conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=
 pip install -r requirements.txt
 ```
 
-3. Download Janus-Pro-7B checkpoint
+3. Download Janus-Pro-7B Model
 - Janus-Pro-7B: 🤗[HuggingFace](https://huggingface.co/deepseek-ai/Janus-Pro-7B)
-- Make `./checkpoints` directory and place the checkpoint in the `./checkpoints` directory.
-- So the checkpoint path should be `./checkpoints/Janus-Pro-7B`
+- Make `./checkpoints` directory and place the Model in the `./checkpoints` directory.
+- So the Model folder path should be `./checkpoints/Janus-Pro-7B`
 
 
 ## Inference
