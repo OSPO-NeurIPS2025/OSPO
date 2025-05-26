@@ -267,8 +267,8 @@ def get_trainer(config, device):
 
 def args_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", type=str, required=True) # Janus-8B path
-    parser.add_argument("--ckpt_path", type=str, required=True) # ospo ckpt path
+    parser.add_argument("--model_path", type=str, default="./checkpoints/janus-pro-7B") # Janus-8B path
+    parser.add_argument("--ckpt_path", type=str, default="./checkpoints/ospo-epoch1.ckpt") # ospo ckpt path
     parser.add_argument("--save_path", type=str, default="./results")
 
     parser.add_argument("--batch_size", type=int, default=1)
