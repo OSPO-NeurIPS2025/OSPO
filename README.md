@@ -20,7 +20,7 @@ git clone https://github.com/OSPO-NeurIPS2025/OSPO.git
 cd OSPO
 ```
 
-2. Install Dependencies
+3. Install Dependencies
 ```bash
 # We use pytorch 2.0.1 CUDA 11.7 Version
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia
@@ -29,7 +29,7 @@ conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=
 pip install -r requirements.txt
 ```
 
-3. Download Janus-Pro-7B Model
+4. Download Janus-Pro-7B Model
 - Janus-Pro-7B: 🤗[HuggingFace](https://huggingface.co/deepseek-ai/Janus-Pro-7B)
 - Make `./checkpoints` directory and place the Model in the `./checkpoints` directory.
 - So the Model folder path should be `./checkpoints/Janus-Pro-7B`
