@@ -7,22 +7,22 @@ import argparse
 import inflect
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.utils import open_json, save_json, build_config
+from ospo.utils import read_json, save_json, build_config
 
 
 def load_element(base_path):
-    object_element = open_json(os.path.join(base_path, 'object_element.json'))
-    color_element = open_json(os.path.join(base_path, 'color_element.json'))
-    shape_element = open_json(os.path.join(base_path, 'shape_element.json'))
-    texture_element = open_json(os.path.join(base_path, 'texture_element.json'))
-    spatial_element = open_json(os.path.join(base_path, 'spatial_element.json'))
+    object_element = read_json(os.path.join(base_path, 'object_element.json'))
+    color_element = read_json(os.path.join(base_path, 'color_element.json'))
+    shape_element = read_json(os.path.join(base_path, 'shape_element.json'))
+    texture_element = read_json(os.path.join(base_path, 'texture_element.json'))
+    spatial_element = read_json(os.path.join(base_path, 'spatial_element.json'))
     
     return object_element, color_element, shape_element, texture_element, spatial_element
 
 
 def load_prompt(base_path):
-    non_spatial_prompt = open_json(os.path.join(base_path, 'non_spatial_element.json'))
-    complex_prompt = open_json(os.path.join(base_path, 'complex_element.json'))
+    non_spatial_prompt = read_json(os.path.join(base_path, 'non_spatial_element.json'))
+    complex_prompt = read_json(os.path.join(base_path, 'complex_element.json'))
 
     return non_spatial_prompt, complex_prompt
 

@@ -118,7 +118,7 @@ def main(config):
     if config.save_path is not None:
         os.makedirs(config.save_path, exist_ok=True)
 
-    vl_chat_processor, tokenizer, model = get_model(config.model_path, config.cache_dir)
+    vl_chat_processor, tokenizer, model = get_model(model_path=config.model_path, cache_dir=config.cache_dir)
     max_len, dataloader = get_dataloader(category=config.category)
 
     if config.ckpt_path is not None:

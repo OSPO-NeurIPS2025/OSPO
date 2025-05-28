@@ -14,9 +14,9 @@ from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.base import get_model, get_lora_config, get_eval_trainer, get_sft_format, get_prepare_list, batchify, get_prompt, get_fname
+from ospo.base import get_model, get_lora_config, get_eval_trainer, get_prompt, get_fname
 from ospo.utils import save_json, set_seed, build_config
-from data.gen_dataset import BaseDataset
+from dataclass.gen_dataset import BaseDataset
 
 
 class JanusProTestWrapper(LightningModule):
@@ -69,7 +69,7 @@ class JanusProTestWrapper(LightningModule):
                     ):
                         
                         save_path = os.path.join(self.config.save_path, 
-                                                    f"{prompt_type}_long_prompt", 
+                                                    f"{prompt_type}", 
                                                     category, 
                                                     item_id)
                         os.makedirs(save_path, exist_ok=True)

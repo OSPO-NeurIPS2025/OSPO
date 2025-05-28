@@ -2,10 +2,12 @@
 import os
 import yaml
 import torch
+import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelSummary
+from pytorch_lightning.strategies import DDPStrategy
 from transformers import AutoModelForCausalLM
-from peft import LoraConfig
+from peft import LoraConfig, get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
@@ -13,18 +15,61 @@ from janus.models import MultiModalityCausalLM, VLChatProcessor
 from janus.models.processing_vlm import VLChatProcessorOutput, BatchedVLChatProcessorOutput
 
 
-def get_model(model_path, cache_dir=None):
+def get_model(mode='generate', model_path=None, cache_dir=None, dtype=torch.float32, **kwargs): 
+    if mode not in ['generate', 'train']:
+        raise ValueError(f"Invalid mode: {mode}. Choose either 'generate' or 'train'.")
+    
+    config = kwargs.get('config', None)
+    if config is not None:
+        model_path = config.base.model_path 
+        cache_dir = config.base.cache_dir
+
     vl_chat_processor: VLChatProcessor = VLChatProcessor.from_pretrained(model_path, cache_dir)
     tokenizer = vl_chat_processor.tokenizer
-
+    image_processor = vl_chat_processor.image_processor 
+    
     vl_gpt: MultiModalityCausalLM = AutoModelForCausalLM.from_pretrained(
-        model_path, 
-        trust_remote_code=True,
-        cache_dir=cache_dir,
-    )
-    vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
+            model_path, 
+            trust_remote_code=True,
+            cache_dir=cache_dir,
+            torch_dtype=dtype, # TODO
+            device_map=None,   # TODO
+        )
+    
+    if mode == 'generate':
+        vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
+        return vl_chat_processor, tokenizer, vl_gpt
 
-    return vl_chat_processor, tokenizer, vl_gpt
+    # mode = 'train'
+    else:
+        # Enable gradient checkpointing first
+        if config.experiment.gradient_checkpointing:
+            vl_gpt.language_model.gradient_checkpointing_enable()
+            
+        if config.use_lora: 
+            print("Use Peft for Language Model Only.")
+            lora_config=LoraConfig(
+                r=config.lora.lora_rank,
+                lora_alpha=config.lora.lora_alpha,
+                target_modules=config.lora.target_modules,
+                lora_dropout=config.lora.lora_dropout,
+                bias="none",
+                task_type="CAUSAL_LM",
+            )
+
+            # Apply LoRA to the language model **only**
+            vl_gpt.language_model = get_peft_model(vl_gpt.language_model, lora_config)
+
+            # Mark frozen parameters to avoid DDP issues
+            for name, param in vl_gpt.named_parameters():
+                if "language_model" not in name:
+                    param.requires_grad = False  # Ensure non-LoRA layers are frozen
+
+            # Explicitly mark LoRA parameters for DDP
+            for param in vl_gpt.language_model.parameters():
+                param._ddp_params_and_buffers_to_ignore = True  # Prevent DDP from syncing frozen params
+
+        return vl_gpt, vl_chat_processor, image_processor, tokenizer
 
 
 def get_lora_config(ckpt_path):
@@ -58,15 +103,54 @@ def get_eval_trainer(device, world_size):
     return trainer
 
 
-def get_train_trainer(args, device):    
-    trainer = Trainer(
-        accelerator=device,
-        devices=args.world_size,
-        strategy="ddp",
-        max_epochs=1, 
-        precision="bf16",
-        callbacks=[ModelSummary(max_depth=2)],
+def get_train_trainer(config, device):
+    tb_logger = pl.loggers.TensorBoardLogger(save_dir=config.base.save_path, name=config.base.exp_name)
+    checkpoint_callback = pl.callbacks.ModelCheckpoint(
+        dirpath=tb_logger.log_dir,
+        filename="{step:06d}",
+        save_top_k=-1,         
+        every_n_train_steps=config.experiment.save_steps, 
     )
+
+    if config.use_lora:
+        trainer = Trainer(
+            devices=config.base.world_size,
+            accelerator=device,
+            logger=tb_logger,
+            default_root_dir=config.base.save_path,
+            callbacks=[pl.callbacks.ModelSummary(max_depth=2), checkpoint_callback], 
+            strategy=DDPStrategy(                                          
+                find_unused_parameters=False # LoRA issue
+            ),          
+            log_every_n_steps=config.experiment.log_steps,
+            gradient_clip_val=config.experiment.gradient_clip_val, 
+            enable_checkpointing=config.experiment.enable_checkpointing,
+            accumulate_grad_batches=config.experiment.gradient_accumulation_steps,
+            precision="bf16" if config.experiment.precision is None or config.experiment.precision == "auto" else config.experiment.precision, #config.precision, 
+            max_steps=config.experiment.max_training_steps, # or max_epochs   
+            check_val_every_n_epoch=None, # no validation
+            val_check_interval=config.experiment.val_steps * config.experiment.gradient_accumulation_steps, 
+        )
+        
+    else:
+        trainer = Trainer(
+            devices=config.base.world_size,
+            accelerator=device,
+            logger=tb_logger,
+            default_root_dir=config.base.save_path,
+            callbacks=[pl.callbacks.ModelSummary(max_depth=2), checkpoint_callback], 
+            strategy=DDPStrategy(                                          
+                find_unused_parameters=False 
+            ),          
+            log_every_n_steps=config.experiment.log_steps,
+            gradient_clip_val=config.experiment.gradient_clip_val, 
+            enable_checkpointing=config.experiment.enable_checkpointing,
+            accumulate_grad_batches=config.experiment.gradient_accumulation_steps,
+            precision="bf16" if config.experiment.precision is None or config.experiment.precision == "auto" else config.experiment.precision, #config.precision, 
+            max_steps=config.experiment.max_training_steps, # or max_epochs   
+            check_val_every_n_epoch=None, # no validation
+            val_check_interval=config.experiment.val_steps * config.experiment.gradient_accumulation_steps,        
+        )
 
     return trainer
 

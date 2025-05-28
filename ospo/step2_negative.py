@@ -14,7 +14,7 @@ pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd
 from ospo.prompt.template_negative import get_prompt_negative
 from ospo.base import get_model, get_lora_config, get_eval_trainer, get_sft_format, get_prepare_list, batchify
 from ospo.utils import save_json, set_seed, build_config
-from data.gen_dataset import BaseDataset
+from dataclass.gen_dataset import BaseDataset
 
 
 class JanusProTestWrapper(LightningModule):

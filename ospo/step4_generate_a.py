@@ -1,9 +1,12 @@
 # Step 4: Self-VQA for Preference Pair Selection
 
 import os
+import argparse
+import numpy as np
+from glob import glob
+from PIL import Image
 import torch
 from torch.utils.data import DataLoader
-import argparse
 from pytorch_lightning import LightningModule, seed_everything
 from peft import get_peft_model
 
@@ -11,7 +14,6 @@ import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.utils import read_json, save_json, build_config
 from ospo.base import get_model, get_lora_config, get_eval_trainer
-from ospo.prompt.template_vqa import get_vqa_prompt
 
 
 class JanusVQAWrapper(LightningModule):
@@ -22,95 +24,234 @@ class JanusVQAWrapper(LightningModule):
         self.tokenizer=tokenizer
         self.processor=processor
 
-        self.image_token_num_per_image = 576
-        self.img_size = 384
-        self.patch_size = 16
-
         self.output_list = []
+        # Token IDs
+        self.yes_ids = [self.tokenizer("yes", add_special_tokens=False).input_ids[-1],
+                        self.tokenizer("Yes", add_special_tokens=False).input_ids[-1]]
+        self.no_ids  = [self.tokenizer("no", add_special_tokens=False).input_ids[-1],
+                        self.tokenizer("No", add_special_tokens=False).input_ids[-1]]
+
 
     def on_test_epoch_start(self):
         self.model.eval() 
-    
+
+
     @torch.inference_mode()
     def test_step(self, batch, batch_idx):
-        category_list = []
-        sub_category_list = []
-        original_prompt = []
-        prompt_list = []
-        data_idx_list = []
-        
+        questions_batched = [item['question'] for item in batch]  
         for sample in batch:
-            category = sample['category']
-            sub_category = sample['sub_category']
-            prompt = sample['prompt']
-            data_idx = sample['item_id'] 
-            original_prompt.append(prompt)
-            prompt = get_vqa_prompt[category](prompt)
+            base_paths_batched = sorted(glob(os.path.join(self.config.image_path, sample['category'], 'base', sample['item_id'], '*.png')))
+            negative_paths_batched = sorted(glob(os.path.join(self.config.image_path, sample['category'], 'negative', sample['item_id'], '*.png')))
 
-            category_list.append(category)
-            sub_category_list.append(sub_category)
-            prompt_list.append(prompt)
-            data_idx_list.append(data_idx)
+        # For base, (chosen candidate)
+        base_all_convs, base_all_imgs, base_mapping = self.get_mapping(base_paths_batched, questions_batched)
+        base_logits = self.forward(base_all_convs, base_all_imgs)
+        baes_img_metadata_batched = self.get_score(base_paths_batched, questions_batched, base_mapping, base_logits)
 
-        input_embeds, attention_mask = self.prepare_input_embeds(prompt_list)
-        outputs = self.generate(input_embeds, attention_mask)
+        # For negative, (rejected candidate)
+        negative_all_convs, negative_all_imgs, negative_mapping = self.get_mapping(negative_paths_batched, questions_batched)
+        negative_logits = self.forward(negative_all_convs, negative_all_imgs)
+        negative_img_metadata_batched = self.get_score(negative_paths_batched, questions_batched, negative_mapping, negative_logits)
+
+
+
+    def get_mapping(self, img_paths_batched, questions_batched):
+        # (sample_idx(i), img_idx, q_idx)
+        batch_size = len(img_paths_batched)
+        all_convs, all_imgs, mapping = [], [], []
         
-        for idx,output in enumerate(outputs):
-            answer = self.tokenizer.decode(output.cpu().tolist(), skip_special_tokens=True)
-            answer = answer.split("Questions: ")[-1]
-            answer = [t.strip() + '?' for t in answer.split('?') if t.strip().rstrip('.')]
+        for i in range(batch_size):
+            for img_idx, img_path in enumerate(img_paths_batched[i]):
+                img = Image.open(img_path)
+                for q_idx, question in enumerate(questions_batched[i]):
+                    all_convs.append([
+                        {"role": "<|User|>",
+                         "content": f"<image_placeholder>\n{question} Please answer 'yes' or 'no' without explanation.",
+                         "images": [img]},
+                        {"role": "<|Assistant|>", "content": ""}
+                    ])
+                    all_imgs.append([img])
+                    mapping.append((i, img_idx, q_idx))
+        
+        return all_convs, all_imgs, mapping
 
-            self.output_list.append({
-                "item_id": data_idx_list[idx],
-                "prompt": original_prompt[idx],
-                "question": answer,
-                })
+
+    def forward(self, all_convs, all_imgs): 
+        prepare_list = []
+        for convs, imgs in zip(all_convs, all_imgs):
+            prepare = self.processor.process_one(
+                conversations=convs,
+                images=imgs,
+                force_batchify=True
+            )
+            prepare_list.append(prepare)
+        
+        # forward 
+        with torch.no_grad():
+            batch_inputs = self.processor.batchify(prepare_list).to(self.device)
+            inputs_embeds = self.model.prepare_inputs_embeds(**batch_inputs)
+            outputs = self.model.language_model(
+                inputs_embeds=inputs_embeds,
+                attention_mask=batch_inputs.attention_mask
+            )
+        logits = outputs.logits  # [B_total, seq_len, vocab_size]
+
+        return logits
+    
+
+    def get_score(self, img_paths_batched, questions_batched, mapping, logits):
+        last_logits = logits[:, -1, :]
+        probs = torch.softmax(last_logits, dim=-1)
+
+        batch_size = len(img_paths_batched)
+        img_cnt_batched = [len(paths) for paths in img_paths_batched]
+        question_cnt_batched = [len(questions) for questions in questions_batched]
+        answer_metadata_batched = [[[None] * question_cnt_batched[i] for _ in range(img_cnt_batched[i])] for i in range(batch_size)]
+
+        score_sum_batched = [np.zeros(n, dtype=float) for n in img_cnt_batched]
+        global_score_batched = [np.zeros(n, dtype=float) for n in img_cnt_batched]
+        local_score_batched = [np.zeros(n, dtype=float) for n in img_cnt_batched]
+
+        # accumulate per sequence
+        for seq_idx, (sample_idx, img_idx, q_idx) in enumerate(mapping):
+            question_cnt = question_cnt_batched[sample_idx]
+
+            p_yes = max(probs[seq_idx, y].item() for y in self.yes_ids)
+            p_no  = max(probs[seq_idx, n].item() for n in self.no_ids)
+
+            # last question
+            if q_idx == question_cnt - 1:
+                global_score_batched[sample_idx][img_idx] = (p_yes - p_no)
+
+            else:
+                score_sum_batched[sample_idx][img_idx] += (p_yes - p_no)
+
+            answer_metadata_batched[sample_idx][img_idx][q_idx] = {
+                'p_yes': float(p_yes),
+                'p_no': float(p_no),
+                'answer': 'yes' if p_yes > p_no else ('no' if p_no > p_yes else 'tie')
+            }
+
+        # compute local score per image
+        img_metadata_batched = []
+
+        for sample_idx, score_sum_by_sample in enumerate(score_sum_batched):
+            len_q = question_cnt_batched[sample_idx] - 1 # except for global question
+            for img_idx, score_sum_by_image in enumerate(score_sum_by_sample):
+                local_score = score_sum_by_image / len_q
+                local_score_batched[sample_idx][img_idx] = local_score
+
+
+        # 모든 샘플에 대한 img_metadata 
+        for sample_idx in range(batch_size):
+            # 해당 샘플의 이미지 개수
+            img_metadata = {}
+            img_path_list = img_paths_batched[sample_idx]
+
+            if 'base' in img_path_list[0]:
+                prefix = 'base'
+            elif 'negative' in img_path_list[0]:
+                prefix = 'negative'
+            else:
+                raise ValueError(f"Image path does not contain 'base' or 'negative'. Image path: {img_path_list[0]}")
+
+            for img_idx, img_path in enumerate(img_path_list):
+                img_metadata[f'{prefix}_{img_idx}'] = {
+                    'path': img_path,
+                    'local_score': float(local_score_batched[sample_idx][img_idx]),
+                    'global_score': float(global_score_batched[sample_idx][img_idx]),
+                    'answer_metadata': answer_metadata_batched[sample_idx][img_idx]
+                }
+            img_metadata_batched.append(img_metadata)
+
+        return img_metadata_batched
+
+
+    def compute_preference_strength(self, base_img_dict, negative_img_dict):
+        # For each sample, we assume that length of base and negative have same length.
+        bases = [(i, base_img_dict.get(f'base_{i}')) for i in range(3) if base_img_dict.get(f'base_{i}') is not None]
+        negatives = [(i, negative_img_dict.get(f'negative_{i}')) for i in range(3) if negative_img_dict.get(f'negative_{i}') is not None]
+        if len(bases) == 0 or len(negatives) == 0:
+            return None
+
+        pairs = []
+        for idx in range(3):  
+            base = base_img_dict.get(f'base_{idx}')
+            neg = negative_img_dict.get(f'negative_{idx}')
+
+            if base is not None and neg is not None:
+                local_gap = base['local_score'] - neg['local_score']
+                global_gap = base['global_score'] - neg['global_score']
+
+                # filter
+                if local_gap >= 0 and global_gap >= 0:
+                    pairs.append({
+                        'pair_idx': idx,
+                        'local_gap': local_gap,
+                        'global_gap': global_gap
+                    })
+        if not pairs: 
+            return None
+
+        # For normalization,
+        max_local_gap = max(abs(p['local_gap']) for p in pairs)
+        max_global_gap = max(abs(p['global_gap']) for p in pairs)
+
+        best_score = -np.inf
+        best_pair = None
+
+        for pair in pairs:
+            norm_local = abs(pair['local_gap']) / (max_local_gap + 1e-8)
+            norm_global = abs(pair['global_gap']) / (max_global_gap + 1e-8)
+            preference_strength = norm_local / (norm_global + 1e-8)  # Avoid division by zero
+
+            if preference_strength > best_score:
+                best_score = preference_strength
+                best_pair = pair
+        if best_pair is None:
+            return None
+        
+        chosen = base_img_dict[f'base_{best_pair["pair_idx"]}']['path']
+        rejected = negative_img_dict[f'negative_{best_pair["pair_idx"]}']['path']
+        score_metadata = {
+            "local_gap": best_pair["local_gap"],
+            "global_gap": best_pair["global_gap"],
+            "preference_strength": best_score,
+        }
+
+        return (chosen, rejected, score_metadata)
+    
+
+    def select_pair(self, batch, base_metadata_batched, negative_metadata_batched):
+        for sample_idx, (base_dict, negative_dict) in enumerate(zip(base_metadata_batched, negative_metadata_batched)):
+            # Compute preference strength
+            result = self.compute_preference_strength(base_dict, negative_dict)
+            if result is None:
+                continue
+            else:
+                chosen, rejected, score_metadata = result
+            
+            # Prepare training dataset
+            output = {
+                "item_id": batch[sample_idx]['item_id'],
+                "category": batch[sample_idx]['category'],
+                "sub_category": batch[sample_idx]['sub_category'],
+                "question": batch[sample_idx]['question'],
+                "prompt": batch[sample_idx]['prompt'],
+                "chosen": chosen,
+                "rejected": rejected,
+                "metadata": { 
+                    "score_metadata": score_metadata,
+                    "base_meatadata": base_dict,
+                    "negative_metadata": negative_dict
+                }
+            }
+            self.output_list.append(output)
 
 
     def on_test_epoch_end(self):
         os.makedirs(self.config.save_path, exist_ok=True)
-        save_json(self.config.save_path, 'vqa_prompt.json', self.output_list)
-
-
-    @torch.inference_mode()
-    def generate(self, input_embeds, attention_mask):
-        generation_config = self.config.generation_config
-        outputs = self.model.language_model.generate(inputs_embeds=input_embeds,
-            attention_mask=attention_mask,
-            pad_token_id=self.tokenizer.eos_token_id,
-            bos_token_id=self.tokenizer.bos_token_id,
-            eos_token_id=self.tokenizer.eos_token_id,
-            use_cache=True,
-            **generation_config
-            )
-
-        return outputs
-
-
-    def prepare_input_embeds(self, prompt_list):
-        max_len = 0
-        batch_size = len(prompt_list)
-        input_ids_list = []
-
-        for prompt in prompt_list:            
-            input_ids = self.processor.tokenizer.encode(prompt)
-            input_ids = torch.LongTensor(input_ids)
-            
-            max_len = max(max_len, len(input_ids))
-            input_ids_list.append(input_ids)
-        
-        tokens = torch.zeros((batch_size, max_len), dtype=torch.int).to(self.device)
-        attention_mask = torch.ones((batch_size, max_len), dtype=torch.long).to(self.device)
-    
-        for i in range(batch_size):
-            pad_len = max_len - len(input_ids_list[i])
-            tokens[i, pad_len:] = input_ids_list[i]
-            tokens[i, :pad_len] = self.processor.pad_id
-            attention_mask[i, :pad_len] = 0
-        
-        input_embeds = self.model.language_model.get_input_embeddings()(tokens)  
-        
-        return input_embeds, attention_mask
+        save_json(self.config.save_path, 'train.json', self.output_list)
 
 
 def get_dataloader(config):

@@ -6,7 +6,24 @@ import torch
 from pytorch_lightning import seed_everything
 from omegaconf import OmegaConf
 
-def open_json(json_path):
+class AttrDict(dict):
+    __setattr__ = dict.__setitem__
+
+    def __getattribute__(self, item):
+        if item in self:
+            return self[item]
+        else:
+            return super().__getattribute__(item)
+
+    @classmethod
+    def from_nested_dicts(cls, data):
+        if not isinstance(data, dict):
+            return data
+        else:
+            return cls({key: cls.from_nested_dicts(data[key]) for key in data})
+
+
+def read_json(json_path):
     with open(json_path, 'r') as f:
         data = json.load(f)
     return data
@@ -29,23 +46,6 @@ def get_rank(dist):
     if not dist.is_initialized():
         return 0
     return dist.get_rank()
-
-
-class AttrDict(dict):
-    __setattr__ = dict.__setitem__
-
-    def __getattribute__(self, item):
-        if item in self:
-            return self[item]
-        else:
-            return super().__getattribute__(item)
-
-    @classmethod
-    def from_nested_dicts(cls, data):
-        if not isinstance(data, dict):
-            return data
-        else:
-            return cls({key: cls.from_nested_dicts(data[key]) for key in data})
 
 def override_from_file_name(cfg):
     if 'cfg_path' in cfg and cfg.cfg_path is not None:
@@ -74,3 +74,12 @@ def build_config(struct=False, cfg_path=None):
     # cfg_yaml = OmegaConf.to_yaml(cfg)
     cfg = to_attr_dict(cfg) 
     return cfg
+
+
+def save_config(save_path, config):
+    config_save_path = os.path.join(save_path, 'config.yaml') 
+    if not os.path.exists(save_path):
+        os.makedirs(save_path, exist_ok=True)
+        
+    with open(config_save_path, "w") as f:
+        json.dump(config, f, indent=4)
