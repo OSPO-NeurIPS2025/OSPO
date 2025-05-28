@@ -1,0 +1,9 @@
+# Step 1
+
+seed: 42
+world_size: 1
+save_path:
+ckpt_path:
+model_path: /nas2/checkpoints/Janus-Pro-7B
+cache_dir: /nas2/checkpoints/hf_cache_yj
+category: 

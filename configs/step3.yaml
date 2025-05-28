@@ -1,0 +1,17 @@
+# Step 3
+
+s_idx:
+e_idx:
+data_path:
+batch_size:
+num_workers: 
+seed_list:
+world_size:
+save_path:
+ckpt_path:
+model_path: /nas2/checkpoints/Janus-Pro-7B
+cache_dir: /nas2/checkpoints/hf_cache_yj
+generation_config: 
+  parallel_size: 1
+  temperature: 1.0
+  cfg_weight: 5.0

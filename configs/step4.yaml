@@ -1,0 +1,18 @@
+# Step 4
+
+seed: 42
+data_path:
+imaeg_path:
+batch_size:
+num_workers: 
+world_size:
+save_path:
+ckpt_path:
+model_path: /nas2/checkpoints/Janus-Pro-7B
+cache_dir: /nas2/checkpoints/hf_cache_yj
+generation_config: 
+  do_sample: True
+  num_beams: 1
+  temperature: 0.8
+  top_p: 0.9
+  max_new_tokens: 256

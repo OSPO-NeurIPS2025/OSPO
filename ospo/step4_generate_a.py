@@ -1,0 +1,168 @@
+# Step 4: Self-VQA for Preference Pair Selection
+
+import os
+import torch
+from torch.utils.data import DataLoader
+import argparse
+from pytorch_lightning import LightningModule, seed_everything
+from peft import get_peft_model
+
+import pyrootutils
+pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
+from ospo.utils import read_json, save_json, build_config
+from ospo.base import get_model, get_lora_config, get_eval_trainer
+from ospo.prompt.template_vqa import get_vqa_prompt
+
+
+class JanusVQAWrapper(LightningModule):
+    def __init__(self, config, model, tokenizer, processor):
+        super().__init__()
+        self.config=config
+        self.model=model
+        self.tokenizer=tokenizer
+        self.processor=processor
+
+        self.image_token_num_per_image = 576
+        self.img_size = 384
+        self.patch_size = 16
+
+        self.output_list = []
+
+    def on_test_epoch_start(self):
+        self.model.eval() 
+    
+    @torch.inference_mode()
+    def test_step(self, batch, batch_idx):
+        category_list = []
+        sub_category_list = []
+        original_prompt = []
+        prompt_list = []
+        data_idx_list = []
+        
+        for sample in batch:
+            category = sample['category']
+            sub_category = sample['sub_category']
+            prompt = sample['prompt']
+            data_idx = sample['item_id'] 
+            original_prompt.append(prompt)
+            prompt = get_vqa_prompt[category](prompt)
+
+            category_list.append(category)
+            sub_category_list.append(sub_category)
+            prompt_list.append(prompt)
+            data_idx_list.append(data_idx)
+
+        input_embeds, attention_mask = self.prepare_input_embeds(prompt_list)
+        outputs = self.generate(input_embeds, attention_mask)
+        
+        for idx,output in enumerate(outputs):
+            answer = self.tokenizer.decode(output.cpu().tolist(), skip_special_tokens=True)
+            answer = answer.split("Questions: ")[-1]
+            answer = [t.strip() + '?' for t in answer.split('?') if t.strip().rstrip('.')]
+
+            self.output_list.append({
+                "item_id": data_idx_list[idx],
+                "prompt": original_prompt[idx],
+                "question": answer,
+                })
+
+
+    def on_test_epoch_end(self):
+        os.makedirs(self.config.save_path, exist_ok=True)
+        save_json(self.config.save_path, 'vqa_prompt.json', self.output_list)
+
+
+    @torch.inference_mode()
+    def generate(self, input_embeds, attention_mask):
+        generation_config = self.config.generation_config
+        outputs = self.model.language_model.generate(inputs_embeds=input_embeds,
+            attention_mask=attention_mask,
+            pad_token_id=self.tokenizer.eos_token_id,
+            bos_token_id=self.tokenizer.bos_token_id,
+            eos_token_id=self.tokenizer.eos_token_id,
+            use_cache=True,
+            **generation_config
+            )
+
+        return outputs
+
+
+    def prepare_input_embeds(self, prompt_list):
+        max_len = 0
+        batch_size = len(prompt_list)
+        input_ids_list = []
+
+        for prompt in prompt_list:            
+            input_ids = self.processor.tokenizer.encode(prompt)
+            input_ids = torch.LongTensor(input_ids)
+            
+            max_len = max(max_len, len(input_ids))
+            input_ids_list.append(input_ids)
+        
+        tokens = torch.zeros((batch_size, max_len), dtype=torch.int).to(self.device)
+        attention_mask = torch.ones((batch_size, max_len), dtype=torch.long).to(self.device)
+    
+        for i in range(batch_size):
+            pad_len = max_len - len(input_ids_list[i])
+            tokens[i, pad_len:] = input_ids_list[i]
+            tokens[i, :pad_len] = self.processor.pad_id
+            attention_mask[i, :pad_len] = 0
+        
+        input_embeds = self.model.language_model.get_input_embeddings()(tokens)  
+        
+        return input_embeds, attention_mask
+
+
+def get_dataloader(config):
+    dataset = read_json(config.data_path) 
+    dataloader = DataLoader(dataset,
+                            collate_fn=lambda batch: batch, 
+                            batch_size=config.batch_size,
+                            num_workers=config.num_workers, 
+                            pin_memory=True,
+                            drop_last=False)
+    return dataloader
+    
+
+def main(config):
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"    
+    seed_everything(config.seed, workers=True)
+
+    vl_chat_processor, tokenizer, model = get_model(model_path=config.model_path, cache_dir=config.cache_dir)
+    
+    if config.ckpt_path is not None:
+        print("# Load model with checkpoint.")
+        lora_config = get_lora_config(config.ckpt_path)
+
+        model.language_model = get_peft_model(model.language_model, lora_config)
+        model = JanusVQAWrapper.load_from_checkpoint(checkpoint_path=config.ckpt_path, 
+                                                        config=config,
+                                                        model=model,
+                                                        tokenizer=tokenizer,
+                                                        processor=vl_chat_processor,
+                                                        strict=False) 
+        model.setup("test")
+        model.model.language_model = model.model.language_model.merge_and_unload() 
+
+    else:
+        print("# Load base model.")
+        model = JanusVQAWrapper(config=config,
+                                model=model, 
+                                tokenizer=tokenizer, 
+                                processor=vl_chat_processor)
+
+
+    dataloader = get_dataloader(config)
+    trainer = get_eval_trainer(device, config.world_size)
+
+    trainer.test(model, dataloader)
+    
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cfg_path", type=str, default="configs/step4.yaml")
+    args, unknown = parser.parse_known_args()  
+    config = build_config(cfg_path=args.cfg_path)
+    
+    main(config)
