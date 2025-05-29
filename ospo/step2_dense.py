@@ -59,7 +59,7 @@ class JanusProTestWrapper(LightningModule):
             for sample in batch:
                 prompt = sample['prompt']
                 sub_category = sample['sub_category']
-                negative_prompt_list = sample['perturbed_prompt'] 
+                negative_prompt_list = sample['negative_prompt'] 
 
                 for i, negative_prompt in enumerate(negative_prompt_list):
                     # Triplet: category, positive(base), negative

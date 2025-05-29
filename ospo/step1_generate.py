@@ -4,8 +4,10 @@ import os
 import re
 import yaml
 import json
+import pickle
 import torch
 import argparse
+import torch.distributed as dist
 from torch.utils.data import DataLoader
 from pytorch_lightning import LightningModule, seed_everything
 from peft import LoraConfig, get_peft_model
@@ -13,28 +15,25 @@ from peft import LoraConfig, get_peft_model
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.prompt.template_element import get_prompt_element
-from ospo.base import get_model, get_eval_trainer
-from ospo.utils import build_config
+from ospo.base import get_model, get_eval_trainer, get_lora_config
+from ospo.utils import build_config, save_json
 
 class JanusProTestWrapper(LightningModule):
-    def __init__(self, args, model, tokenizer, processor, category, max_len):
+    def __init__(self, config, model, tokenizer, processor, max_len):
         super().__init__()
-        self.args = args
+        self.config = config
         self.model = model
         self.tokenizer = tokenizer
         self.processor = processor  
-        self.category = category
+        self.category = self.config.category
         self.max_len = max_len
 
-        self.object_prompt = get_prompt_element(category, self.processor)
+        self.object_prompt = get_prompt_element(self.category, self.processor)
         self.element_set = set()
 
-    def setup(self, stage=None):
-        pass
 
     @torch.no_grad()
     def test_step(self, batch, batch_idx):
-        
         if len(self.element_set) >= self.max_len:
             return 
         
@@ -59,20 +58,30 @@ class JanusProTestWrapper(LightningModule):
 
         
     def on_test_epoch_end(self):
-        save_path = self.config.save_path
-        with open(os.path.join(save_path, f'{self.category}_element.json'), 'w') as f:
-            json.dump(list(self.element_set), f, indent=4)
-        print(f'# Generated [{self.category}] elements: {len(self.element_set)}')
+        froot = self.config.save_path
+        fname = f'{self.category}_element'
 
+        if self.trainer.world_size == 1:
+            save_json(froot, fname, list(self.element_set))
+            print(f'# Generated [{self.category}] elements: {len(self.element_set)}')
+            return
 
+        # if self.trainer.world_size > 1:
+        gathered_element_list = [None for _ in range(self.trainer.world_size)]
+        dist.all_gather_object(gathered_element_list, list(self.element_set))
+        self.trainer.strategy.barrier()
+
+        if self.trainer.global_rank == 0:
+            merged = set()
+            for sublist in gathered_element_list:
+                merged.update(sublist)
+            save_json(froot, fname, list(merged))
+            print(f'# Generated [{self.category}] elements: {len(merged)}')
+
+            
     @torch.inference_mode()
     def generate(self, prompt):
-        generation_config = {
-            'do_sample': True,
-            'temperature': 1.3,
-            'max_new_tokens': 256
-        }
-
+        generation_config = self.config.generation_config
         input_ids = self.tokenizer.encode(prompt)
         input_ids = torch.LongTensor(input_ids).to(self.device)
         
@@ -91,26 +100,34 @@ class JanusProTestWrapper(LightningModule):
         return answer
 
 
-def get_dataloader(category, max_len=70):
-
-    if category == "object":
-        max_len = 120
-    elif category == "spatial":
-        max_len = 40
-    elif category == "non-spatial" or category == "complex":
-        max_len = 4000
+def get_dataloader(config):
+    if config.max_len is None:
+        if config.category == "object":
+            max_len = 120
+        elif config.category == "spatial":
+            max_len = 40
+        elif config.category == "non-spatial" or config.category == "complex":
+            max_len = 4000
+        else:
+            max_len = 70
+    else:
+        max_len = config.max_len
 
     # dataset length = max_len (but, dummy data)
     dataset = list(range(max_len))  
     dataloader = DataLoader(dataset, 
-                            batch_size=1, 
+                            batch_size=config.batch_size, 
                             collate_fn=lambda batch: batch,
                             shuffle=False)
+    
     return max_len, dataloader
 
 
 
 def main(config):
+
+    if config.batch_size > 1 or config.world_size > 1:
+        raise NotImplementedError("Batch size > 1 and World size > 1 are not supported in this step.")
 
     device = "cuda" if torch.cuda.is_available() else "cpu"    
     seed_everything(config.seed, workers=True)
@@ -119,30 +136,18 @@ def main(config):
         os.makedirs(config.save_path, exist_ok=True)
 
     vl_chat_processor, tokenizer, model = get_model(model_path=config.model_path, cache_dir=config.cache_dir)
-    max_len, dataloader = get_dataloader(category=config.category)
+    max_len, dataloader = get_dataloader(config)
 
     if config.ckpt_path is not None:
         print("# Load model with checkpoint.")
-        ckpt_dir = os.path.dirname(config.ckpt_path)
-        ckpt_config_path = os.path.join(ckpt_dir, "config.yaml")
-        with open(ckpt_config_path, "r") as file:
-            ckpt_config = yaml.safe_load(file)
-
-        # Extract LoRA config
-        lora_config = LoraConfig(
-            r=ckpt_config["lora"].get("lora_rank"),
-            lora_alpha=ckpt_config["lora"]["lora_alpha"],
-            target_modules=ckpt_config["lora"]["target_modules"],
-            lora_dropout=ckpt_config["lora"]["lora_dropout"],
-            modules_to_save=ckpt_config["lora"].get("modules_to_save")                     
-        )
+        lora_config = get_lora_config(config.ckpt_path)
+        
         model.language_model = get_peft_model(model.language_model, lora_config)
         model = JanusProTestWrapper.load_from_checkpoint(checkpoint_path=config.ckpt_path, 
-                                                        args=args,
+                                                        config=config,
                                                         model=model,
                                                         tokenizer=tokenizer,
                                                         processor=vl_chat_processor,
-                                                        category=config.category, 
                                                         max_len=max_len,
                                                         strict=False) 
         model.setup("test")
@@ -150,15 +155,14 @@ def main(config):
 
     else:
         print("# Load base model.")
-        model = JanusProTestWrapper(args=args,
+        model = JanusProTestWrapper(config=config,
                                     model=model, 
                                     tokenizer=tokenizer, 
                                     processor=vl_chat_processor,
-                                    category=config.category,
                                     max_len=max_len)
 
 
-    trainer = get_eval_trainer(args, device)
+    trainer = get_eval_trainer(device, config.world_size)
     trainer.test(model, dataloaders=dataloader)
 
 

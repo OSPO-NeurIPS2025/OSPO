@@ -21,7 +21,7 @@ def load_element(base_path):
 
 
 def load_prompt(base_path):
-    non_spatial_prompt = read_json(os.path.join(base_path, 'non_spatial_element.json'))
+    non_spatial_prompt = read_json(os.path.join(base_path, 'non-spatial_element.json'))
     complex_prompt = read_json(os.path.join(base_path, 'complex_element.json'))
 
     return non_spatial_prompt, complex_prompt
@@ -29,6 +29,7 @@ def load_prompt(base_path):
 
 def construct_prompt(object_element_list, binding_element_list, generate_type, generate_num=1000):
     prompt_set = set()
+    p = inflect.engine()
 
     prompt_format = {
     "attribute1": "A {} {}",              # A {adj} {noun}
@@ -76,7 +77,6 @@ def construct_prompt(object_element_list, binding_element_list, generate_type, g
         prompt_list = list(prompt_set)
 
     else: # generate_type == "layout2"
-        p = inflect.engine()
         for num in range(1, 30):
             for object in object_element_list:
                 object = object.strip()
@@ -128,17 +128,19 @@ def combine_prompt(config):
     attributes = [color_element, shape_element, texture_element]
     non_spatial_prompt, complex_prompt = load_prompt(config.save_path)
 
-    category_num_dict = {
-        'attribute1_color': 666,
-        'attribute1_shape': 667,
-        'attribute1_texture': 667,
-        'attribute2': 2000,
-        'layout1': 2000,
-        'layout2': 1000,
-        'layout3': 1000,
-        'non_spatial': 4000,
-        'complex': 4000
-    }
+    # category_num_dict = {
+    #     'attribute1_color': 666,
+    #     'attribute1_shape': 667,
+    #     'attribute1_texture': 667,
+    #     'attribute2': 2000,
+    #     'layout1': 2000,
+    #     'layout2': 1000,
+    #     'layout3': 1000,
+    #     'non-spatial': 4000,
+    #     'complex': 4000
+    # }
+
+    category_num_dict = config.category_num
 
     for category, num in category_num_dict.items():
         if category == "attribute1_color":
@@ -155,9 +157,9 @@ def combine_prompt(config):
             prompt_list = construct_prompt(object_element, [], "layout2", num)
         elif category == "layout3":
             prompt_list = construct_prompt(object_element, [], "layout3", num)
-        elif category == "non_spatial":
+        elif category == "non-spatial":
             prompt_list = non_spatial_prompt
-            assert len(prompt_list) == num, f"Expected {num} prompts for non_spatial, but got {len(prompt_list)}."
+            assert len(prompt_list) == num, f"Expected {num} prompts for non-spatial, but got {len(prompt_list)}."
         elif category == "complex":
             prompt_list = complex_prompt
             assert len(prompt_list) == num, f"Expected {num} prompts for complex, but got {len(prompt_list)}."
@@ -166,7 +168,7 @@ def combine_prompt(config):
         data_list = combine_metadata(category, prompt_list)
         base_prompt_list.extend(data_list)
 
-    print(f"*** Total number of base prompt: {len(base_prompt_list)} ***")
+    print(f"\n*** Total number of base prompt (including non-spatial, complex): {len(base_prompt_list)} ***")
     return base_prompt_list
 
 
@@ -177,5 +179,5 @@ if __name__ == "__main__":
     args, unknown = parser.parse_known_args()  
     config = build_config(cfg_path=args.cfg_path)
     
-    base_prompt_list = construct_prompt(config)
-    save_json(config.save_path, 'base_prompt_meta_16k.json', base_prompt_list)
+    base_prompt_list = combine_prompt(config)
+    save_json(config.save_path, 'base_prompt', base_prompt_list)

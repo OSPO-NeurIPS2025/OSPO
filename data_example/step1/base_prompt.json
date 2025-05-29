@@ -1,0 +1,242 @@
+[
+    {
+        "item_id": "0000000",
+        "prompt": "A black towel",
+        "category": "attribute",
+        "sub_category": "attribute1_color"
+    },
+    {
+        "item_id": "0000001",
+        "prompt": "A deep greens book",
+        "category": "attribute",
+        "sub_category": "attribute1_color"
+    },
+    {
+        "item_id": "0000000",
+        "prompt": "A finger webcam",
+        "category": "attribute",
+        "sub_category": "attribute1_shape"
+    },
+    {
+        "item_id": "0000001",
+        "prompt": "A curved vertical diagonal boat",
+        "category": "attribute",
+        "sub_category": "attribute1_shape"
+    },
+    {
+        "item_id": "0000000",
+        "prompt": "A hard sweater",
+        "category": "attribute",
+        "sub_category": "attribute1_texture"
+    },
+    {
+        "item_id": "0000001",
+        "prompt": "A cold umbrella",
+        "category": "attribute",
+        "sub_category": "attribute1_texture"
+    },
+    {
+        "item_id": "0000000",
+        "prompt": "A wavy tacos and a light purple laptop",
+        "category": "attribute",
+        "sub_category": "attribute2"
+    },
+    {
+        "item_id": "0000001",
+        "prompt": "A violet book and a rough towel",
+        "category": "attribute",
+        "sub_category": "attribute2"
+    },
+    {
+        "item_id": "0000002",
+        "prompt": "A smooth watermelon and a gritty curry",
+        "category": "attribute",
+        "sub_category": "attribute2"
+    },
+    {
+        "item_id": "0000003",
+        "prompt": "A curved vertical diagonal desk and a petal sunflower",
+        "category": "attribute",
+        "sub_category": "attribute2"
+    },
+    {
+        "item_id": "1000000",
+        "prompt": "A violin near to a curry",
+        "category": "layout",
+        "sub_category": "layout1"
+    },
+    {
+        "item_id": "1000001",
+        "prompt": "A sweater within a webcam",
+        "category": "layout",
+        "sub_category": "layout1"
+    },
+    {
+        "item_id": "1000002",
+        "prompt": "A banjo near to a webcam",
+        "category": "layout",
+        "sub_category": "layout1"
+    },
+    {
+        "item_id": "1000003",
+        "prompt": "A desk outside of a skateboard",
+        "category": "layout",
+        "sub_category": "layout1"
+    },
+    {
+        "item_id": "1000000",
+        "prompt": "A umbrella",
+        "category": "layout",
+        "sub_category": "layout2"
+    },
+    {
+        "item_id": "1000001",
+        "prompt": "A sunflower",
+        "category": "layout",
+        "sub_category": "layout2"
+    },
+    {
+        "item_id": "1000002",
+        "prompt": "A watermelon",
+        "category": "layout",
+        "sub_category": "layout2"
+    },
+    {
+        "item_id": "1000000",
+        "prompt": "Three webcams and a sunflower",
+        "category": "layout",
+        "sub_category": "layout3"
+    },
+    {
+        "item_id": "1000001",
+        "prompt": "Five violins and four taco",
+        "category": "layout",
+        "sub_category": "layout3"
+    },
+    {
+        "item_id": "1000002",
+        "prompt": "Two lemons and five parrots",
+        "category": "layout",
+        "sub_category": "layout3"
+    },
+    {
+        "item_id": "2000000",
+        "prompt": "a little boy is jumping on a small trampoline in his backyard.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000001",
+        "prompt": "a dancer elegantly watches her reflection in the pond while practicing her routines.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000002",
+        "prompt": "a chef carefully watches the ingredients as she combines them together.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000003",
+        "prompt": "emma holds a microphone while singing a song on stage with her friends and bandmates.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000004",
+        "prompt": "a person is reading a book while sitting on a couch surrounded by other comfortable pillows.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000005",
+        "prompt": "tom and his team work together by a large piece of sheet music while tom plays a musical instrument.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000006",
+        "prompt": "a child wearing a protective helmet is running through water and splashing their young brother.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000007",
+        "prompt": "a toddler is pushing her small toy car on a rough sidewalk and watching as a stranger looks at her from across the street.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000008",
+        "prompt": "three young chefs are speaking with a client in a fancy chef's training restaurant.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "2000009",
+        "prompt": "a child is talking to her caregiver, holding a stuffed dog for comfort.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial"
+    },
+    {
+        "item_id": "3000000",
+        "prompt": "the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000001",
+        "prompt": "the sleek, metallic silver bike slid silently on the concrete pathway, passing a shiny, golden statue flanked by ornate, red-brick walls.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000002",
+        "prompt": "the vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000003",
+        "prompt": "the icy blue snowflake sparkled against the frosted, crystalized window; the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast.\n\nthe red heart-shaped apple with small green leaves nestled in the vibrant, lush bouquet, and the golden, shimmering moon orbited elegantly, while the golden eagle soared in a radiant display of freedom above the majestic waterfall.\n\nthe fluffy white kitten nuzzled up closely against the soft, golden sunset hues, and the golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000004",
+        "prompt": "the blue, swirling water pooled on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that gently mingled the waves of light, giving the tide a playful, undulating energy.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000005",
+        "prompt": "the elegant, black silk scarf elegantly wrapped around the lace-edged, cream-colored baby\u2019s blanket.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000006",
+        "prompt": "the crystal clear, deep blue ocean surrounded by soft, fluffy white clouds, with a sleek, black wooden fishing boat resting on its calm water. on the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000007",
+        "prompt": "the sleek silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming flowers.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000008",
+        "prompt": "the shiny silver necklace hung from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+        "category": "complex",
+        "sub_category": "complex"
+    },
+    {
+        "item_id": "3000009",
+        "prompt": "the towering glass tower mirrored its surroundings, the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+        "category": "complex",
+        "sub_category": "complex"
+    }
+]

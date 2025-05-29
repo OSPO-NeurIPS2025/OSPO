@@ -37,9 +37,6 @@ class JanusProTestWrapper(LightningModule):
         self.pad_id = self.tokenizer.vocab.get("<｜▁pad▁｜>")
 
         self.output_list = []
-
-        self.get_prompt_function_negative = get_prompt_negative
-        # self.get_prompt_function_dense = get_prompt_dense
         
 
     def on_test_epoch_start(self):
@@ -88,7 +85,8 @@ class JanusProTestWrapper(LightningModule):
 
                     perturbed_output.append(answer_output)
 
-                batch[sample_idx]['perturbed_prompt'] = perturbed_output
+                batch[sample_idx]['negative_prompt'] = perturbed_output
+                self.output_list.append(batch[sample_idx])
             
         except Exception as e:
             print(f"Error in test_step: {e}")
@@ -99,21 +97,19 @@ class JanusProTestWrapper(LightningModule):
         prepare_list = []
         for triplet in pair_list:     
             sub_category, prompt, p_type = triplet
-            get_func = self.get_prompt_function_negative[sub_category]
+            get_func = get_prompt_negative[sub_category]
 
             system_prompt, conversation = get_func(p_type, prompt)
             if system_prompt is None or conversation is None:
                 print("None system_prompt or conversation")
                 continue
 
-            sft_format = get_sft_format(self.processor, conversation, system_prompt)
+            sft_format = get_sft_format(self.processor, system_prompt, conversation)
             prepare_list.append(get_prepare_list(self.processor, self.tokenizer, sft_format))
     
-
         # batchify
         batched_prepares = batchify(self.processor, self.tokenizer, prepare_list)
         batched_prepares = batched_prepares.to(self.device) 
-
         inputs_embeds = self.model.prepare_inputs_embeds(**batched_prepares)
 
         return inputs_embeds, batched_prepares
@@ -143,9 +139,9 @@ class JanusProTestWrapper(LightningModule):
 
     def on_test_epoch_end(self):
         os.makedirs(self.config.save_path, exist_ok=True)
-        fname = 'negative_prompt.json'
+        fname = 'negative_prompt'
         if self.config.s_idx is not None or self.config.e_idx is not None:
-            fname = f'negative_prompt_s_idx_{self.config.s_idx}_e_idx_{self.config.e_idx}.json'
+            fname = f'negative_prompt_s_idx_{self.config.s_idx}_e_idx_{self.config.e_idx}'
 
         if self.trainer.world_size > 1:
             gathered_output_list = [None for _ in range(self.trainer.world_size)]
@@ -207,8 +203,7 @@ def main(config):
         model = JanusProTestWrapper(config=config,
                                     model=model, 
                                     tokenizer=tokenizer, 
-                                    processor=vl_chat_processor, 
-                                    config=config)
+                                    processor=vl_chat_processor)
 
     # world_size = torch.cuda.device_count()
     trainer = get_eval_trainer(device, config.world_size)
