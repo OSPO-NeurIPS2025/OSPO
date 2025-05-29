@@ -97,79 +97,76 @@ def construct_prompt(object_element_list, binding_element_list, generate_type, g
     return prompt_list
 
 
-def combine_metadata(sub_category, prompt_list): 
-    data_list = [] # itme_id, category, sub_category, prompt
-
-    if "attribute" in sub_category:
-        category = "attribute"
-    elif "layout" in sub_category:
-        category = "layout"
-    else:
-        category = sub_category
+def combine_metadata(category, prompt_list): 
+    # itme_id, category, sub_category, prompt
     category2idx = {"attribute": 0, "layout": 1, "non-spatial": 2, "complex": 3}
 
     for i, sample in enumerate(prompt_list):
         item_id = f"{category2idx[category]}{i:06d}"
-        data_list.append({
-            "item_id": item_id,
-            "prompt": sample,
-            "category": category,  
-            "sub_category": sub_category
-        })
-    return data_list
+        sample["item_id"] = item_id
+
+    return prompt_list
 
 
 def combine_prompt(config):
-    # Combine all prompts across categories (9) with metadata.
-    base_prompt_list = []
+    base_prompt_list = {
+        "attribute": [],
+        "layout": [],
+        "non-spatial": [],
+        "complex": []
+        }
+    category_num_dict = config.category_num
 
     # Load element/prompt data (generated in Step1)
     object_element, color_element, shape_element, texture_element, spatial_element = load_element(config.save_path)
-    attributes = [color_element, shape_element, texture_element]
     non_spatial_prompt, complex_prompt = load_prompt(config.save_path)
+    attributes = [color_element, shape_element, texture_element]
 
-    # category_num_dict = {
-    #     'attribute1_color': 666,
-    #     'attribute1_shape': 667,
-    #     'attribute1_texture': 667,
-    #     'attribute2': 2000,
-    #     'layout1': 2000,
-    #     'layout2': 1000,
-    #     'layout3': 1000,
-    #     'non-spatial': 4000,
-    #     'complex': 4000
-    # }
-
-    category_num_dict = config.category_num
-
-    for category, num in category_num_dict.items():
-        if category == "attribute1_color":
+    for sub_category, num in category_num_dict.items():
+        if sub_category == "attribute1_color":
+            category = "attribute"
             prompt_list = construct_prompt(object_element, color_element, "attribute1", num)
-        elif category == "attribute1_shape":
+        elif sub_category == "attribute1_shape":
+            category = "attribute"
             prompt_list = construct_prompt(object_element, shape_element, "attribute1", num)
-        elif category == "attribute1_texture":
+        elif sub_category == "attribute1_texture":
+            category = "attribute"
             prompt_list = construct_prompt(object_element, texture_element, "attribute1", num)
-        elif category == "attribute2":
+        elif sub_category == "attribute2":
+            category = "attribute"
             prompt_list = construct_prompt(object_element, attributes, "attribute2", num)
-        elif category == "layout1":
+        elif sub_category == "layout1":
+            category = "layout"
             prompt_list = construct_prompt(object_element, spatial_element, "layout1", num)
-        elif category == "layout2":
+        elif sub_category == "layout2":
+            category = "layout"
             prompt_list = construct_prompt(object_element, [], "layout2", num)
-        elif category == "layout3":
+        elif sub_category == "layout3":
+            category = "layout"
             prompt_list = construct_prompt(object_element, [], "layout3", num)
-        elif category == "non-spatial":
+        elif sub_category == "non-spatial":
+            category = sub_category
             prompt_list = non_spatial_prompt
             assert len(prompt_list) == num, f"Expected {num} prompts for non-spatial, but got {len(prompt_list)}."
-        elif category == "complex":
+        elif sub_category == "complex":
+            category = sub_category
             prompt_list = complex_prompt
             assert len(prompt_list) == num, f"Expected {num} prompts for complex, but got {len(prompt_list)}."
 
-        # generate metadata for each prompt sampe
-        data_list = combine_metadata(category, prompt_list)
-        base_prompt_list.extend(data_list)
+        for prompt in prompt_list:
+            prompt = prompt.strip()
+            base_prompt_list[category].append({
+                "prompt": prompt,
+                "category": category,
+                "sub_category": sub_category
+            })
 
-    print(f"\n*** Total number of base prompt (including non-spatial, complex): {len(base_prompt_list)} ***")
-    return base_prompt_list
+    output = []
+    for c, v in base_prompt_list.items():
+        output.extend(combine_metadata(c, v))
+    print(f"\n*** Total number of base prompt (including non-spatial, complex): {len(output)} ***")
+
+    return output
 
 
 if __name__ == "__main__":
