@@ -1,0 +1,26 @@
+{
+    "prompt": "a little boy is jumping on a small trampoline in his backyard.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000000",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A little boy is riding a bicycle while painting a mural in his backyard.",
+        "a little boy is jumping on a while in his backyard.",
+        "A little boy is riding a bicycle in his backyard."
+    ],
+    "long_prompt": [
+        "A little boy, dressed in a bright yellow shirt and blue shorts, is energetically bouncing on a small trampoline in his backyard, his laughter echoing across the yard as he soars through the air.",
+        "A little boy with a big smile jumps high in his backyard, his tiny feet barely touching the bouncey surface of a small trampoline. The sun shines brightly, casting playful shadows across the grass.",
+        "A little boy jumps energetically on a small trampoline in his backyard, his sneakers squeaking on the soft mat as he leaps into the air, the sun shining brightly above."
+    ],
+    "negative_long_prompt": [
+        "A little boy, wearing a helmet and goggles, pedals a colorful bicycle while riding through a sunny backyard, pausing to paint a vibrant mural on a nearby fence with brushes and spray paint cans.",
+        "A little boy with a big grin jumps high in his backyard, his tiny feet barely touching the bouncey surface of a small while. The sun shines brightly, casting playful shadows across the grass.",
+        "A little boy pedals his small bicycle with a big smile, the backyard's grassy area stretching out before him, the sun casting a warm glow over the scene."
+    ]
+}

@@ -90,9 +90,12 @@ def get_nonspatial_complex_vqa_prompt(prompt):
     return system_prompt, conversation
 
 
-get_vqa_prompt = {
-    "attribute": get_attribute_vqa_prompt,
-    "layout": get_layout_vqa_prompt,
-    "nonspatial": get_nonspatial_complex_vqa_prompt,
-    "complex": get_nonspatial_complex_vqa_prompt,
-}
+def get_vqa_prompt(category, prompt):
+    if category == "attribute":
+        system_prompt, conversation = get_attribute_vqa_prompt(prompt)
+    elif category == "layout":
+        system_prompt, conversation = get_layout_vqa_prompt(prompt)
+    elif category in ["non-spatial", "complex"]:
+        system_prompt, conversation = get_nonspatial_complex_vqa_prompt(prompt)
+
+    return system_prompt, conversation

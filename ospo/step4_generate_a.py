@@ -6,6 +6,7 @@ import numpy as np
 from glob import glob
 from PIL import Image
 import torch
+import torch.distributed as dist
 from torch.utils.data import DataLoader
 from pytorch_lightning import LightningModule, seed_everything
 from peft import get_peft_model
@@ -15,6 +16,7 @@ pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd
 from ospo.utils import read_json, save_json, build_config
 from ospo.base import get_model, get_lora_config, get_eval_trainer
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 class JanusVQAWrapper(LightningModule):
     def __init__(self, config, model, tokenizer, processor):
@@ -38,21 +40,30 @@ class JanusVQAWrapper(LightningModule):
 
     @torch.inference_mode()
     def test_step(self, batch, batch_idx):
-        questions_batched = [item['question'] for item in batch]  
+        questions_batched = [sample['question'] for sample in batch]  
+        base_paths_batched, negative_paths_batched = [], []
+
         for sample in batch:
-            base_paths_batched = sorted(glob(os.path.join(self.config.image_path, sample['category'], 'base', sample['item_id'], '*.png')))
-            negative_paths_batched = sorted(glob(os.path.join(self.config.image_path, sample['category'], 'negative', sample['item_id'], '*.png')))
+            base_paths = sorted(glob(os.path.join(self.config.image_path, 'base', sample['category'], sample['item_id'], '*.png')))
+            negative_paths = sorted(glob(os.path.join(self.config.image_path, 'negative', sample['category'], sample['item_id'], '*.png')))
+            base_paths_batched.append(base_paths)
+            negative_paths_batched.append(negative_paths)
 
-        # For base, (chosen candidate)
-        base_all_convs, base_all_imgs, base_mapping = self.get_mapping(base_paths_batched, questions_batched)
-        base_logits = self.forward(base_all_convs, base_all_imgs)
-        baes_img_metadata_batched = self.get_score(base_paths_batched, questions_batched, base_mapping, base_logits)
+        # # For base, (chosen candidate)
+        # base_all_convs, base_all_imgs, base_mapping = self.get_mapping(base_paths_batched, questions_batched)
+        # base_logits = self.forward(base_all_convs, base_all_imgs)
+        # base_img_metadata_batched = self.get_score(base_paths_batched, questions_batched, base_mapping, base_logits)
 
-        # For negative, (rejected candidate)
-        negative_all_convs, negative_all_imgs, negative_mapping = self.get_mapping(negative_paths_batched, questions_batched)
-        negative_logits = self.forward(negative_all_convs, negative_all_imgs)
-        negative_img_metadata_batched = self.get_score(negative_paths_batched, questions_batched, negative_mapping, negative_logits)
+        # # For negative, (rejected candidate)
+        # negative_all_convs, negative_all_imgs, negative_mapping = self.get_mapping(negative_paths_batched, questions_batched)
+        # negative_logits = self.forward(negative_all_convs, negative_all_imgs)
+        # negative_img_metadata_batched = self.get_score(negative_paths_batched, questions_batched, negative_mapping, negative_logits)
 
+        base_img_metadata_batched = self.get_score_single(base_paths_batched, questions_batched)
+        negative_img_metadata_batched = self.get_score_single(negative_paths_batched, questions_batched)
+
+        # Select pair
+        self.select_pair(batch, base_img_metadata_batched, negative_img_metadata_batched)
 
 
     def get_mapping(self, img_paths_batched, questions_batched):
@@ -98,6 +109,82 @@ class JanusVQAWrapper(LightningModule):
 
         return logits
     
+    def build_conversations(self, img, questions):
+        conversations = []
+        for q in questions:
+            conversations.append([
+                {"role": "<|User|>",
+                "content": f"<image_placeholder>\n{q} Please answer 'yes' or 'no' without explanation.",
+                "images": [img]},
+                {"role": "<|Assistant|>", "content": ""}
+            ])
+        return conversations, [[img]] * len(questions)
+
+    def get_score_single(self, img_paths_batched, questions_batched):
+        img_metadata_batched = []
+
+        for sample_idx, img_paths in enumerate(img_paths_batched):
+            sample_metadata = {}
+
+            for img_idx, img_path in enumerate(img_paths):
+                with Image.open(img_path) as img:
+                    convs, imgs = self.build_conversations(img, questions_batched[sample_idx])
+                    logits = self.forward_single(convs, imgs)  # shape: [num_questions, seq_len, vocab]
+                    probs = torch.softmax(logits[:, -1, :], dim=-1)
+
+                    score_sum = 0
+                    answer_metadata = []
+                    q_count = len(questions_batched[sample_idx])
+
+                    for q_idx in range(q_count):
+                        p_yes = max(probs[q_idx, y].item() for y in self.yes_ids)
+                        p_no = max(probs[q_idx, n].item() for n in self.no_ids)
+
+                        answer_metadata.append({
+                            'p_yes': float(p_yes),
+                            'p_no': float(p_no),
+                            'answer': 'yes' if p_yes > p_no else ('no' if p_no > p_yes else 'tie')
+                        })
+
+                        if q_idx == q_count - 1:
+                            global_score = p_yes - p_no
+                        else:
+                            score_sum += (p_yes - p_no)
+
+                    local_score = score_sum / (q_count - 1)
+                    prefix = 'base' if 'base' in img_path else 'negative'
+
+                    sample_metadata[f'{prefix}_{img_idx}'] = {
+                        'path': img_path,
+                        'local_score': float(local_score),
+                        'global_score': float(global_score),
+                        'answer_metadata': answer_metadata
+                    }
+
+            img_metadata_batched.append(sample_metadata)
+
+        return img_metadata_batched
+
+    
+    def forward_single(self, convs, imgs):
+        prepare_list = []
+        for conv, img in zip(convs, imgs):
+            prepare = self.processor.process_one(
+                conversations=conv,
+                images=img,
+                force_batchify=True
+            )
+            prepare_list.append(prepare)
+
+        with torch.no_grad():
+            batch_inputs = self.processor.batchify(prepare_list).to(self.device)
+            inputs_embeds = self.model.prepare_inputs_embeds(**batch_inputs)
+            outputs = self.model.language_model(
+                inputs_embeds=inputs_embeds,
+                attention_mask=batch_inputs.attention_mask
+            )
+        return outputs.logits
+
 
     def get_score(self, img_paths_batched, questions_batched, mapping, logits):
         last_logits = logits[:, -1, :]
@@ -251,11 +338,35 @@ class JanusVQAWrapper(LightningModule):
 
     def on_test_epoch_end(self):
         os.makedirs(self.config.save_path, exist_ok=True)
-        save_json(self.config.save_path, 'train.json', self.output_list)
+        fname = 'train'
+        if self.config.s_idx is not None or self.config.e_idx is not None:
+            fname = f'train_s_idx_{self.config.s_idx}_e_idx_{self.config.e_idx}'
+
+        if self.trainer.world_size > 1:
+            gathered_output_list = [None for _ in range(self.trainer.world_size)]
+            dist.all_gather_object(gathered_output_list, self.output_list)
+
+            if self.trainer.global_rank == 0:
+                seen = set()
+                output_list = []
+                for gathered_output in gathered_output_list:
+                    for sample in gathered_output:
+                        item_id = sample['item_id']
+                        if item_id in seen:
+                            continue
+                        seen.add(item_id)
+                        output_list.append(sample)
+
+                sorted_output = sorted(output_list, key=lambda x: int(x["item_id"]))
+                save_json(self.config.save_path, fname, sorted_output)
+                
+        else:
+            save_json(self.config.save_path, fname, self.output_list)
 
 
 def get_dataloader(config):
-    dataset = read_json(config.data_path) 
+    data_path = os.path.join(config.save_path, "vqa_prompt.json")
+    dataset = read_json(data_path) 
     dataloader = DataLoader(dataset,
                             collate_fn=lambda batch: batch, 
                             batch_size=config.batch_size,
@@ -266,6 +377,8 @@ def get_dataloader(config):
     
 
 def main(config):
+
+    # assert config.batch_size == 1, "Batch size must be 1 to prevent OOM."
 
     device = "cuda" if torch.cuda.is_available() else "cpu"    
     seed_everything(config.seed, workers=True)

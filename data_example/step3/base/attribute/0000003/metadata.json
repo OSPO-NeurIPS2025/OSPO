@@ -1,0 +1,26 @@
+{
+    "prompt": "A pet turtle",
+    "category": "attribute",
+    "sub_category": "attribute1_shape",
+    "item_id": "0000003",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a bird turtle",
+        "a fish",
+        "an aquatic turtle"
+    ],
+    "long_prompt": [
+        "A small, pet turtle with a domed shell and delicate legs basking contentedly in a warm, sunny enclosure, its owner gently stroking its head as they chat about their shared love of nature and wildlife.",
+        "A gentle, domesticated pet turtle named Terry bobs up and down in a clear, shallow pond, his shell glistening with dew, as a school of rainbow-colored fish swim gracefully beneath the surface, their scales catching the morning sunlight.",
+        "A small, slow-moving pet turtle with a rounded shell and stubby legs makes its way across a shallow, sandy pond, with its owner gently stroking its shell and whispering soothing words in its ear."
+    ],
+    "negative_long_prompt": [
+        "A small, curious bird with iridescent feathers and a delicate beak perching on the shell of a pet turtle, its owner watching with amusement as it peeks curiously into the enclosure.",
+        "A tranquil, untouched fish pond teems with life, as a lone pet turtle named Terry swims lazily in the clear, shallow water, his shell glistening with dew, and a school of rainbow-colored fish swim gracefully beneath the surface, their scales catching the soft morning light.",
+        "A large, agile aquatic turtle gliding effortlessly through the clear, calm waters of a coral reef, its shell glistening in the sunlight filtering through the vibrant coral, with schools of colorful fish darting around it."
+    ]
+}

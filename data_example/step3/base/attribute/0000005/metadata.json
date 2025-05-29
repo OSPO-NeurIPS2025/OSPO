@@ -1,0 +1,26 @@
+{
+    "prompt": "A wet boat",
+    "category": "attribute",
+    "sub_category": "attribute1_texture",
+    "item_id": "0000005",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a dry boat",
+        "a dry boat",
+        "a dry boat"
+    ],
+    "long_prompt": [
+        "A weathered wooden boat covered in thick, damp vegetation sits quietly on the shore of a misty lake, its planks creaking softly in the gentle breeze as water droplets cling to its surface.",
+        "A large, sleek wooden boat, freshly polished and gleaming in the soft light of dawn, sits in a shallow river near a dense forest, with droplets of morning mist clinging to its sides and deck.",
+        "A small, wooden boat bobbing gently in the calm waters of a secluded lake, its surface glistening with droplets of water that catch the warm sunlight filtering through the overhanging trees."
+    ],
+    "negative_long_prompt": [
+        "A sleek, modern boat without any visible moisture or vegetation sits quietly on the shore of a calm, reflective lake, its surface gleaming in the soft morning light as it awaits its next adventure.",
+        "A small, sturdy wooden boat, worn and weathered, floats gently in a clear river near a dense forest, with droplets of morning mist clinging to its sides and deck.",
+        "A sturdy, wooden boat resting on the sandy shore of a tranquil lake, its surface dry and smooth, with a gentle breeze rustling the leaves of the surrounding trees."
+    ]
+}

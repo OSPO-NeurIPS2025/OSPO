@@ -1,0 +1,26 @@
+{
+    "prompt": "A sunflower",
+    "category": "layout",
+    "sub_category": "layout2",
+    "item_id": "1000004",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "two sunflowers",
+        "two sunflowers",
+        "two sunflowers"
+    ],
+    "long_prompt": [
+        "A single tall, golden sunflower stands prominently in the center of a small garden bed, surrounded by a lush bed of daisies.",
+        "A tall, sturdy sunflower with a large yellow bloom stands proudly in a sunny field, its stem adorned with a few green leaves.",
+        "A bright yellow sunflower stands tall in a sunny garden, its large yellow petals radiating outward like a beacon of joy."
+    ],
+    "negative_long_prompt": [
+        "Two sunflowers, one tall and golden, the other shorter and slightly tilted, bloom in unison in a garden bed, their vibrant petals a striking contrast against the soft green leaves.",
+        "Two tall sunflowers with vibrant yellow blooms are planted side by side in a lush field, their stems entwined by a thin vine.",
+        "Two tall sunflowers stand side by side in a vibrant garden, their large yellow petals spreading outwards like twin beacons of happiness."
+    ]
+}

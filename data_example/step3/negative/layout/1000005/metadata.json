@@ -1,0 +1,26 @@
+{
+    "prompt": "A watermelon",
+    "category": "layout",
+    "sub_category": "layout2",
+    "item_id": "1000005",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "two watermelons",
+        "two watermelons",
+        "two watermelons"
+    ],
+    "long_prompt": [
+        "A large, ripe watermelon lies on a bright green grass lawn, surrounded by tall sunflowers and other colorful flowers in a lush garden.",
+        "A large, ripe watermelon with a deep green rind and black stripes sits on a picnic blanket on a sunny lawn, surrounded by lush green grass and wildflowers.",
+        "A bright green watermelon, cut open to reveal its juicy, red flesh, lies on a white kitchen counter beside a bowl of fresh fruit."
+    ],
+    "negative_long_prompt": [
+        "Two large, ripe watermelons are nestled together in a bright red watermelon basket on a wooden picnic table in a vibrant outdoor garden filled with various flowers and greenery.",
+        "Two large, red watermelons with black stripes lie side by side on a picnic blanket on a sunny lawn, surrounded by lush green grass and wildflowers.",
+        "Two identical bright green watermelons, cut open to reveal their juicy, red flesh, lie on a white kitchen counter beside a bowl of fresh fruit."
+    ]
+}

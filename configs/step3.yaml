@@ -1,16 +1,16 @@
 # Step 3
 
-s_idx:
-e_idx:
-data_path:
-batch_size:
-num_workers: 
-seed_list:
-world_size:
-save_path:
+s_idx: 10
+e_idx: 
+data_path: /home/elicer/OSPO/data_example/step2/long_prompt.json
+batch_size: 8
+num_workers: 4
+seed_list: [0, 1, 2]
+world_size: 2
+save_path: /home/elicer/OSPO/data_example/step3
 ckpt_path:
-model_path: /nas2/checkpoints/Janus-Pro-7B
-cache_dir: /nas2/checkpoints/hf_cache_yj
+model_path: /home/elicer/checkpoints/Janus-Pro-7B
+cache_dir: /home/elicer/checkpoints/hf_cache
 generation_config: 
   parallel_size: 1
   temperature: 1.0

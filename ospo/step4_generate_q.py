@@ -2,6 +2,7 @@
 
 import os
 import torch
+import torch.distributed as dist
 from torch.utils.data import DataLoader
 import argparse
 from pytorch_lightning import LightningModule, seed_everything
@@ -10,7 +11,7 @@ from peft import get_peft_model
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.utils import read_json, save_json, build_config
-from ospo.base import get_model, get_lora_config, get_eval_trainer
+from ospo.base import get_model, get_lora_config, get_eval_trainer, get_sft_format
 from ospo.prompt.template_vqa import get_vqa_prompt
 
 
@@ -34,45 +35,55 @@ class JanusVQAWrapper(LightningModule):
     
     @torch.inference_mode()
     def test_step(self, batch, batch_idx):
-        category_list = []
-        sub_category_list = []
-        original_prompt = []
         prompt_list = []
-        data_idx_list = []
-        
-        for sample in batch:
-            category = sample['category']
-            sub_category = sample['sub_category']
-            prompt = sample['prompt']
-            data_idx = sample['item_id'] 
-            original_prompt.append(prompt)
-            prompt = get_vqa_prompt[category](prompt)
+        sample_list = []
 
-            category_list.append(category)
-            sub_category_list.append(sub_category)
-            prompt_list.append(prompt)
-            data_idx_list.append(data_idx)
+        for sample in batch:
+            sample_list.append(sample)
+            
+            system_prompt, conversation = get_vqa_prompt(sample['category'], sample['prompt'])
+            sft_format = get_sft_format(self.processor, system_prompt, conversation)
+            prompt_list.append(sft_format)
 
         input_embeds, attention_mask = self.prepare_input_embeds(prompt_list)
         outputs = self.generate(input_embeds, attention_mask)
         
-        for idx,output in enumerate(outputs):
+        for idx, output in enumerate(outputs):
             answer = self.tokenizer.decode(output.cpu().tolist(), skip_special_tokens=True)
             answer = answer.split("Questions: ")[-1]
             answer = [t.strip() + '?' for t in answer.split('?') if t.strip().rstrip('.')]
 
             # add global question
-            answer.append(self.globla_question.format(original_prompt[idx].rstrip('.')))
-            self.output_list.append({
-                "item_id": data_idx_list[idx],
-                "prompt": original_prompt[idx],
-                "question": answer,
-                })
+            sample = sample_list[idx]
+            answer.append(self.globla_question.format(sample['prompt'].rstrip('.')))
+            sample['question'] = answer
+            self.output_list.append(sample)
 
 
     def on_test_epoch_end(self):
         os.makedirs(self.config.save_path, exist_ok=True)
-        save_json(self.config.save_path, 'vqa_prompt.json', self.output_list)
+        fname = 'vqa_prompt'
+
+        if self.trainer.world_size > 1:
+            gathered_output_list = [None for _ in range(self.trainer.world_size)]
+            dist.all_gather_object(gathered_output_list, self.output_list)
+
+            if self.trainer.global_rank == 0:
+                seen = set()
+                output_list = []
+                for gathered_output in gathered_output_list:
+                    for sample in gathered_output:
+                        item_id = sample['item_id']
+                        if item_id in seen:
+                            continue
+                        seen.add(item_id)
+                        output_list.append(sample)
+
+                sorted_output = sorted(output_list, key=lambda x: int(x["item_id"]))
+                save_json(self.config.save_path, fname, sorted_output)
+                
+        else:
+            save_json(self.config.save_path, fname, self.output_list)
 
 
     @torch.inference_mode()
@@ -95,8 +106,8 @@ class JanusVQAWrapper(LightningModule):
         batch_size = len(prompt_list)
         input_ids_list = []
 
-        for prompt in prompt_list:            
-            input_ids = self.processor.tokenizer.encode(prompt)
+        for prompt in prompt_list:      
+            input_ids = self.tokenizer.encode(prompt)
             input_ids = torch.LongTensor(input_ids)
             
             max_len = max(max_len, len(input_ids))

@@ -1,0 +1,26 @@
+{
+    "prompt": "A sunflower near to a boat",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000003",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A sunflower beside a boat",
+        "A boat near to a sunflower",
+        "A sunflower and a boat"
+    ],
+    "long_prompt": [
+        "A vibrant yellow sunflower stands tall near a weathered wooden boat docked at the edge of a tranquil lake, its petals swaying gently in the breeze as the sun casts golden rays across the water.",
+        "A vibrant sunflower with a bright yellow center stands near a small wooden boat on a sandy beach, its long green stem leaning gently against the boat's hull.",
+        "A bright yellow sunflower stands near a wooden boat docked at a calm river, its petals gently swaying in the breeze as the boat's hull casts a soft reflection on the water's surface."
+    ],
+    "negative_long_prompt": [
+        "A bright yellow sunflower sits beside a sleek wooden boat moored at the edge of a calm lake, its petals leaning slightly towards the water as the sun casts a warm glow across the scene.",
+        "A sleek wooden boat with a curved hull rests near a bright yellow sunflower growing in the sand on a secluded beach, its leaves swaying gently in the breeze as the boat floats on the calm water.",
+        "A vibrant yellow sunflower and a sleek wooden boat rest on a wooden dock at a serene river, their colors harmonizing as the boat's hull gently touches the water's surface, creating a peaceful reflection."
+    ]
+}

@@ -1,15 +1,17 @@
 # Step 4
 
+s_idx:
+e_idx: 
 seed: 42
-data_path:
-imaeg_path:
-batch_size:
-num_workers: 
-world_size:
-save_path:
+data_path: /home/elicer/OSPO/data_example/step2/long_prompt.json
+image_path: /home/elicer/OSPO/data_example/step3
+batch_size: 4 # 주의 (a)
+num_workers: 4
+world_size: 2
+save_path: /home/elicer/OSPO/data_example/step4
 ckpt_path:
-model_path: /nas2/checkpoints/Janus-Pro-7B
-cache_dir: /nas2/checkpoints/hf_cache_yj
+model_path: /home/elicer/checkpoints/Janus-Pro-7B
+cache_dir: /home/elicer/checkpoints/hf_cache
 generation_config: 
   do_sample: True
   num_beams: 1

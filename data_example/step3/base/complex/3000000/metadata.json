@@ -1,0 +1,26 @@
+{
+    "prompt": "the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000000",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the dark, lush canopy spread elegantly behind two tall, leafy palm trees, their iridescent, peacock feathers sparkling vibrant hues against the glossy, multicolored tips.",
+        "the glossy, multicolored hues of the peacock feathers sparking vibrant hues against the light, sparse canopies.",
+        "the glossy, multicolored peacock feathers spread elegantly behind two tall, leafy palm trees, their dark, lush canopies sparking vibrant hues against the light, lush canopies."
+    ],
+    "long_prompt": [
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparkling vibrant hues against the dark, lush canopies.",
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparkling vibrant hues against the dark, lush canopies.",
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparkling vibrant hues against the dark, lush canopies."
+    ],
+    "negative_long_prompt": [
+        "The dark, lush canopy spread elegantly behind two tall, leafy palm trees, their iridescent, peacock feathers sparkling vibrant hues against the glossy, multicolored tips.",
+        "The glossy, multicolored tips of the peacock feathers sparking vibrant hues against the light, sparse canopies.",
+        "The glossy, multicolored peacock feathers spread elegantly behind two tall, leafy palm trees, their dark, lush canopies sparking vibrant hues against the light, lush canopies."
+    ]
+}

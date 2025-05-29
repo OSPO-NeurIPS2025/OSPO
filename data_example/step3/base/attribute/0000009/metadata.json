@@ -1,0 +1,26 @@
+{
+    "prompt": "A turquoise blue towel and a smooth umbrella",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000009",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a yellow towel and a rainbow umbrella",
+        "a smooth turquoise blue towel and a smooth umbrella",
+        "a smooth umbrella"
+    ],
+    "long_prompt": [
+        "A turquoise blue towel, its soft fabric absorbing the last drops of rain from a gentle rainstorm, lies neatly folded on a wooden deck beside a smooth, elegant umbrella, its slender shaft curved gracefully as it stands against a weathered wooden railing overlooking a tranquil, mist-shrouded lake.",
+        "A turquoise blue, plush beach towel lies spread out on a sun-drenched beach towel rack, beneath a sleek, smooth umbrella providing shade, with gentle ocean waves lapping at the shoreline and a warm breeze carrying the scent of saltwater and coconut.",
+        "A turquoise blue towel draped over a smooth wooden railing, catching the gentle breeze as a soft rain patters against the windowpane, with a sleek, modern umbrella standing upright nearby, its canopy closed and waiting for the rain to stop."
+    ],
+    "negative_long_prompt": [
+        "A vibrant yellow towel, its soft fabric absorbing the first rays of sunlight after a refreshing shower, lies neatly folded on a wooden deck beside a rainbow-hued umbrella, its slender shaft curved gracefully as it stands against a weathered wooden railing overlooking a tranquil, mist-shrouded lake.",
+        "A smooth, shiny turquoise blue umbrella lies folded on a beach towel rack, beneath a plush, turquoise blue beach towel, with gentle ocean waves lapping at the shoreline and a warm breeze carrying the scent of saltwater and coconut.",
+        "A sleek, modern umbrella standing upright on a smooth wooden floor, its canopy closed and waiting for the rain to stop, beside a vibrant turquoise blue towel draped over a wooden railing, its soft fabric glistening with droplets of rainwater."
+    ]
+}

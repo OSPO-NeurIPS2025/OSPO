@@ -1,0 +1,26 @@
+{
+    "prompt": "the sleek silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming flowers.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000007",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the thin, black laptop sat on the metal, flat, meeting table facing the green, round vase filled with blooming flowers.",
+        "the sleek, silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming flowers.",
+        "the sleek silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming green flowers."
+    ],
+    "long_prompt": [
+        "The sleek silver laptop sat on the wooden, curved conference table, facing the yellow, square vase filled with blooming flowers.",
+        "The sleek silver laptop sat elegantly on the wooden, curved conference table, facing the yellow, square vase filled with blooming flowers, creating a visually appealing scene.",
+        "The sleek silver laptop sat on the wooden, curved conference table, facing the yellow, square vase filled with blooming flowers, creating a vibrant and professional atmosphere."
+    ],
+    "negative_long_prompt": [
+        "The thin, black laptop sat on the metal, flat, meeting table, facing the green, round vase filled with blooming flowers.",
+        "The sleek silver laptop sat gracefully on the wooden, curved conference table, facing the yellow, square vase filled with blooming flowers, adding a touch of elegance to the scene.",
+        "The sleek silver laptop sat on the wooden, curved conference table, facing the yellow, square vase filled with blooming green flowers, adding a fresh and lively touch to the workspace."
+    ]
+}

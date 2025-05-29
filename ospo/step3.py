@@ -65,15 +65,15 @@ class JanusProTestWrapper(LightningModule):
                     for prompt_type, prompts, offset in zip(
                         ["base", "negative"],
                         [base_prompts, negative_prompts],
-                        [0, 3]
-                    ):
+                        [0, 3]):
                         
                         save_path = os.path.join(self.config.save_path, 
                                                     f"{prompt_type}", 
                                                     category, 
                                                     item_id)
                         os.makedirs(save_path, exist_ok=True)
-                        save_json(save_path, "metadata.jsonl", sample)
+                        # save_json(save_path, "metadata.jsonl", sample)
+                        save_json(save_path, "metadata", sample)
                         
                         prompt = prompts[i]
                         p_type = perturbed_methods[i]
@@ -84,7 +84,8 @@ class JanusProTestWrapper(LightningModule):
                             continue
 
                         formatted_prompt = get_prompt(self.processor, prompt)
-                        fname = get_fname(i, p_type, sub_category)  
+                        fname = f"{i:02d}.png" 
+                        # fname = get_fname(i, p_type, sub_category) # use number or p_type as a fname 
                         final_path = os.path.join(save_path, fname)
 
                         if os.path.exists(final_path):

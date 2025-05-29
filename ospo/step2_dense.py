@@ -131,7 +131,7 @@ class JanusProTestWrapper(LightningModule):
             get_func = self.get_prompt_function_dense[sub_category]
             system_prompt, conversation = get_func(base_prompt, negative_prompt)
             
-            sft_format = get_sft_format(self.processor, conversation, system_prompt)
+            sft_format = get_sft_format(self.processor, system_prompt, conversation)
             prepare_list.append(get_prepare_list(self.processor, self.tokenizer, sft_format))
 
         # batchify
@@ -167,9 +167,9 @@ class JanusProTestWrapper(LightningModule):
 
     def on_test_epoch_end(self):
         os.makedirs(self.config.save_path, exist_ok=True)
-        fname = 'long_prompt.json'
+        fname = 'long_prompt'
         if self.config.s_idx is not None or self.config.e_idx is not None:
-            fname = f'long_prompt_s_idx_{self.config.s_idx}_e_idx_{self.config.e_idx}.json'
+            fname = f'long_prompt_s_idx_{self.config.s_idx}_e_idx_{self.config.e_idx}'
 
         if self.trainer.world_size > 1:
             gathered_output_list = [None for _ in range(self.trainer.world_size)]
@@ -194,7 +194,15 @@ class JanusProTestWrapper(LightningModule):
  
 
 def get_dataloader(config):
-    dataset = BaseDataset(fpath=config.data_path,
+    data_path = None
+    for file in os.listdir(config.save_path):
+        if file.startswith("negative") and file.endswith(".json"):
+            data_path = os.path.join(config.save_path, file)
+            break
+    if data_path is None:
+        raise ValueError("No negaçive prompt file found in the save path.")
+    
+    dataset = BaseDataset(fpath=data_path,
                           s_idx=config.s_idx, 
                           e_idx=config.e_idx)
     dataloader = DataLoader(dataset,
@@ -231,11 +239,8 @@ def main(config):
         model = JanusProTestWrapper(config=config,
                                     model=model, 
                                     tokenizer=tokenizer, 
-                                    processor=vl_chat_processor, 
-                                    config=config)
+                                    processor=vl_chat_processor)
 
-    # automatically set world_size
-    # world_size = torch.cuda.device_count()
     trainer = get_eval_trainer(device, config.world_size)
     dataloader = get_dataloader(config)
 
@@ -244,7 +249,7 @@ def main(config):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cfg_path", type=str, default=None)
+    parser.add_argument("--cfg_path", type=str, default="configs/step2.yaml")
     args, unknown = parser.parse_known_args()  
     config = build_config(cfg_path=args.cfg_path)
     
