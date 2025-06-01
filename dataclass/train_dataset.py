@@ -9,8 +9,8 @@ from torch.utils.data import Dataset
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.utils import read_json
-from ospo.base import get_prompt
+from ospo.utils.common import read_json
+from ospo.utils.processor import get_conversation, get_sft_format
 
 
 class PreferenceDataset(Dataset):
@@ -56,9 +56,17 @@ class PreferenceDataset(Dataset):
 
     # custom functions
 
+    def get_image_generation_prompt(self, prompt):
+        system_prompt = ""
+        converation = get_conversation(prompt)
+        sft_format = get_sft_format(self.chat_processor, system_prompt, converation)
+        prompt = sft_format + self.chat_processor.image_start_tag
+
+        return prompt
+
     def get_text_token(self, text):
         parallel_size=1 
-        prompt = get_prompt(self.chat_processor, text)
+        prompt = self.get_image_generation_prompt(text)
         text_input_ids = self.tokenizer.encode(prompt)
         text_input_ids = torch.LongTensor(text_input_ids) # e.g. torch.Size([18])
 

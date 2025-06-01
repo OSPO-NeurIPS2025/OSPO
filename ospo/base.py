@@ -21,12 +21,12 @@ def get_model(mode='generate', model_path=None, cache_dir=None, dtype=torch.floa
     
     config = kwargs.get('config', None)
     if config is not None:
-        model_path = config.base.model_path 
-        cache_dir = config.base.cache_dir
+        model_path = config.model.model_path 
+        cache_dir = config.model.cache_dir
 
     vl_chat_processor: VLChatProcessor = VLChatProcessor.from_pretrained(model_path, cache_dir)
-    tokenizer = vl_chat_processor.tokenizer
     image_processor = vl_chat_processor.image_processor 
+    text_tokenizer = vl_chat_processor.tokenizer
     
     vl_gpt: MultiModalityCausalLM = AutoModelForCausalLM.from_pretrained(
             model_path, 
@@ -38,7 +38,7 @@ def get_model(mode='generate', model_path=None, cache_dir=None, dtype=torch.floa
     
     if mode == 'generate':
         vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
-        return vl_chat_processor, tokenizer, vl_gpt
+        return vl_chat_processor, text_tokenizer, vl_gpt
 
     # mode = 'train'
     else:
@@ -69,7 +69,7 @@ def get_model(mode='generate', model_path=None, cache_dir=None, dtype=torch.floa
             for param in vl_gpt.language_model.parameters():
                 param._ddp_params_and_buffers_to_ignore = True  # Prevent DDP from syncing frozen params
 
-        return vl_gpt, vl_chat_processor, image_processor, tokenizer
+        return vl_gpt, vl_chat_processor, image_processor, text_tokenizer
 
 
 def get_lora_config(ckpt_path):
@@ -155,17 +155,7 @@ def get_train_trainer(config, device):
     return trainer
 
 
-
 # --------------------------------------------------------------------------
-
-
-def get_sft_format(processor, system_prompt, conversation):
-    sft_format = processor.apply_sft_template_for_multi_turn_prompts(
-                conversations=conversation,
-                sft_format='deepseek',
-                system_prompt=system_prompt
-            )
-    return sft_format
 
 
 def batchify(processor, tokenizer, prepare_list):
@@ -265,8 +255,19 @@ def get_prompt(vl_chat_processor, text):
         system_prompt="",
     )
     prompt = sft_format + vl_chat_processor.image_start_tag
+
     return prompt
 
+
+def get_sft_format(processor, system_prompt, conversation):
+    sft_format = processor.apply_sft_template_for_multi_turn_prompts(
+                conversations=conversation,
+                sft_format='deepseek',
+                system_prompt=system_prompt
+            )
+    return sft_format
+
+    
 
 def get_fname(i, p_type, sub_category):
     if sub_category in ["attribute1_color", "attribute1_texture", "attribute1_shape", "layout2"]:

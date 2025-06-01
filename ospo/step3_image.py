@@ -15,7 +15,7 @@ from peft import get_peft_model
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.base import get_model, get_lora_config, get_eval_trainer, get_prompt, get_fname
-from ospo.utils import save_json, set_seed, build_config
+from OSPO.ospo.utils_legacy import save_json, set_seed, build_config
 from dataclass.gen_dataset import BaseDataset
 
 

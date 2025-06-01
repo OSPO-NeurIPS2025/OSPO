@@ -75,7 +75,6 @@ def build_config(struct=False, cfg_path=None):
     cfg = to_attr_dict(cfg) 
     return cfg
 
-
 def save_config(save_path, config):
     config_save_path = os.path.join(save_path, 'config.yaml') 
     if not os.path.exists(save_path):

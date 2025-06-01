@@ -7,7 +7,7 @@ pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd
 from dataclass.train_dataset import PreferenceDataset
 
 
-class SimPODataModule(pl.LightningDataModule):
+class TrainDataModule(pl.LightningDataModule):
     def __init__(self, config, chat_processor, image_processor, tokenizer):
         self.config = config
         self.tokenizer = tokenizer

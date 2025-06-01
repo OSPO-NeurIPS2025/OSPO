@@ -13,7 +13,7 @@ from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.utils import read_json, save_json, build_config
+from OSPO.ospo.utils_legacy import read_json, save_json, build_config
 from ospo.base import get_model, get_lora_config, get_eval_trainer
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"

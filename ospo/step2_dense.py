@@ -14,7 +14,7 @@ import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.prompt.template_dense import get_prompt_dense
 from ospo.base import get_model, get_lora_config, get_eval_trainer, get_sft_format, get_prepare_list, batchify
-from ospo.utils import save_json, set_seed, build_config
+from OSPO.ospo.utils_legacy import save_json, set_seed, build_config
 from dataclass.gen_dataset import BaseDataset
 
 

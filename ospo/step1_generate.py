@@ -2,21 +2,18 @@
 
 import os
 import re
-import yaml
-import json
-import pickle
 import torch
 import argparse
 import torch.distributed as dist
 from torch.utils.data import DataLoader
 from pytorch_lightning import LightningModule, seed_everything
-from peft import LoraConfig, get_peft_model
+from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.prompt.template_element import get_prompt_element
 from ospo.base import get_model, get_eval_trainer, get_lora_config
-from ospo.utils import build_config, save_json
+from OSPO.ospo.utils_legacy import build_config, save_json
 
 class JanusProTestWrapper(LightningModule):
     def __init__(self, config, model, tokenizer, processor, max_len):
@@ -30,7 +27,6 @@ class JanusProTestWrapper(LightningModule):
 
         self.object_prompt = get_prompt_element(self.category, self.processor)
         self.element_set = set()
-
 
     @torch.no_grad()
     def test_step(self, batch, batch_idx):

@@ -7,7 +7,7 @@ import argparse
 import inflect
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.utils import read_json, save_json, build_config
+from OSPO.ospo.utils_legacy import read_json, save_json, build_config
 
 
 def load_element(base_path):
