@@ -1,5 +1,3 @@
-# Step 4: Self-VQA for Preference Pair Selection
-
 import os
 import torch
 import argparse
@@ -12,7 +10,7 @@ pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd
 from ospo.utils.model import get_model, get_lora_config
 from ospo.utils.generate import get_trainer
 from ospo.utils.common import build_config
-from ospo.datamodule import GenerationDataModule
+from ospo.dataclass.datamodule import GenerationDataModule
 from ospo.wrapper import JanusProQuestionGenWrapper, JanusProScoreWrapper
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false" 
@@ -51,7 +49,6 @@ def get_wrapper(config, model, tokenizer, vl_chat_processor, wrapper_cls):
 
 
 def main(config):
-
     device = "cuda" if torch.cuda.is_available() else "cpu"    
     seed_everything(config.seed, workers=True)
 

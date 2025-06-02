@@ -9,7 +9,7 @@ import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.utils.common import save_json_ddp
 from ospo.utils.processor import get_sft_format
-from ospo.prompt.template_vqa import get_vqa_prompt
+from ospo.templates import get_vqa_prompt
 
 
 class JanusProQuestionGenWrapper(LightningModule):

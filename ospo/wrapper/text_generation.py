@@ -10,10 +10,7 @@ pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd
 from ospo.constant import *
 from ospo.utils.common import save_json, save_json_ddp, set_seed
 from ospo.utils.processor import get_sft_format, get_processor_output, batchify
-from ospo.prompt.template_element import get_prompt_element
-from ospo.prompt.template_negative import get_prompt_negative
-from ospo.prompt.template_dense import get_prompt_dense
-
+from ospo.templates import get_prompt_element, get_prompt_negative, get_prompt_dense
 
 class JanusProElementGenWrapper(LightningModule):
     def __init__(self, config, model, tokenizer, processor):

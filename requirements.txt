@@ -8,6 +8,7 @@ peft==0.7.1
 hydra-core
 accelerate
 sentencepiece
+pyrootutils
 attrdict
 einops
 

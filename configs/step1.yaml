@@ -4,7 +4,7 @@ seed: 42
 world_size: 1
 batch_size: 1
 num_workers: 4
-save_path: /home/elicer/OSPO/example/step1
+save_path: /home/elicer/OSPO/examples/step1
 ckpt_path: 
 model_path: /home/elicer/checkpoints/Janus-Pro-7B
 cache_dir: /home/elicer/checkpoints/hf_cache

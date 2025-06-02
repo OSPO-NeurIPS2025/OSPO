@@ -10,7 +10,7 @@ from peft import get_peft_model
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.wrapper import JanusProElementGenWrapper
-from ospo.datamodule import GenerationDataModule
+from ospo.dataclass.datamodule import GenerationDataModule
 from ospo.utils.generate import get_trainer
 from ospo.utils.model import get_model, get_lora_config
 from ospo.utils.common import read_json, save_json, build_config
@@ -184,7 +184,6 @@ def get_dataloader(config):
 
 
 def main(config):
-
     if config.batch_size > 1 or config.world_size > 1:
         raise NotImplementedError("Batch size > 1 and World size > 1 are not supported in this step.")
 
@@ -229,7 +228,6 @@ def main(config):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--cfg_path", type=str, default='configs/step1.yaml')
     parser.add_argument("--category", type=str, default='object', help="option: object, color, shape, texture, spatial, non-spatial, complex")

@@ -9,6 +9,7 @@ import json
 import yaml
 import argparse
 from typing import List, Optional
+import traceback
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -21,14 +22,16 @@ from pytorch_lightning.callbacks import ModelSummary
 from hydra import initialize, compose
 from omegaconf import DictConfig, OmegaConf 
 
+import pyrootutils
+pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from janus.models import MultiModalityCausalLM, VLChatProcessor
+from ospo.utils.model import get_model, get_lora_config
+from ospo.utils.generate import get_trainer
 
-import traceback
 
 class Inference(Dataset):
     def __init__(self, config):
         self.config = config
-
         with open(config.data_path, 'r') as f:
             self.data = json.load(f)
 
@@ -54,14 +57,9 @@ class JanusProTestWrapper(LightningModule):
         self.temperature = config.model.generation_cfg.temperature
         self.cfg_weight = config.model.generation_cfg.cfg_weight
 
-
-    def setup(self, stage=None):
-        pass
-
     
     @torch.no_grad()
     def test_step(self, batch, batch_idx):
-        
         prompt_list = []
         final_path_list = []
 
@@ -186,7 +184,8 @@ class JanusProTestWrapper(LightningModule):
 
         else:
             raise NotImplementedError("parallel_size > 1, not supported.") # we only use parallel_size = 1
-            
+
+
     def on_test_epoch_end(self):
         print(f"Error case: {len(self.error_data)}")
 
@@ -194,8 +193,8 @@ class JanusProTestWrapper(LightningModule):
         with open(save_path, "w") as f:
             json.dump(save_path, f, indent=4)    
 
-    def get_prompt(self, text):
 
+    def get_prompt(self, text):
         conversation = [
             {
                 "role": "User",
@@ -213,33 +212,8 @@ class JanusProTestWrapper(LightningModule):
         return prompt
 
 
-def get_model(config):
-
-    model_path = config.model_path
-    dtype = torch.bfloat16 if config.precision == 'bf16' else torch.float32
-    cache_dir = config.cache_dir
-
-    if model_path == None:
-        print(f"Model is loaded from cache_dir: {cache_dir}")
-    else:
-        print(f"Model is loaded from model_path: {model_path}")
-
-    vl_chat_processor: VLChatProcessor = VLChatProcessor.from_pretrained(model_path, cache_dir=cache_dir)
-    tokenizer = vl_chat_processor.tokenizer
-
-    vl_gpt: MultiModalityCausalLM = AutoModelForCausalLM.from_pretrained(
-        model_path, trust_remote_code=True,
-        cache_dir=cache_dir,
-        torch_dtype=dtype,
-    )
-    vl_gpt = vl_gpt.to(torch.bfloat16).eval()
-    return vl_chat_processor, tokenizer, vl_gpt
-
-
 def get_dataloader(config):
-    
     dataset=Inference(config)
-
     dataloader = DataLoader(
         dataset, 
         batch_size=config.batch_size, 
@@ -250,21 +224,9 @@ def get_dataloader(config):
     return dataloader
 
 
-def get_trainer(config, device):
-    trainer = Trainer(
-        accelerator=device,
-        devices=config.world_size,
-        strategy="ddp",
-        max_epochs=1,
-        precision=config.precision,
-        callbacks=[ModelSummary(max_depth=2)],
-        logger=False,
-    )
-    return trainer
-
 def args_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", type=str, default="./checkpoints/janus-pro-7B") # Janus-7B path
+    parser.add_argument("--model_path", type=str, default="./checkpoints/janus-pro-7B")    # Janus-7B path
     parser.add_argument("--ckpt_path", type=str, default="./checkpoints/ospo-epoch1.ckpt") # ospo ckpt path
     parser.add_argument("--save_path", type=str, default="./results")
 
@@ -275,8 +237,8 @@ def args_parser():
     parser.add_argument("--overrides", type=list, default=[])
     return parser.parse_args()
 
+
 def load_config():
-    
     args = args_parser()
 
     overrides = [
@@ -296,25 +258,18 @@ def load_config():
 
 
 def main():
-
     config=load_config()
-
     device = config.device if torch.cuda.is_available() else "cpu"
-
-    vl_chat_processor, tokenizer, model = get_model(config.model)
-    
-    if not os.path.exists(config.model.ckpt_path):
-        raise ValueError("Check model.ckpt_path !")
+    vl_chat_processor, tokenizer, model = get_model(mode='generate', 
+                                                    model_path=config.model.model_path, 
+                                                    cache_dir=config.model.cache_dir, 
+                                                    dtype=torch.bfloat16 if config.model.precision == 'bf16' else torch.float32)
     
     # Extract LoRA config
-    lora_config = LoraConfig(
-        r=config.peft.lora_rank,
-        lora_alpha=config.peft.lora_alpha,
-        target_modules=config.peft.target_modules,
-        lora_dropout=config.peft.lora_dropout,
-        modules_to_save=config.peft.modules_to_save
-    )
-
+    if not os.path.exists(config.model.ckpt_path):
+        raise ValueError("Check model.ckpt_path !")
+    lora_config = get_lora_config(config.model.ckpt_path)
+    
     model.language_model = get_peft_model(model.language_model, lora_config)
     model = JanusProTestWrapper.load_from_checkpoint(checkpoint_path=config.model.ckpt_path, 
                                                         config=config, 
@@ -326,6 +281,7 @@ def main():
     model.model.language_model = model.model.language_model.merge_and_unload() 
 
     trainer = get_trainer(config.trainer, device)
+    trainer = get_trainer(device, config.trainer.world_size, config.trainer.precision)
     eval_dataloader = get_dataloader(config.data)
     
     start = time.time()
@@ -334,6 +290,7 @@ def main():
 
     elapsed_time = (end - start) / 60  # Convert seconds to minutes
     print(f"Done ! Time elapsed: {elapsed_time:.2f} minutes")
+
 
 if __name__ == "__main__":
     main()
