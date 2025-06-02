@@ -1,0 +1,3 @@
+world_size: 1
+precision: ${precision}
+device: ${device}
