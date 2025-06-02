@@ -1,14 +1,14 @@
 # Step 3
 
-seed_list: [0, 1, 2]
-world_size: 2
-batch_size: 8
-num_workers: 4
+seed_list: [0,1,2]
+world_size:
+batch_size: 
+num_workers:
 data_path: 
-save_path: /home/elicer/OSPO/examples/step3
+save_path: ./examples/step3
 ckpt_path:
-model_path: /home/elicer/checkpoints/Janus-Pro-7B
-cache_dir: /home/elicer/checkpoints/hf_cache
+model_path: ./checkpoints/Janus-Pro-7B
+cache_dir: ./checkpoints/hf_cache
 generation_config: 
   parallel_size: 1
   temperature: 1.0
