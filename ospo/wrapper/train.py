@@ -10,6 +10,7 @@ from typing import Any, Dict, List, Literal, Tuple, Union
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
+from ospo.constant import *
 from ospo.utils.common import save_config
 from ospo.utils.train import CosineDecayWarmUpRestarts
 
@@ -25,9 +26,6 @@ class JanusProTrainWrapper(pl.LightningModule):
 
         self.train_dataset = []
         self.val_dataset = None
-
-        self.parallel_size = self.config.model.parallel_size # 1
-        self.image_token_num_per_image = self.config.model.image_token_num_per_image # 576
 
         # default SimPO hyperparameter 
         simpo_config = self.config['algo']
@@ -72,7 +70,6 @@ class JanusProTrainWrapper(pl.LightningModule):
 
 
     def on_train_start(self):
-        # set train mode
         self.model.train()
         print("Training START.")
 
@@ -98,16 +95,10 @@ class JanusProTrainWrapper(pl.LightningModule):
         return loss # simPO loss
 
 
-    def validation_step(self, batch, batch_idx):
-        # Generate image
-        pass
-
-
     def on_before_optimizer_step(self, *args, **kwargs): 
-        # total grad norm
-        grad_norm = self.compute_total_grad_norm()
+        grad_norm = self.compute_total_grad_norm() # total grad norm
 
-        if grad_norm is not None:  # Ensure no logging of NoneType
+        if grad_norm is not None: # ensure no logging of NoneType
             self.log('train/grad_norm', grad_norm, 
                     on_step=True, prog_bar=True, logger=True, sync_dist=True)
         else:
@@ -158,7 +149,7 @@ class JanusProTrainWrapper(pl.LightningModule):
         freeze = self.config.experiment.freeze
 
         # We assume that we only train image-generation-related modules.
-        if self.config.use_lora:
+        if self.config.use_peft:
             if freeze.vision_model:
                 for param in self.model.vision_model.parameters():
                     param.requires_grad = False
@@ -289,7 +280,6 @@ class JanusProTrainWrapper(pl.LightningModule):
 
 
     def concatenated_inputs(self, batch: Dict[str, Union[List, torch.LongTensor]]) -> Dict[str, torch.LongTensor]:
-
         concatenated_batch = {}
         max_length = max(batch["chosen_inputs_embeds"].shape[1], batch["rejected_inputs_embeds"].shape[1])
 

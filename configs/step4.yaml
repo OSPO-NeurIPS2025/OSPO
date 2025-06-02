@@ -1,15 +1,15 @@
 # Step 4
 
 seed: 42
-world_size: 2
-batch_size: 4 
-num_workers: 4
+world_size: 
+batch_size:  
+num_workers: 
 data_path: 
-image_path: /home/elicer/OSPO/exampls/step3
-save_path: /home/elicer/OSPO/examples/step4
+image_path: ./exampls/step3
+save_path: ./examples/step4
 ckpt_path:
-model_path: /home/elicer/checkpoints/Janus-Pro-7B
-cache_dir: /home/elicer/checkpoints/hf_cache
+model_path: ./checkpoints/Janus-Pro-7B
+cache_dir: ./checkpoints/hf_cache
 generation_config: 
   do_sample: True
   num_beams: 1
