@@ -1,4 +1,3 @@
-
 import os
 from torch.utils.data import DataLoader
 import pytorch_lightning as pl
@@ -51,9 +50,8 @@ class GenerationDataModule(pl.LightningDataModule):
     def __init__(self, config, step:int=1): # step in framework
         if step not in [1, 2, 3, 4]: 
             raise ValueError("Step must be one of [1, 2, 3, 4].")
-        
         self.config = config
-        
+
         # Element/Base prompt generation
         if step == 1:
             if config.max_len is None:

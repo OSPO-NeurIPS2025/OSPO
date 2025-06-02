@@ -16,14 +16,23 @@ from ospo.prompt.template_dense import get_prompt_dense
 
 
 class JanusProElementGenWrapper(LightningModule):
-    def __init__(self, config, model, tokenizer, processor, max_len):
+    def __init__(self, config, model, tokenizer, processor):
         super().__init__()
         self.config = config
         self.model = model
         self.tokenizer = tokenizer
         self.processor = processor  
         self.category = config.category
-        self.max_len = max_len
+        self.max_len = config.max_len
+        if self.max_len is None:
+            if config.category == "object":
+                self.max_len = 120
+            elif config.category == "spatial":
+                self.max_len = 40
+            elif config.category == "non-spatial" or config.category == "complex":
+                self.max_len = 4000
+            else:
+                self.max_len = 70
 
         self.object_prompt = get_prompt_element(self.category, self.processor)
         self.element_set = set()

@@ -1,4 +1,4 @@
 .env
 *.pyc
-legacy/
+experiment/
 lightning_logs/

@@ -1,2 +1,13 @@
-# step1
-python /home/yjoh/project/OSPO/ospo/step1.py --save_path ./data --model_path /nas2/checkpoints/Janus-Pro-7B --cache_dir /nas2/checkpoints/hf_cache_yj --category complex
+# TODO: category
+python ospo/step1.py --category object
+python ospo/step1.py --category color
+python ospo/step1.py --category shape
+python ospo/step1.py --category texture
+python ospo/step1.py --category spatial
+python ospo/step1.py --category non-spatial
+python ospo/step1.py --category complex
+
+python ospo/step2.py
+python ospo/step3.py 
+python ospo/step4.py 
+python ospo/step5.py 
