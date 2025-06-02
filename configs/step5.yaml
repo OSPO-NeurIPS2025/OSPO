@@ -24,7 +24,7 @@ dataset:
   train:
     batch_size: 16 
     num_workers: 4
-    data_path: /home/elicer/OSPO/example/step4/train.json
+    data_path: /home/elicer/OSPO/examples/step4/train.json
     num_samples:              
   val:
     batch_size: 1

@@ -1,7 +1,7 @@
 # OSPO
 This repository contains the official implementation for the paper: **Object-centric Self-improving Preference Optimization for Text-to-Image Generation**.
 
-![Framework](./assets/Framework.png)
+![Framework](./assets/framework.png)
 
 ## About
 **OSPO** is a self-improving prefernece optimization framework for compositional text-to-image generation, allowing an MLLM to improve its fine-grained image generation capability without needing any data or external model. 

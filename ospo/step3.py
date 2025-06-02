@@ -1,5 +1,3 @@
-""" README: Step3. Image Generation """
-
 import os
 import argparse
 import torch
@@ -7,11 +5,9 @@ from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
+from ospo.dataclass.datamodule import GenerationDataModule
 from ospo.wrapper import JanusProImageGenWrapper
-from ospo.datamodule import GenerationDataModule
 from ospo.utils.generate import get_trainer
-
-
 from ospo.utils.model import get_model, get_lora_config
 from ospo.utils.common import build_config
 

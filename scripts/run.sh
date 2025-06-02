@@ -1,4 +1,5 @@
-#!/bin/bash
+# make sure current folder is OSPO
+# bash script/run.sh
 
 CUDA_VISIBLE_DEVICES=0,1 
 
@@ -13,5 +14,3 @@ python ospo/step2.py
 python ospo/step3.py 
 python ospo/step4.py 
 python ospo/step5.py 
-
-# bash scripts/run.sh

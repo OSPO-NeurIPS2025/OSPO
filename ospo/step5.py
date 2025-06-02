@@ -7,7 +7,7 @@ import pytorch_lightning as pl
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.datamodule import TrainDataModule
+from ospo.dataclass.datamodule import TrainDataModule
 from ospo.wrapper import JanusProTrainWrapper
 from ospo.utils.common import build_config
 from ospo.utils.train import get_trainer

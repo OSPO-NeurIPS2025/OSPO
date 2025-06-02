@@ -5,8 +5,8 @@ world_size: 2
 batch_size: 4 
 num_workers: 4
 data_path: 
-image_path: /home/elicer/OSPO/example/step3
-save_path: /home/elicer/OSPO/example/step4
+image_path: /home/elicer/OSPO/exampls/step3
+save_path: /home/elicer/OSPO/examples/step4
 ckpt_path:
 model_path: /home/elicer/checkpoints/Janus-Pro-7B
 cache_dir: /home/elicer/checkpoints/hf_cache
