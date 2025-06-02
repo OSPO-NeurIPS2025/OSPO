@@ -1,0 +1,642 @@
+[
+    {
+        "prompt": "A black umbrella",
+        "category": "attribute",
+        "sub_category": "attribute1_color",
+        "item_id": "0000000",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a green umbrella",
+            "a green umbrella",
+            "a blue umbrella"
+        ]
+    },
+    {
+        "prompt": "A turquoise banjo",
+        "category": "attribute",
+        "sub_category": "attribute1_color",
+        "item_id": "0000001",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a blue banjo",
+            "a blue banjo",
+            "a banjo with turquoise"
+        ]
+    },
+    {
+        "prompt": "A feather umbrella",
+        "category": "attribute",
+        "sub_category": "attribute1_shape",
+        "item_id": "0000002",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a feather umbrella",
+            "a feather umbrella",
+            "a feather umbrella"
+        ]
+    },
+    {
+        "prompt": "A curved vertical boat",
+        "category": "attribute",
+        "sub_category": "attribute1_shape",
+        "item_id": "0000003",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a straight boat",
+            "a straight boat",
+            "a straight boat"
+        ]
+    },
+    {
+        "prompt": "A moist desk",
+        "category": "attribute",
+        "sub_category": "attribute1_texture",
+        "item_id": "0000004",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a wooden desk",
+            "a dry desk",
+            "a dry desk"
+        ]
+    },
+    {
+        "prompt": "A cold lemon",
+        "category": "attribute",
+        "sub_category": "attribute1_texture",
+        "item_id": "0000005",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "a warm lemon",
+            "a warm lemon",
+            "a warm lemon"
+        ]
+    },
+    {
+        "prompt": "A black violin and a pet skateboard",
+        "category": "attribute",
+        "sub_category": "attribute2",
+        "item_id": "0000006",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "a red violin and a pet skateboard",
+            "a pet skateboard and a black violin",
+            "a black skateboard"
+        ]
+    },
+    {
+        "prompt": "A black watermelon and a curved vertical diagonal desk",
+        "category": "attribute",
+        "sub_category": "attribute2",
+        "item_id": "0000007",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "a white watermelon and a curved vertical diagonal desk",
+            "a curved black watermelon and a curved vertical desk",
+            "a black desk"
+        ]
+    },
+    {
+        "prompt": "A palm umbrella and a wavy skateboard",
+        "category": "attribute",
+        "sub_category": "attribute2",
+        "item_id": "0000008",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "a metal umbrella and a wooden skateboard",
+            "a palm skateboard and a wavy umbrella",
+            "a wavy skateboard"
+        ]
+    },
+    {
+        "prompt": "A curved vertical diagonal towel and a lime desk",
+        "category": "attribute",
+        "sub_category": "attribute2",
+        "item_id": "0000009",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "a straight vertical diagonal towel and a green desk",
+            "a lime desk and a curved vertical diagonal towel",
+            "a lime desk"
+        ]
+    },
+    {
+        "prompt": "A lemon near of a umbrella",
+        "category": "layout",
+        "sub_category": "layout1",
+        "item_id": "1000000",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "A lemon beside an umbrella",
+            "A lemon near of an umbrella",
+            "A lemon and an umbrella"
+        ]
+    },
+    {
+        "prompt": "A skateboard within a turtle",
+        "category": "layout",
+        "sub_category": "layout1",
+        "item_id": "1000001",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "A turtle on top of a skateboard",
+            "A turtle within a skateboard",
+            "A turtle and a skateboard"
+        ]
+    },
+    {
+        "prompt": "A banjo around a curry",
+        "category": "layout",
+        "sub_category": "layout1",
+        "item_id": "1000002",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "A banjo next to a curry",
+            "A curry around a banjo",
+            "A banjo and a curry"
+        ]
+    },
+    {
+        "prompt": "A sweater at the a watermelon",
+        "category": "layout",
+        "sub_category": "layout1",
+        "item_id": "1000003",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "A sweater on a watermelon",
+            "A watermelon at a sweater",
+            "A watermelon and a sweater"
+        ]
+    },
+    {
+        "prompt": "A skateboard",
+        "category": "layout",
+        "sub_category": "layout2",
+        "item_id": "1000004",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "two skateboards",
+            "two skateboards",
+            "two skateboards"
+        ]
+    },
+    {
+        "prompt": "A curry",
+        "category": "layout",
+        "sub_category": "layout2",
+        "item_id": "1000005",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "two curries",
+            "two curries",
+            "two curries"
+        ]
+    },
+    {
+        "prompt": "A violin",
+        "category": "layout",
+        "sub_category": "layout2",
+        "item_id": "1000006",
+        "perturbed_method": [
+            "replace",
+            "replace",
+            "replace"
+        ],
+        "negative_prompt": [
+            "two violins",
+            "two violins",
+            "two violins"
+        ]
+    },
+    {
+        "prompt": "Four sunflowers and three banjoes",
+        "category": "layout",
+        "sub_category": "layout3",
+        "item_id": "1000007",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "five sunflowers and two banjoes",
+            "three sunflowers and one banjo",
+            "four sunflowers"
+        ]
+    },
+    {
+        "prompt": "Three towels and two sweaters",
+        "category": "layout",
+        "sub_category": "layout3",
+        "item_id": "1000008",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "five towels and three sweaters",
+            "two towels and three sweaters",
+            "two towels"
+        ]
+    },
+    {
+        "prompt": "Two turtles and a skateboard",
+        "category": "layout",
+        "sub_category": "layout3",
+        "item_id": "1000009",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "three turtles and one skateboard",
+            "one skateboard and two turtles",
+            "two turtles"
+        ]
+    },
+    {
+        "prompt": "tom and his team work together by a large piece of sheet music while tom plays a musical instrument.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000000",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "Tom and his team play musical instruments by a large piece of sheet music.",
+            "Tom and his team work together by a large while Tom plays a musical instrument.",
+            "Tom and his team are analyzing a large piece of sheet music while Tom plays a musical instrument."
+        ]
+    },
+    {
+        "prompt": "a child wearing a protective helmet is running through water and splashing their young brother.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000001",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A child is jumping through water and splashing their young brother while wearing a protective helmet.",
+            "a child wearing a while running through water and splashing their while running through water and splashing their.",
+            "A child is swimming through water and splashing their young brother while wearing a protective helmet."
+        ]
+    },
+    {
+        "prompt": "emma holds a microphone while singing a song on stage with her friends and bandmates.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000002",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "Emma is playing a guitar with her friends and bandmates while singing a song on stage.",
+            "Emma holds a while singing a song on stage with her friends and bandmates.",
+            "Emma is conducting an interview with her friends and bandmates while holding a microphone."
+        ]
+    },
+    {
+        "prompt": "a person is reading a book while sitting on a couch surrounded by other comfortable pillows.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000003",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A person is watching a movie on a couch surrounded by other comfortable pillows while reading a book.",
+            "a person is reading a while sitting on a couch surrounded by other  pillows.",
+            "A person is lying on a couch with other comfortable pillows while reading a book."
+        ]
+    },
+    {
+        "prompt": "a toddler is pushing her small toy car on a rough sidewalk and watching as a stranger looks at her from across the street.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000004",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A toddler is pushing her small toy car across a rough sidewalk while a stranger looks at her from across the street.",
+            "a toddler is pushing her  on a rough sidewalk and watching as a stranger looks at her from across the street.",
+            "A toddler is running with her small toy car on a rough sidewalk while a stranger looks at her from across the street."
+        ]
+    },
+    {
+        "prompt": "three young chefs are speaking with a client in a fancy chef's training restaurant.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000005",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A client is listening to three young chefs in a fancy chef's training restaurant.",
+            "three young chefs are speaking with a while in a fancy chef's training restaurant.",
+            "Three young chefs are discussing menu options with a client in a fancy chef's training restaurant."
+        ]
+    },
+    {
+        "prompt": "a child is talking to her caregiver, holding a stuffed dog for comfort.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000006",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A child is holding a stuffed animal while talking to her caregiver.",
+            "a child is talking to her while holding a stuffed dog for comfort.",
+            "A child is playing with a stuffed dog while talking to her caregiver."
+        ]
+    },
+    {
+        "prompt": "a dancer elegantly watches her reflection in the pond while practicing her routines.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000007",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A dancer practices her routines with her reflection in the pond.",
+            "a dancer elegantly watches her while practicing her routines in the pond.",
+            "A dancer is admiring her own reflection in the pond while practicing her routines."
+        ]
+    },
+    {
+        "prompt": "a chef carefully watches the ingredients as she combines them together.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000008",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A chef is tasting the ingredients as she combines them together.",
+            "a chef carefully watches the while she combines them together.",
+            "A chef is measuring ingredients carefully as she combines them together."
+        ]
+    },
+    {
+        "prompt": "a little boy is jumping on a small trampoline in his backyard.",
+        "category": "non-spatial",
+        "sub_category": "non-spatial",
+        "item_id": "2000009",
+        "perturbed_method": [
+            "replace",
+            "drop",
+            "replace"
+        ],
+        "negative_prompt": [
+            "A little boy is playing on a big trampoline in his backyard.",
+            "a little boy is jumping on a while in his backyard.",
+            "A little boy is riding a bicycle in his backyard while jumping on a small trampoline."
+        ]
+    },
+    {
+        "prompt": "the crystal clear, deep blue ocean surrounded by soft, fluffy white clouds, with a sleek, black wooden fishing boat resting on its calm water. on the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000000",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the clear, blue ocean surrounding the soft, fluffy white clouds, with a dark, wooden sinking boat on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+            "the calm, deep blue ocean surrounded by soft, fluffy white clouds, with a sleek, white wooden boat floating on its calm water. On the right, atop the horizon, the golden, setting sun rises above the horizon, painting the sky with warm, fiery hues.",
+            "the soft, fluffy white clouds surrounded by the crystal clear, deep blue ocean, with a sleek, black wooden fishing boat resting on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
+        ]
+    },
+    {
+        "prompt": "the elegant, black silk scarf elegantly wrapped around the lace-edged, cream-colored baby\u2019s blanket.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000001",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the delicate, black silk scarf elegantly wrapped around the lace-edged, white baby\u2019s blanket.",
+            "the lace-edged, cream-colored baby\u2019s blanket elegantly wrapped around the elegant, black silk scarf.",
+            "the plain, black silk scarf elegantly wrapped around the lace-edged, cream-colored baby\u2019s blanket."
+        ]
+    },
+    {
+        "prompt": "the vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000002",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the green, trees dancing their whimsical fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+            "the cheerful, blue-painted wooden fence stood on the right-hand side from atop the gentle, sandy dunes, its bright, tropical blooms sparkling under the clear, starlit sky.",
+            "the swaying, cheerful, blue-painted wooden fence danced on the left side of the lush, cheerful, blue-painted garden near the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky."
+        ]
+    },
+    {
+        "prompt": "the shiny silver necklace hung from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000003",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the blue, golden, elongated, oval-shaped necklace hung from a dark, reflective, elongated, oval-shaped picture frame, its mirror surface reflecting bright, red sunlight while the plain, blue, golden walls faded into the background, creating a beautiful yet simplistic setting.",
+            "the pale, orange, faint silver necklace hung from a bright, blue, faded background, its elongated, oval-shaped picture frame reflecting silver sunlight while the plain, blue, faded walls faded into the background, creating a beautiful yet simplistic setting.",
+            "the plain, white, fading walls faded into the background, creating a beautiful yet simplistic setting. The elongated, oval-shaped picture frame hung from a shiny silver necklace, its mirrored surface reflecting faint, pale orange sunlight."
+        ]
+    },
+    {
+        "prompt": "the towering glass tower mirrored its surroundings, the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000004",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the glass tower mirrored its surroundings, the azure blue waters still swirling below the sharp, stone cliffs that loomed in the distance.",
+            "the jagged, granite cliffs loomed in the distance, the azure waters swirling below the towering glass tower that mirrored its surroundings.",
+            "the calm, swirling waters below the jagged, granite cliffs that loomed in the distance."
+        ]
+    },
+    {
+        "prompt": "the icy blue snowflake sparkled against the frosted, crystalized window; the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast.\n\nthe red heart-shaped apple with small green leaves nestled in the vibrant, lush bouquet, and the golden, shimmering moon orbited elegantly, while the golden eagle soared in a radiant display of freedom above the majestic waterfall.\n\nthe fluffy white kitten nuzzled up closely against the soft, golden sunset hues, and the golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000005",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the frosty, sparkling icy blue snowflake reflected off the golden, honeydew honeydew melon, while the vibrant, lush bouquet with a golden, heart-shaped apple nestled among the golden, shimmering beads of rain reflected off the majestic, golden waterfall.",
+            "the golden, shimmering snowflake sparkled against the frosted, crystalized window; the vibrant, lush bouquet of golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+            "the frozen, sparkling snowflake sparkled against the frosted, crystalized window; the golden, shimmering sunset hung elegantly in the sky, while the fluffy white kitten nuzzled up closely against the soft, golden sunset hues."
+        ]
+    },
+    {
+        "prompt": "the blue, swirling water pooled on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that gently mingled the waves of light, giving the tide a playful, undulating energy.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000006",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the cool, blue, swirling water pooled on the golden, sandy beach, its gentle ripples mingling the waves of cool, sunlight.",
+            "the warm, sunny, reflective blue swirling water pooled on the sandy, golden beach, its gentle waves mingling the ripples of light, creating a playful, undulating energy.",
+            "the ripples, undulating waves of light playfully mingled the waves of warm, reflective sunlight, dancing across the sandy, golden beach."
+        ]
+    },
+    {
+        "prompt": "the sleek, metallic silver bike slid silently on the concrete pathway, passing a shiny, golden statue flanked by ornate, red-brick walls.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000007",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the shiny, silver bike slid silently on the cobblestone pathway, passing a sleek, gold statue flanked by ornate, red-brick walls.",
+            "the red-brick, silver bike slid silently on the shiny, golden pathway, passing a red-brick, silver statue flanked by ornate, concrete walls.",
+            "the shiny, golden statue flanked by ornate, red-brick walls."
+        ]
+    },
+    {
+        "prompt": "the sleek silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming flowers.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000008",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the curved, silver laptop sat on the glass, curved conference table facing the red, square vase filled with blooming flowers.",
+            "the sleek, silver, square laptop sat on the curved, wooden, square conference table facing the yellow, square vase filled with blooming flowers.",
+            "the wooden, curved conference table facing the yellow, square vase filled with blooming flowers."
+        ]
+    },
+    {
+        "prompt": "the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+        "category": "complex",
+        "sub_category": "complex",
+        "item_id": "3000009",
+        "perturbed_method": [
+            "replace",
+            "swap",
+            "drop"
+        ],
+        "negative_prompt": [
+            "the dark, glossy, multicolored tips of the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees.",
+            "the dark, lush, iridescent peacock feathers spread elegantly behind two small, leafless, tall palm trees.",
+            "the dark, lush canopy with iridescent, peacock feathers spread elegantly behind two tall, leafy palm trees."
+        ]
+    }
+]

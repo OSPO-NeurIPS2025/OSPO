@@ -16,8 +16,12 @@ def get_model(mode='generate', model_path=None, cache_dir=None, dtype=torch.floa
     
     config = kwargs.get('config', None)
     if config is not None:
-        model_path = config.model.model_path 
-        cache_dir = config.model.cache_dir
+        if hasattr(config, 'model'):
+            model_path = config.model.model_path 
+            cache_dir = config.model.cache_dir
+        else:
+            model_path = config.model_path
+            cache_dir = config.cache_dir
 
     vl_chat_processor: VLChatProcessor = VLChatProcessor.from_pretrained(model_path, cache_dir)
     image_processor = vl_chat_processor.image_processor 

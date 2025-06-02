@@ -1,15 +1,11 @@
 # Step 2
-# CUDA_VISIBLE_DEVICES=0,1 python /home/elicer/OSPO/ospo/step2_negative.py
-# CUDA_VISIBLE_DEVICES=0,1 python /home/elicer/OSPO/ospo/step2_dense.py
 
-s_idx:
-e_idx:
-data_path: /home/elicer/OSPO/data_example/step1/base_prompt.json
-world_size: 2
-batch_size: 2
-num_workers: 4
 seed_list: [0,1,2]
-save_path: /home/elicer/OSPO/data_example/step2
+world_size: 2
+batch_size: 8
+num_workers: 4
+data_path: 
+save_path: /home/elicer/OSPO/example/step2
 ckpt_path:
 model_path: /home/elicer/checkpoints/Janus-Pro-7B
 cache_dir: /home/elicer/checkpoints/hf_cache

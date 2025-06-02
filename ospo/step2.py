@@ -1,8 +1,6 @@
 import os
 import argparse
-import traceback
 import torch
-from pytorch_lightning import LightningModule
 from peft import get_peft_model
 
 import pyrootutils
@@ -13,6 +11,9 @@ from ospo.utils.generate import get_trainer
 from ospo.utils.model import get_model, get_lora_config
 from ospo.utils.common import read_json, save_json, build_config
 
+
+# os.environ["TOKENIZERS_PARALLELISM"] = "false" 
+    
 
 def get_dataloader(config):
     datamodule = GenerationDataModule(config, step=2)  

@@ -1,8 +1,11 @@
 import os
 import json
+import torch
 import random
 import argparse
 import inflect
+import pytorch_lightning as pl
+from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
@@ -170,7 +173,8 @@ def combine_prompt(config):
     print(f"\n*** Total number of base prompt (including non-spatial, complex): {len(output)} ***")
 
     # save
-    save_json(config.save_path, 'base_prompt', output)
+    sorted_output = sorted(output, key=lambda x: int(x["item_id"]))
+    save_json(config.save_path, 'base_prompt', sorted_output)
 
 
 def get_dataloader(config):
@@ -185,7 +189,7 @@ def main(config):
         raise NotImplementedError("Batch size > 1 and World size > 1 are not supported in this step.")
 
     device = "cuda" if torch.cuda.is_available() else "cpu"    
-    seed_everything(config.seed, workers=True)
+    pl.seed_everything(config.seed, workers=True)
     if config.save_path is not None:
         os.makedirs(config.save_path, exist_ok=True)
 
@@ -221,19 +225,19 @@ def main(config):
     if all(os.path.exists(os.path.join(config.save_path, f)) for f in generated):
         print("All elements and prompts are generated. Start combining all.")
         combine_prompt(config)
-    print("(Step 1) Base prompt generation completed.")
+        print("(Step 1) Base prompt generation completed.")
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--cfg_path", type=str, default='configs/step1.yaml')
+    parser.add_argument("--category", type=str, default='object', help="option: object, color, shape, texture, spatial, non-spatial, complex")
     args, unknown = parser.parse_known_args()  
     
     config = build_config(cfg_path=args.cfg_path)
     if config.category is None:
-        raise ValueError("Please specify the category in the config file.")
-    else:
-        print("# Category:", config.category)
+        config.category = args.category
+    print("# Category:", config.category)
 
     main(config)

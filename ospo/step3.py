@@ -2,14 +2,7 @@
 
 import os
 import argparse
-import traceback
-from typing import List
-from PIL import Image
-import numpy as np
 import torch
-import torch.distributed as dist
-from torch.utils.data import Dataset, DataLoader
-from pytorch_lightning import LightningModule
 from peft import get_peft_model
 
 import pyrootutils
@@ -19,8 +12,8 @@ from ospo.datamodule import GenerationDataModule
 from ospo.utils.generate import get_trainer
 
 
-from ospo.base import get_model, get_lora_config, get_eval_trainer, get_prompt, get_fname
-from OSPO.ospo.utils_legacy import save_json, set_seed, build_config
+from ospo.utils.model import get_model, get_lora_config
+from ospo.utils.common import build_config
 
 
 def get_dataloader(config):
@@ -57,9 +50,13 @@ def main(config):
                                     tokenizer=tokenizer, 
                                     processor=vl_chat_processor)
 
+    if config.data_path is None:
+        config.data_path = os.path.join(os.path.dirname(config.save_path), 'step2', 'long_prompt.json')
+    dataloader = get_dataloader(config)
     trainer = get_trainer(device, config.world_size)
     trainer.test(model, dataloaders=dataloader)
     print("(Step 3) Image generation completed.")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

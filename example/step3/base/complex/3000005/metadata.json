@@ -1,0 +1,26 @@
+{
+    "prompt": "the icy blue snowflake sparkled against the frosted, crystalized window; the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast.\n\nthe red heart-shaped apple with small green leaves nestled in the vibrant, lush bouquet, and the golden, shimmering moon orbited elegantly, while the golden eagle soared in a radiant display of freedom above the majestic waterfall.\n\nthe fluffy white kitten nuzzled up closely against the soft, golden sunset hues, and the golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000005",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the frosty, sparkling icy blue snowflake reflected off the golden, honeydew honeydew melon, while the vibrant, lush bouquet with a golden, heart-shaped apple nestled among the golden, shimmering beads of rain reflected off the majestic, golden waterfall.",
+        "the golden, shimmering snowflake sparkled against the frosted, crystalized window; the vibrant, lush bouquet of golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+        "the frozen, sparkling snowflake sparkled against the frosted, crystalized window; the golden, shimmering sunset hung elegantly in the sky, while the fluffy white kitten nuzzled up closely against the soft, golden sunset hues."
+    ],
+    "long_prompt": [
+        "The icy blue snowflake sparkled against the frosted, crystalized window, as the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast.",
+        "The icy blue snowflake sparkled brightly against the frosted, crystalized window, while the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast. Nearby, a vibrant, lush bouquet of golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+        "The icy blue snowflake sparkled against the frosted, crystalized window, as the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast."
+    ],
+    "negative_long_prompt": [
+        "The frosty, sparkling icy blue snowflake reflected off the golden, honeydew honeydew melon, while the vibrant, lush bouquet with a golden, heart-shaped apple nestled among the golden, shimmering beads of rain reflected off the majestic, golden waterfall.",
+        "The golden, shimmering snowflake sparkled against the frosted, crystalized window, while the vibrant, lush bouquet of golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels. Nearby, a warm, golden touch of sunlight reflected off the golden honeydew melon, creating a mesmerizing contrast.",
+        "The frozen, sparkling snowflake sparkled against the frosted, crystalized window, as the golden, shimmering sunset hung elegantly in the sky, while the fluffy white kitten nuzzled up closely against the soft, golden sunset hues."
+    ]
+}

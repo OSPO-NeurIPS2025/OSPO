@@ -1,0 +1,26 @@
+{
+    "prompt": "A curved vertical boat",
+    "category": "attribute",
+    "sub_category": "attribute1_shape",
+    "item_id": "0000003",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a straight boat",
+        "a straight boat",
+        "a straight boat"
+    ],
+    "long_prompt": [
+        "A sleek, curved vertical boat gliding effortlessly along the serene waters of a tranquil river, its polished wooden hull reflecting the gentle ripples and sunlight filtering through the lush canopy overhead.",
+        "A sleek, curved vertical boat, its hull painted in a glossy black, glides effortlessly across a shimmering river, its polished wood planks gleaming under the soft morning light, as a gentle breeze carries the scent of blooming flowers and ripening fruit from the lush riverbanks.",
+        "A curved, vertical boat with sleek, polished wood planks gently gliding through calm, crystal-clear waters under the warm embrace of a golden sunset, its gentle sway accentuated by the soft ripples on the surface."
+    ],
+    "negative_long_prompt": [
+        "A sturdy, straight vertical boat moored securely to the riverbank, its simple wooden hull resting on the gentle waters of a peaceful river, with the towering trees lining the banks providing a sense of tranquility and solitude.",
+        "A sturdy, straight-lined boat with a rugged wooden hull, its white paint chipped and worn, rests gently against the muddy riverbank, its outboard motor still churning the water as a soft morning mist swirls around its hulls, carrying the whispers of the river and the promise of adventure.",
+        "A straight, flat boat gliding through calm, crystal-clear waters under the warm embrace of a golden sunset, its gentle sway accentuated by the soft ripples on the surface."
+    ]
+}

@@ -51,7 +51,7 @@ class GenerationDataModule(pl.LightningDataModule):
         if step not in [1, 2, 3, 4]: 
             raise ValueError("Step must be one of [1, 2, 3, 4].")
         self.config = config
-
+    
         # Element/Base prompt generation
         if step == 1:
             if config.max_len is None:
@@ -69,9 +69,7 @@ class GenerationDataModule(pl.LightningDataModule):
 
         # Dense/Negative prompt generation and Image generation
         elif step == 2 or step == 3:
-            self.dataset = BaseDataset(fpath=config.data_path,
-                                    s_idx=config.s_idx, 
-                                    e_idx=config.e_idx)
+            self.dataset = BaseDataset(fpath=config.data_path)
         
         # Question/Answer generation
         elif step == 4:

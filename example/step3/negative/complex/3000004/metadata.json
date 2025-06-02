@@ -1,0 +1,26 @@
+{
+    "prompt": "the towering glass tower mirrored its surroundings, the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000004",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the glass tower mirrored its surroundings, the azure blue waters still swirling below the sharp, stone cliffs that loomed in the distance.",
+        "the jagged, granite cliffs loomed in the distance, the azure waters swirling below the towering glass tower that mirrored its surroundings.",
+        "the calm, swirling waters below the jagged, granite cliffs that loomed in the distance."
+    ],
+    "long_prompt": [
+        "The towering glass tower mirrored its surroundings, its sleek surface reflecting the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+        "The towering glass tower mirrored its surroundings, the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+        "The towering glass tower stood majestically, reflecting its surroundings, as the azure waters swirled below the jagged, granite cliffs that loomed in the distance."
+    ],
+    "negative_long_prompt": [
+        "The glass tower mirrored its surroundings, its sleek surface reflecting the azure blue waters still swirling below the sharp, stone cliffs that loomed in the distance.",
+        "The jagged, granite cliffs loomed in the distance, the azure waters swirling below the glass tower that mirrored its surroundings.",
+        "The calm, swirling waters below the jagged, granite cliffs that loomed in the distance."
+    ]
+}

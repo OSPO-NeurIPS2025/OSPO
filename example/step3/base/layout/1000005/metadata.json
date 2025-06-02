@@ -1,0 +1,26 @@
+{
+    "prompt": "A curry",
+    "category": "layout",
+    "sub_category": "layout2",
+    "item_id": "1000005",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "two curries",
+        "two curries",
+        "two curries"
+    ],
+    "long_prompt": [
+        "A vibrant yellow-orange curry is simmering in a pot on the stove, with a hint of turmeric and cumin adding depth to the aroma filling the kitchen.",
+        "A vibrant yellow curry is served in a small clay bowl, with a fragrant aroma wafting from the rich sauce.",
+        "A rich and fragrant Indian curry with tender chicken, aromatic spices, and soft basmati rice served in a warm clay bowl."
+    ],
+    "negative_long_prompt": [
+        "Two rich and aromatic curries are simmering in pots on the stove, with a mix of spices and herbs adding flavor to the steam rising from the kitchen.",
+        "Two similar-looking yellow curries are placed side by side in a larger clay bowl, with a slightly different aroma emanating from each.",
+        "Two bowls of steaming Indian curries with tender chicken, aromatic spices, and soft basmati rice are served on a wooden table in a cozy restaurant."
+    ]
+}

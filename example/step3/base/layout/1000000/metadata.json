@@ -1,0 +1,26 @@
+{
+    "prompt": "A lemon near of a umbrella",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000000",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A lemon beside an umbrella",
+        "A lemon near of an umbrella",
+        "A lemon and an umbrella"
+    ],
+    "long_prompt": [
+        "A bright yellow lemon sits near a vibrant red umbrella, which stands tall and slightly bent on a sunlit patio, casting a vivid shadow on the wooden floor.",
+        "A bright yellow lemon lies near the base of a classic black umbrella, its skin glistening under the soft sunlight filtering through the canopy of nearby trees.",
+        "A bright yellow lemon sits near a folded black umbrella on a wooden picnic table, with its glossy skin reflecting the sunlight and casting a warm glow across the scene."
+    ],
+    "negative_long_prompt": [
+        "A bright yellow lemon lies beside a sturdy red umbrella on a sunlit patio, with its petals curling slightly as the wind whispers softly around it.",
+        "A bright yellow lemon sits near the base of a classic black umbrella, its skin glistening under the soft sunlight filtering through the canopy of nearby trees, creating a tranquil and vibrant scene.",
+        "A bright yellow lemon and a folded black umbrella sit together on a wooden picnic table, with the umbrella's canopy shading the lemon and creating a soft contrast between the vibrant fruit and the dark fabric."
+    ]
+}

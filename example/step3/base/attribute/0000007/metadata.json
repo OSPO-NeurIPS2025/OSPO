@@ -1,0 +1,26 @@
+{
+    "prompt": "A black watermelon and a curved vertical diagonal desk",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000007",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a white watermelon and a curved vertical diagonal desk",
+        "a curved black watermelon and a curved vertical desk",
+        "a black desk"
+    ],
+    "long_prompt": [
+        "A strikingly dark black watermelon with a glossy, smooth surface rests on a sleek, curved vertical diagonal desk, made of polished wood and accented with elegant brass handles, in a quiet study room bathed in soft evening sunlight.",
+        "A strikingly dark, glossy black watermelon rests on a curved, vertical, and diagonal desk made of polished obsidian, which curves around the room's perimeter, casting intriguing shadows in the dim ambient light of a dimly lit art studio.",
+        "A striking black watermelon with subtle striping rests on a sleek, curved, vertical, and diagonal desk, designed with a minimalist aesthetic and made of polished dark wood, with soft ambient lighting casting gentle shadows on the surrounding walls."
+    ],
+    "negative_long_prompt": [
+        "A bright white watermelon with a subtle, textured surface sits on a sleek, curved vertical diagonal desk, made of polished wood and accented with elegant brass handles, in a quiet study room bathed in soft evening sunlight.",
+        "A sleek, black-colored watermelon sits on a curved, black-finished desk that wraps around the room's perimeter, with its smooth surface reflecting subtle hints of ambient light from the dimmed overhead fixtures of a dimly lit art studio.",
+        "A sleek, black desk with subtle curves sits beside a curved, black watermelon with subtle striping, designed with a minimalist aesthetic and made of polished dark wood, with soft ambient lighting casting gentle shadows on the surrounding walls."
+    ]
+}

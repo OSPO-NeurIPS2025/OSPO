@@ -1,0 +1,26 @@
+{
+    "prompt": "a child is talking to her caregiver, holding a stuffed dog for comfort.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000006",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A child is holding a stuffed animal while talking to her caregiver.",
+        "a child is talking to her while holding a stuffed dog for comfort.",
+        "A child is playing with a stuffed dog while talking to her caregiver."
+    ],
+    "long_prompt": [
+        "A young child sits comfortably on a soft cushion in her caregiver's lap, holding a fluffy stuffed dog tightly in her arms while chatting softly, her caregiver offering words of reassurance and gentle touches.",
+        "A young child is engaged in a warm conversation with her caregiver, who gently holds a plush stuffed dog close to her chest. The caregiver's smile is soft, her voice soothing as she listens attentively to the child's thoughts.",
+        "A young child sits comfortably on a soft blanket, clutching a beloved stuffed dog close to her chest while engaging in a gentle conversation with her caregiver."
+    ],
+    "negative_long_prompt": [
+        "A young child holds a soft plush toy close to her chest while engaging in a quiet conversation with her caregiver, whose kind face and soothing voice offer a sense of security and comfort.",
+        "A young child is talking with her caregiver, who holds a plush stuffed dog near her chest while listening intently to the child's words. The caregiver's eyes are warm, her expression supportive as she engages with the child.",
+        "A young child is engrossed in playing with her stuffed dog, laughing and chatting with her caregiver while they both enjoy the warm, comforting afternoon."
+    ]
+}

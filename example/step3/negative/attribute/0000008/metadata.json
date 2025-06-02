@@ -1,0 +1,26 @@
+{
+    "prompt": "A palm umbrella and a wavy skateboard",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000008",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a metal umbrella and a wooden skateboard",
+        "a palm skateboard and a wavy umbrella",
+        "a wavy skateboard"
+    ],
+    "long_prompt": [
+        "A vibrant palm umbrella, with a sturdy wooden pole and a broad, curved canopy, is being held aloft by a young boy standing on a smooth, curved, wavy skateboard, gliding effortlessly through a sun-drenched beachside park.",
+        "A palm umbrella, its delicate fronds swaying gently in the breeze, provides shade for a vibrant, wavy skateboard resting on a sun-drenched beach, with the sound of waves crashing in the background.",
+        "A palm umbrella shading a sun-drenched beach, where a sleek, wavy skateboard with colorful decals glides effortlessly along the sandy shoreline, leaving a trail of footprints in its wake."
+    ],
+    "negative_long_prompt": [
+        "A sturdy metal umbrella, with a durable wooden pole and a broad, curved canopy, is being held aloft by a seasoned skateboarder cruising through a sun-drenched park, gliding effortlessly on a solid, curved wooden skateboard.",
+        "A wavy umbrella, its fabric billowing softly in the breeze, casts a dappled shade over a palm-shaped skateboard, with the sound of waves crashing in the background.",
+        "A wavy skateboard with colorful decals gliding effortlessly along a sandy beach, where a palm umbrella casts a dappled shade overhead, creating a tranquil oasis in the midst of the warm ocean breeze."
+    ]
+}

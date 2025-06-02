@@ -106,8 +106,8 @@
             "drop"
         ],
         "negative_prompt": [
-            "a bumpy towel and a straight tacos",
-            "a curved towel and a smooth tacos",
+            "a curved tacos and a smooth towel",
+            "a curved vertical diagonal tacos and a smooth towel",
             "a curved tacos"
         ]
     },
@@ -122,7 +122,7 @@
             "drop"
         ],
         "negative_prompt": [
-            "a blue gray webcam",
+            "a curved sunflower and a blue webcam",
             "a blue gray sunflower and a curved webcam",
             "a blue curved webcam"
         ]
@@ -138,7 +138,7 @@
             "drop"
         ],
         "negative_prompt": [
-            "a soft book and a dark banjo",
+            "a blue book and a yellow banjo",
             "a gray book and a gritty banjo",
             "a gray book and a gritty banjo"
         ]
@@ -154,9 +154,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "a yellow towel and a rainbow umbrella",
-            "a smooth turquoise blue towel and a smooth umbrella",
-            "a smooth umbrella"
+            "a yellow towel and a velvety umbrella",
+            "a turquoise blue umbrella and a smooth towel",
+            "a turquoise blue umbrella"
         ]
     },
     {
@@ -188,7 +188,7 @@
         "negative_prompt": [
             "Tacos on a skateboard",
             "Tacos on top of a skateboard",
-            "Tacos on a skateboard"
+            "A skateboard and tacos"
         ]
     },
     {
@@ -202,7 +202,7 @@
             "drop"
         ],
         "negative_prompt": [
-            "A umbrella under a turtle",
+            "A turtle has an umbrella on top of it",
             "A turtle inside of an umbrella",
             "A turtle with an umbrella outside of it"
         ]
@@ -218,7 +218,7 @@
             "drop"
         ],
         "negative_prompt": [
-            "A sunflower beside a boat",
+            "A sunflower next to a boat",
             "A boat near to a sunflower",
             "A sunflower and a boat"
         ]
@@ -284,7 +284,7 @@
         "negative_prompt": [
             "two lemons and three laptops",
             "one laptop and four lemons",
-            "one laptop"
+            "four lemons"
         ]
     },
     {
@@ -330,9 +330,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A little boy is riding a bicycle while painting a mural in his backyard.",
+            "A little boy is riding a small bicycle in his backyard.",
             "a little boy is jumping on a while in his backyard.",
-            "A little boy is riding a bicycle in his backyard."
+            "A little boy is riding a bicycle in his backyard while jumping on a small trampoline."
         ]
     },
     {
@@ -346,9 +346,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A dancer is practicing her routines with her reflection posing for photos in the pond.",
-            "a dancer elegantly watches her while practicing her routines.",
-            "A dancer practices her routines in the mirror while dancing in the pond."
+            "A dancer practices her routines while watching her reflection in the pond while watching her reflection in the pond.",
+            "a dancer elegantly watches her while practicing her routines in the pond.",
+            "A dancer is dancing to her routine while watching her reflection in the pond."
         ]
     },
     {
@@ -362,9 +362,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A chef is preparing ingredients for a dish while carefully watching the ingredients as she combines them together.",
+            "A chef is mixing the ingredients carefully as she watches the ingredients.",
             "a chef carefully watches the while she combines them together.",
-            "A chef is measuring ingredients while carefully watching them as she combines them together."
+            "A chef is measuring ingredients as she carefully watches them combine together."
         ]
     },
     {
@@ -378,9 +378,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "Emma is holding a microphone while dancing a song on stage with her friends and bandmates.",
+            "Emma is performing a dance while holding a microphone with her friends and bandmates on stage.",
             "Emma holds a while singing a song on stage with her friends and bandmates.",
-            "Emma is conducting a rehearsal with her friends and bandmates while holding a microphone and singing a song."
+            "Emma is conducting an orchestra with her friends and bandmates while holding a microphone."
         ]
     },
     {
@@ -394,9 +394,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A person is listening to a podcast while reading a book on a couch surrounded by other comfortable pillows.",
-            "a person is reading a while sitting on a couch surrounded by other  while sitting on a couch surrounded by other .",
-            "A person is watching a movie with other comfortable pillows while reading a book."
+            "A person is relaxing on a couch with other comfortable pillows while reading a book.",
+            "a person is reading a while sitting on a couch surrounded by other  pillows.",
+            "A person is lounging on a couch surrounded by other comfortable pillows while reading a book."
         ]
     },
     {
@@ -410,9 +410,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "Tom and his team work together by a large piece of sheet music while Tom sings a musical instrument.",
-            "Tom and his team work together by a while Tom plays a musical instrument.",
-            "Tom is conducting a musical performance while his team works together on a large piece of sheet music."
+            "Tom is listening to a large piece of sheet music with his team while playing a musical instrument.",
+            "Tom and his team work together by a large while Tom plays a musical instrument.",
+            "Tom conducts a musical performance while his team assembles a large collection of sheet music."
         ]
     },
     {
@@ -426,9 +426,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A child is riding a bicycle through water and splashing their young brother wearing a protective helmet.",
-            "a child wearing a is running through water and splashing their young brother.",
-            "A child jumps into water and splashes their young brother while wearing a protective helmet."
+            "A child is riding a bicycle through water and splashing their young brother while wearing a protective helmet.",
+            "a child wearing a is running through water and splashing their brother.",
+            "A child is riding a bicycle through water and splashing their young brother."
         ]
     },
     {
@@ -442,9 +442,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A toddler is pushing her small toy car across a rough sidewalk while a stranger looks at her from across the street.",
-            "a toddler is pushing her on a rough sidewalk and watching as a stranger looks at her from across the street.",
-            "A toddler is playing with her small toy car on a smooth sidewalk while a stranger looks at her from across the street."
+            "A toddler is throwing her small toy car on a rough sidewalk while a stranger looks at her from across the street.",
+            "a toddler is pushing her  on a rough sidewalk and watching as a stranger looks at her from across the street.",
+            "A toddler is running with her small toy car on a rough sidewalk while a stranger looks at her from across the street."
         ]
     },
     {
@@ -458,9 +458,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "Three young chefs are tasting food while speaking with a client in a fancy chef's training restaurant.",
+            "Three young chefs are tasting desserts with a client in a fancy chef's training restaurant.",
             "three young chefs are speaking with a while in a fancy chef's training restaurant.",
-            "Three young chefs are tasting the dishes with a client in a fancy chef's training restaurant."
+            "Three young chefs are discussing a recipe while a client is trying a dish in a fancy chef's training restaurant."
         ]
     },
     {
@@ -474,9 +474,9 @@
             "replace"
         ],
         "negative_prompt": [
-            "A child is reading a story to her caregiver with a stuffed dog for comfort.",
+            "A child is playing with a stuffed toy while holding a stuffed dog for comfort.",
             "a child is talking to her while holding a stuffed dog for comfort.",
-            "A child is holding a stuffed animal for comfort while talking to her caregiver."
+            "A child is playing with a stuffed dog for comfort while talking to her caregiver."
         ]
     },
     {
@@ -490,9 +490,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the dark, lush canopy spread elegantly behind two tall, leafy palm trees, their iridescent, peacock feathers sparkling vibrant hues against the glossy, multicolored tips.",
-            "the glossy, multicolored hues of the peacock feathers sparking vibrant hues against the light, sparse canopies.",
-            "the glossy, multicolored peacock feathers spread elegantly behind two tall, leafy palm trees, their dark, lush canopies sparking vibrant hues against the light, lush canopies."
+            "the bright, multicolored peacock feathers spread elegantly behind two tall, leafless palm trees, their dark, sparse canopies.",
+            "the dark, lush, iridescent feathers elegantly spread behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+            "the dark, lush canopy was speckled with iridescent, peacock feathers, while the tall, leafy palm trees stood proudly in the background."
         ]
     },
     {
@@ -506,9 +506,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the rusty, antique gold bike slid silently on the cobblestone pathway, passing a matte, red brick ancient wall.",
-            "the shiny, golden statue flanked by ornate, red-brick walls and the sleek, metallic silver bike slid silently on the smooth, concrete pathway.",
-            "the shiny, golden statue flanked by ornate, red-brick walls."
+            "the rusty, silver bike slid silently on the gravel pathway, passing a dull, bronze statue flanked by worn, brick-red walls.",
+            "the sleek, metallic golden bike slid silently on the red-brick, concrete pathway, passing a shiny, golden statue flanked by ornate, sleek, metallic walls.",
+            "the concrete pathway, flanked by ornate, red-brick walls, was home to a sleek, metallic silver bike."
         ]
     },
     {
@@ -522,9 +522,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the vibrant, green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
-            "the cheerful, blue-painted wooden fence danced its whimsical, swaying fingers on the left side of the lush, sandy dunes, its vibrant green, swaying trees swaying gently beside the cheerful, blue-painted wooden fence.",
-            "the pink, flowered garden near the cheerful, wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky."
+            "the green, trees dancing their whimsical fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+            "the cheerful, blue-painted wooden fence stood on the right-hand side from atop the gentle, sandy dunes, its bright, tropical blooms sparkling under the clear, starlit sky.",
+            "the swaying, cheerful, blue-painted wooden fence danced on the left side of the lush, cheerful, blue-painted garden near the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky."
         ]
     },
     {
@@ -538,9 +538,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the fluffy, white kitten nuzzled up closely against the soft, golden sunset hues, and the golden, shimmering beads of rain hung suspended in the air like tiny, glowing jewels.",
+            "the warm, crystalized, sparkling snowflake sparkled against the frosted, crystalized window; the golden, honeydew melon glistened in the golden, heart-shaped apple nestled in the vibrant, lush bouquet, and the radiant, soaring golden eagle soared in a radiant display of freedom above the majestic waterfall.",
             "the warm, golden, sparkling snowflake sparkled against the frosty, crystalized window; the golden, heart-shaped apple with small green leaves nestled in the vibrant, lush bouquet, and the golden, shimmering moon orbited elegantly, while the golden eagle soared in a radiant display of freedom above the majestic waterfall.",
-            "the golden, sparkling snowflake sparkled against the frosted, crystalized window; the warm, golden touch of sunlight reflected off the golden honeydew melon nearby, creating a mesmerizing contrast."
+            ""
         ]
     },
     {
@@ -554,8 +554,8 @@
             "drop"
         ],
         "negative_prompt": [
-            "the pink, gentle rippling water pooled on the white, warm, bright sandy beach, its waves gently undulating in soft, playful ripples.",
-            "the golden, cold water pooled on the blue, cold beach, its waves gently mingling the warm sunlight in ripples that undulated the tide.",
+            "the pink, calm rippling water pooled on the white, golden beach, its undulating waves gently mingling the warm, blue sunlight in ripples that gave the tide a playful, undulating energy.",
+            "the golden, cold water pooled on the blue, swirling beach, its waves gently mingling the light of the warm, light sunlight.",
             "the blue, still pooled water pooled on the sandy, golden beach, its warm sunlight diffusing in ripples that gently mimic the playful, undulating energy of the waves."
         ]
     },
@@ -586,9 +586,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the dark blue, surrounded by light pink fluffy gray clouds, with a dark brown wooden boat resting on the calm water. On the right, atop the horizon, the golden, setting sun dips into the horizon, painting the sky with warm, fiery hues.",
-            "the golden, setting ocean, surrounded by soft, fluffy white clouds, with a blue, wooden boat resting on its calm water. On the right, atop the horizon, the crystal clear, deep blue sun dips into the horizon, painting the sky with warm, fiery hues.",
-            "the calm, deep blue ocean surrounded by fluffy, white clouds, with a wooden, sinking boat resting on its water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
+            "the warm, fiery orange ocean surrounded by dark, fluffy purple clouds, with a white, wooden, sinking boat on its calm, orange, rising water.",
+            "the fluffy, white ocean surrounded by a sleek, black wooden boat, with a calm, golden, setting sun dipping into the horizon, painting the sky with warm, fiery hues.",
+            "the deep blue, crystal clear ocean surrounded by soft, fluffy white clouds, with a sleek, black wooden fishing boat floating on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
         ]
     },
     {
@@ -602,9 +602,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the thin, black laptop sat on the metal, flat, meeting table facing the green, round vase filled with blooming flowers.",
-            "the sleek, silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming flowers.",
-            "the sleek silver laptop sat on the wooden, curved conference table facing the yellow, square vase filled with blooming green flowers."
+            "the heavy, black computer sat on the glass, straight meeting table facing the red, round vase filled with blooming flowers.",
+            "the curved, silver conference laptop sat on the yellow, square conference table, facing the sleek, yellow, square vase filled with blooming flowers.",
+            "the wooden, curved conference table facing the yellow, square vase filled with blooming flowers."
         ]
     },
     {
@@ -618,9 +618,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the sparkly, silver necklace hung from an elongated, oval-shaped picture frame, its mirror surface reflecting faint, pale orange sunlight while the sparkly, white walls faded into the background, creating a beautiful yet simplistic setting.",
-            "the shiny, red, plain white picture frame hung from an elongated, oval-shaped, shiny silver necklace, its mirrored surface reflecting faint, pale orange sunlight while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
-            "the plain, faded picture frame hung on the white, plain walls, its pale orange sunlight fading into the background."
+            "the plain, silver oval-shaped necklace hung from an elongated, plain-shaped picture frame, its brightest orange sunlight reflecting off the plain white walls, creating a beautiful yet simplistic setting.",
+            "the white, mirror-surface, reflective shiny silver necklace hung from an elongated, oval-shaped picture frame, its pale orange sunlight reflecting off the mirror surface while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+            "the short, red picture frame hung from a white, blue wall, while the bright, red sunlight reflected off the shiny, silver oval-shaped necklace."
         ]
     },
     {
@@ -634,9 +634,9 @@
             "drop"
         ],
         "negative_prompt": [
-            "the glass tower mirrored its surroundings, the azure blue waters still swirling below the sharp, stone cliffs that loomed in the distance.",
-            "the jagged, granite cliffs loomed in the distance, the azure waters swirling below the glass tower.",
-            "the calm, swirling waters below the jagged, granite cliffs that loomed in the distance."
+            "the small, blue, reflected tower stood beside the green, still waters that were flat and smooth, while the looming, solid rocks loomed in the distance.",
+            "the granite, looming tower mirrored its surroundings, the azure waters swirling below the jagged, granite cliffs that loomed in the distance.",
+            "the blue, still waters swirling below the rocky, granite cliffs that loomed in the distance."
         ]
     }
 ]

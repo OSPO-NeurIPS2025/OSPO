@@ -1,0 +1,26 @@
+{
+    "prompt": "A black umbrella",
+    "category": "attribute",
+    "sub_category": "attribute1_color",
+    "item_id": "0000000",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a green umbrella",
+        "a green umbrella",
+        "a blue umbrella"
+    ],
+    "long_prompt": [
+        "A sleek, black umbrella, slightly curved in the wind, shielding a group of friends huddled under a vibrant orange streetlamp, their laughter and chatter mingling with the distant hum of city life.",
+        "A sleek, black umbrella with curved metal ribs and a soft fabric canopy shielding a person from the drizzle as they walk through a bustling city street lined with colorful shops and cafes, their footsteps echoing on the wet pavement.",
+        "A black umbrella, its canopy adorned with delicate silver trimmings, stands against a stark black-and-white striped backdrop, with a soft glow of moonlight casting eerie shadows on the wet pavement."
+    ],
+    "negative_long_prompt": [
+        "A bright, green umbrella, its canopy adorned with whimsical illustrations, provides a canopy of shade for a serene lakeside picnic, where a couple enjoys a quiet moment together, their hands intertwined as they gaze out at the shimmering water.",
+        "A vibrant, emerald green umbrella with curved metal ribs and a soft fabric canopy shielding a person from the drizzle as they stroll through a serene forest, the rustling leaves and chirping birds providing a soothing backdrop.",
+        "A blue umbrella, its canopy speckled with tiny white dots, stands against a bright white background, with a burst of vibrant yellow flowers blooming in the foreground, as a gentle breeze rustles the leaves of a nearby tree."
+    ]
+}

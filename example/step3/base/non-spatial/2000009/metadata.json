@@ -1,0 +1,26 @@
+{
+    "prompt": "a little boy is jumping on a small trampoline in his backyard.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000009",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A little boy is playing on a big trampoline in his backyard.",
+        "a little boy is jumping on a while in his backyard.",
+        "A little boy is riding a bicycle in his backyard while jumping on a small trampoline."
+    ],
+    "long_prompt": [
+        "A little boy, dressed in a bright blue shirt and matching shorts, is bouncing energetically on a small, colorful trampoline in his backyard, the sun casting playful shadows on the grass.",
+        "A little boy is bounding energetically on a small trampoline in his backyard, his sneakers squeaking on the trampoline mat as he jumps high, his laughter echoing through the open space.",
+        "A little boy is having the time of his life as he leaps and bounds on a small trampoline in his backyard, the sun warm on his face and the air filled with the sound of his laughter."
+    ],
+    "negative_long_prompt": [
+        "A little boy, equally enthusiastic, is jumping high on a big, black trampoline in his backyard, the trampoline a sturdy, circular frame against the bright blue sky.",
+        "A little boy is leaping with abandon on a swing in his backyard, the sun casting dappled shadows across the grass as he lets out joyful shrieks, his eyes sparkling with delight.",
+        "A little boy is multitasking as he pedals furiously on a small bicycle in his backyard, simultaneously jumping and balancing on a small trampoline, the joy of play radiating from his eyes."
+    ]
+}

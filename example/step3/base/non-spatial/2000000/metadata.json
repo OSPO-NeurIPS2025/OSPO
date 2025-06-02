@@ -1,0 +1,26 @@
+{
+    "prompt": "tom and his team work together by a large piece of sheet music while tom plays a musical instrument.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000000",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "Tom and his team play musical instruments by a large piece of sheet music.",
+        "Tom and his team work together by a large while Tom plays a musical instrument.",
+        "Tom and his team are analyzing a large piece of sheet music while Tom plays a musical instrument."
+    ],
+    "long_prompt": [
+        "Tom and his team of musicians gather around a large sheet of music on a sturdy music stand, their fingers deftly navigating the keys and strings of their instruments as they work together in harmony.",
+        "A group of dedicated musicians, including Tom, gather around a large sheet of music in a cozy rehearsal room, carefully working together to bring the complex piece to life with precision and passion. Tom plays a musical instrument, perhaps a flute, with a focused expression as the team collaborates in harmony.",
+        "Tom and his team are gathered around a large, wooden table in a music studio, working collaboratively to decipher a sprawling sheet of sheet music. Tom plays a beautifully crafted violin, the rich tones resonating through the room as the team members jot down notes and annotations."
+    ],
+    "negative_long_prompt": [
+        "Tom and his team of musicians stand by a large sheet of music, their instruments ready, as they work together in perfect sync, their fingers dancing across the keys and strings as they play.",
+        "Tom and his team work together by a large, spacious studio, surrounded by the rich ambiance of musical instruments. They carefully analyze the sheet music, working together to perfect their performance, with Tom playing a musical instrument, such as a piano, with a concentrated and joyful expression.",
+        "Tom and his team are immersed in a large, organized workspace, intently studying a massive sheet of sheet music. Tom, the lead violinist, plays a beautifully crafted violin, the notes and melodies flowing effortlessly as the team members meticulously analyze every detail of the composition."
+    ]
+}

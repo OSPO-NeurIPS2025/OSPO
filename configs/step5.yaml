@@ -2,7 +2,7 @@
 
 base:
   save_path: /home/elicer/checkpoints/janus_dpo
-  exp_name: test
+  exp_name: 0602_tmp
   world_size: 2
   resume:
 
@@ -24,7 +24,7 @@ dataset:
   train:
     batch_size: 16 
     num_workers: 4
-    data_path: /home/elicer/OSPO/data_example/step4/train.json
+    data_path: /home/elicer/OSPO/example/step4/train.json
     num_samples:              
   val:
     batch_size: 1

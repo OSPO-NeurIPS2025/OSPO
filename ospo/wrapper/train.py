@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Literal, Tuple, Union
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.utils.common import save_config
-from ospo.utils_train.lr_scheduler import CosineDecayWarmUpRestarts
+from ospo.utils.train import CosineDecayWarmUpRestarts
 
 
 class JanusProTrainWrapper(pl.LightningModule):
@@ -96,6 +96,11 @@ class JanusProTrainWrapper(pl.LightningModule):
                        'train/global_step': self.global_step}, on_step=True, prog_bar=True, logger=True, sync_dist=True)
         
         return loss # simPO loss
+
+
+    def validation_step(self, batch, batch_idx):
+        # Generate image
+        pass
 
 
     def on_before_optimizer_step(self, *args, **kwargs): 

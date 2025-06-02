@@ -8,14 +8,14 @@ from peft import get_peft_model
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
-from ospo.utils.common import read_json, save_json, save_json_ddp, build_config
-# from ospo.base import get_model, get_lora_config, get_eval_trainer, get_sft_format
-from ospo.prompt.template_vqa import get_vqa_prompt
+
+from ospo.utils.model import get_model, get_lora_config
 from ospo.utils.generate import get_trainer
+from ospo.utils.common import build_config
 from ospo.datamodule import GenerationDataModule
 from ospo.wrapper import JanusProQuestionGenWrapper, JanusProScoreWrapper
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false" # otherwise, error
+os.environ["TOKENIZERS_PARALLELISM"] = "false" 
     
 
 def get_dataloader(config):
@@ -60,14 +60,15 @@ def main(config):
 
 
     # 1. Question generation
-    if config.data_path is None:
-        config.data_path = os.path.join(os.path.dirname(config.save_path), 'step2', 'long_prompt.json')
-    dataloader_qs = get_dataloader(config)
-    model_qs = get_wrapper(config, model, tokenizer, vl_chat_processor, 
-                                wrapper_cls=JanusProQuestionGenWrapper)
-    
-    trainer.test(model_qs, dataloaders=dataloader_qs)
-    print("(Step 4) Decompositional Question generation completed.")
+    if not os.path.exists(os.path.join(config.save_path, 'vqa_prompt.json')):
+        if config.data_path is None:
+            config.data_path = os.path.join(os.path.dirname(config.save_path), 'step2', 'long_prompt.json')
+        dataloader_qs = get_dataloader(config)
+        model_qs = get_wrapper(config, model, tokenizer, vl_chat_processor, 
+                                    wrapper_cls=JanusProQuestionGenWrapper)
+        
+        trainer.test(model_qs, dataloaders=dataloader_qs)
+        print("(Step 4) Decompositional Question generation completed.")
 
 
     # 2. Scoring based on Self-VQA result (Preference Strength) 

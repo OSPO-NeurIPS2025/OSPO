@@ -1,0 +1,26 @@
+{
+    "prompt": "the blue, swirling water pooled on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that gently mingled the waves of light, giving the tide a playful, undulating energy.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000006",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the cool, blue, swirling water pooled on the golden, sandy beach, its gentle ripples mingling the waves of cool, sunlight.",
+        "the warm, sunny, reflective blue swirling water pooled on the sandy, golden beach, its gentle waves mingling the ripples of light, creating a playful, undulating energy.",
+        "the ripples, undulating waves of light playfully mingled the waves of warm, reflective sunlight, dancing across the sandy, golden beach."
+    ],
+    "long_prompt": [
+        "The blue, swirling water pooled on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that gently mingled the waves of light, giving the tide a playful, undulating energy.",
+        "The blue, swirling water pooled gently on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that playfully mingled the waves of light, giving the tide a playful, undulating energy.",
+        "The blue, swirling water pooled on the sandy, golden beach, its vibrant hues reflecting the warm sunlight in ripples that gently mingled the waves of light, giving the tide a playful, undulating energy."
+    ],
+    "negative_long_prompt": [
+        "The cool, blue, swirling water pooled on the golden, sandy beach, its gentle ripples mingling the waves of cool, sunlight.",
+        "The warm, sunny, reflective blue swirling water pooled gently on the sandy, golden beach, its gentle waves mingling the ripples of light, creating a playful, undulating energy.",
+        "The ripples, undulating waves of light playfully mingled the waves of warm, reflective sunlight, dancing across the sandy, golden beach."
+    ]
+}

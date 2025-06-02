@@ -1,0 +1,26 @@
+{
+    "prompt": "A skateboard",
+    "category": "layout",
+    "sub_category": "layout2",
+    "item_id": "1000004",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "two skateboards",
+        "two skateboards",
+        "two skateboards"
+    ],
+    "long_prompt": [
+        "A sleek black skateboard with silver wheels and a sturdy wooden deck is propped up against a wooden fence in a sunny backyard, next to a small red bicycle.",
+        "A shiny red skateboard with a smooth wooden deck, black wheels, and metal trucks is propped up against a colorful mural in a bustling skate park.",
+        "A sleek black skateboard with a worn white deck is resting on a bright yellow sidewalk next to a small shop with a red awning."
+    ],
+    "negative_long_prompt": [
+        "Two skateboards, one black and one red, are stacked on top of each other on a concrete driveway near a small wooden shed.",
+        "Two skateboards with different designs, one with a sleek black deck and white wheels, and the other with a colorful deck and blue wheels, are placed next to each other on a concrete surface near a skate park.",
+        "Two black skateboards with white decks are stacked together near a bright green bicycle, next to a small, colorful food stand with a blue awning."
+    ]
+}

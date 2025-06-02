@@ -1,0 +1,26 @@
+{
+    "prompt": "A turquoise banjo",
+    "category": "attribute",
+    "sub_category": "attribute1_color",
+    "item_id": "0000001",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a blue banjo",
+        "a blue banjo",
+        "a banjo with turquoise"
+    ],
+    "long_prompt": [
+        "A turquoise-hued banjo with intricate wooden fretboards and a polished mahogany body rests against a rustic wooden wall, surrounded by an assortment of eclectic vintage musical instruments in a cozy, dimly lit music shop.",
+        "A turquoise banjo with intricately carved wooden body and neck rests on a rustic wooden stool in a cozy cabin, surrounded by vintage music instruments and old photographs of a bygone era.",
+        "A vibrant turquoise banjo with a wooden body and intricately carved fretboard rests against a rustic, wooden wall in a quaint music shop, its strings taut and ready for the next performance."
+    ],
+    "negative_long_prompt": [
+        "A blue-hued banjo with intricately carved wooden fretboards and a polished mahogany body rests against a rustic wooden wall, surrounded by an assortment of eclectic vintage musical instruments in a cozy, dimly lit music shop.",
+        "A blue banjo with sleek, modern lines and a matte finish stands on a polished wooden stand in a contemporary music studio, surrounded by high-tech audio equipment and sleek black leather chairs.",
+        "A traditional banjo with a wooden body and simple fretboard sits on a dusty shelf in a dimly lit antique shop, its strings tattered and worn from years of use."
+    ]
+}

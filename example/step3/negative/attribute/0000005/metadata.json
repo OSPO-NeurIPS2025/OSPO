@@ -1,0 +1,26 @@
+{
+    "prompt": "A cold lemon",
+    "category": "attribute",
+    "sub_category": "attribute1_texture",
+    "item_id": "0000005",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a warm lemon",
+        "a warm lemon",
+        "a warm lemon"
+    ],
+    "long_prompt": [
+        "A chilled, pale yellow lemon, its skin slightly wrinkled and icy, sits in a frosty glass of sparkling water, with a delicate sprig of mint floating nearby, in a dimly lit living room where the air is thick with the scent of freshly baked cookies.",
+        "A chilled, frosty lemon rests on a wooden cutting board, its bright yellow skin glistening with droplets of water, while the air is crisp and cold, with a hint of winter's chill in the air.",
+        "A cold, slightly sour lemon resting on a rustic wooden cutting board beside a rustic wooden table, surrounded by a rustic wooden kitchen setting."
+    ],
+    "negative_long_prompt": [
+        "A warm, golden lemon, its skin slightly smooth and fragrant, rests in a bowl of steaming hot soup, its aroma mingling with the savory flavors of the dish, in a cozy kitchen where the air is filled with the sounds of sizzling and laughter.",
+        "A warm, sunny lemon sits on a wooden cutting board, its bright yellow skin glowing with warmth, as the air is filled with the scent of citrus and the sun shines brightly overhead, creating a sense of summer's warmth and vitality.",
+        "A warm, tangy lemon nestled in a rustic wooden bowl beside a rustic wooden table, surrounded by a rustic wooden kitchen setting."
+    ]
+}

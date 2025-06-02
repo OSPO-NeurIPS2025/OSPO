@@ -1,0 +1,26 @@
+{
+    "prompt": "a dancer elegantly watches her reflection in the pond while practicing her routines.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000007",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A dancer practices her routines with her reflection in the pond.",
+        "a dancer elegantly watches her while practicing her routines in the pond.",
+        "A dancer is admiring her own reflection in the pond while practicing her routines."
+    ],
+    "long_prompt": [
+        "A graceful dancer stands at the edge of a serene pond, her reflection shimmering in the still water as she watches herself move with fluid grace. The sun casts a golden glow on her long, flowing hair, highlighting her poised posture.",
+        "A graceful dancer stands at the edge of a serene pond, elegantly watching her reflection ripple and dance on the water's surface as she carefully practices her routines.",
+        "A graceful dancer stands at the edge of a serene pond, her elegant form reflected in the calm water. She watches her own movements, practicing intricate routines while the sunlight dapples through the leaves of nearby trees."
+    ],
+    "negative_long_prompt": [
+        "A dancer stands at the edge of the same pond, but this time, she's not watching her reflection but instead practicing her routines with great focus. The water is still, mirroring her movements perfectly as she spins and leaps across the surface.",
+        "The same dancer watches her reflection in the same pond, now focusing on perfecting her routines with great precision and grace, her movements fluid and precise.",
+        "A dancer stands at the edge of the same pond, gazing into her own reflection, admiring her fluid movements. She practices her routines, the water rippling gently as she moves, the sunlight casting a warm glow on her determined face."
+    ]
+}

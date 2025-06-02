@@ -1,14 +1,14 @@
 import os
 import re
+import traceback
 import torch
-import argparse
 import torch.distributed as dist
-from pytorch_lightning import LightningModule, seed_everything
+from pytorch_lightning import LightningModule
 
 import pyrootutils
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True, cwd=True)
 from ospo.constant import *
-from ospo.utils.common import save_json, save_json_ddp
+from ospo.utils.common import save_json, save_json_ddp, set_seed
 from ospo.utils.processor import get_sft_format, get_processor_output, batchify
 from ospo.prompt.template_element import get_prompt_element
 from ospo.prompt.template_negative import get_prompt_negative
@@ -190,7 +190,7 @@ class JanusProNegativeGenWrapper(LightningModule):
                 continue
 
             sft_format = get_sft_format(self.processor, system_prompt, conversation)
-            prepare_list.append(get_prepare_list(self.processor, self.tokenizer, sft_format))
+            prepare_list.append(get_processor_output(self.processor, self.tokenizer, sft_format))
     
         # batchify
         batched_prepares = batchify(self.processor, self.tokenizer, prepare_list)
@@ -221,7 +221,8 @@ class JanusProNegativeGenWrapper(LightningModule):
             save_file=self.output_list,
             rank=self.trainer.global_rank,
         )
-        print("Negative prompt generation done.")
+        # print("Negative prompt generation done.")
+        print(f"Negative prompt saved at {os.path.join(self.config.save_path, 'negative_prompt.json')}")
 
 
 
@@ -325,11 +326,11 @@ class JanusProDenseGenWrapper(LightningModule):
         prepare_list = []
         for triplet in pair_list:     
             sub_category, base_prompt, negative_prompt = triplet
-            get_func = get_prompt_gen[sub_category]
+            get_func = get_prompt_dense[sub_category]
             system_prompt, conversation = get_func(base_prompt, negative_prompt)
             
             sft_format = get_sft_format(self.processor, system_prompt, conversation)
-            prepare_list.append(get_prepare_list(self.processor, self.tokenizer, sft_format))
+            prepare_list.append(get_processor_output(self.processor, self.tokenizer, sft_format))
 
         # batchify
         batched_prepares = batchify(self.processor, self.tokenizer, prepare_list)
@@ -362,4 +363,6 @@ class JanusProDenseGenWrapper(LightningModule):
             save_file=self.output_list,
             rank=self.trainer.global_rank,
         )
-        print("Densification done.")
+        # print("Densification done.")
+        print(f"Long prompt saved at {os.path.join(self.config.save_path, 'long_prompt.json')}")
+

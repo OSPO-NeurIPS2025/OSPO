@@ -1,4 +1,5 @@
+.gitignore
 .env
 *.pyc
-# experiment/
+experiment/
 lightning_logs/

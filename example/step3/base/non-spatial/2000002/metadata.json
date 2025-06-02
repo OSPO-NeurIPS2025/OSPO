@@ -1,0 +1,26 @@
+{
+    "prompt": "emma holds a microphone while singing a song on stage with her friends and bandmates.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000002",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "Emma is playing a guitar with her friends and bandmates while singing a song on stage.",
+        "Emma holds a while singing a song on stage with her friends and bandmates.",
+        "Emma is conducting an interview with her friends and bandmates while holding a microphone."
+    ],
+    "long_prompt": [
+        "Emma stands confidently on stage, her long curly hair cascading down her back, holding a microphone with one hand and gesturing passionately with the other as she belts out a soulful melody. Her bandmates, dressed in matching outfits, dance and sway in harmony around her, their smiles bright and infectious.",
+        "Emma stands confidently on stage, holding a microphone in her hand as she belts out a powerful song, her voice echoing through the crowd. Her friends and bandmates stand close by, their eyes shining with pride and support as they share the moment together.",
+        "Emma stands confidently on stage, her microphone held close to her mouth as she belts out a powerful melody with her friends, all of whom are her bandmates. The bright lights cast dynamic shadows on the backdrop, highlighting their energetic performance."
+    ],
+    "negative_long_prompt": [
+        "Emma strums her guitar with a deft hand, her eyes closed in concentration as she sings with her friends, their voices blending in perfect harmony. The stage is bathed in warm light, and the crowd watches with rapt attention as the band performs their heartwarming rendition of the song.",
+        "Emma stands on stage, her voice soaring through the air as she sings a heartfelt song with her friends and bandmates. The stage is filled with the sound of music and laughter, the crowd cheering them on as they share this magical moment together.",
+        "Emma stands beside her bandmates, her microphone poised to capture their stories, as she conducts an interview, asking thoughtful questions while holding the microphone close to her mouth. The soft studio lighting highlights their expressions and creates a warm, engaging atmosphere."
+    ]
+}

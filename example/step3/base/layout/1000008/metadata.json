@@ -1,0 +1,26 @@
+{
+    "prompt": "Three towels and two sweaters",
+    "category": "layout",
+    "sub_category": "layout3",
+    "item_id": "1000008",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "five towels and three sweaters",
+        "two towels and three sweaters",
+        "two towels"
+    ],
+    "long_prompt": [
+        "Three plush white towels are neatly folded on a light-colored kitchen counter, while two cozy dark-colored sweaters are laid out in front of a window that lets in soft sunlight.",
+        "Three fluffy white towels are neatly folded and placed on a wooden hanger, while two soft grey sweaters hang side by side in a cozy laundry room.",
+        "Three fluffy white towels are neatly folded and placed on a bright white kitchen counter, while two warm-colored sweaters hang on the side of the counter, creating a cozy and inviting atmosphere."
+    ],
+    "negative_long_prompt": [
+        "Five fluffy white towels are arranged on a bright white kitchen counter, while three cozy dark-colored sweaters are laid out in front of a window that lets in soft sunlight.",
+        "Two fluffy white towels are neatly folded and placed on a wooden hanger, while three soft grey sweaters hang side by side in a cozy laundry room.",
+        "Two plain white towels are folded and placed on the same bright white kitchen counter, creating a clean and minimalist look."
+    ]
+}
