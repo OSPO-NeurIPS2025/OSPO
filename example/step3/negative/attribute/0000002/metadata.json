@@ -1,0 +1,26 @@
+{
+    "prompt": "A feather umbrella",
+    "category": "attribute",
+    "sub_category": "attribute1_shape",
+    "item_id": "0000002",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a feather umbrella",
+        "a feather umbrella",
+        "a feather umbrella"
+    ],
+    "long_prompt": [
+        "A large, elegant feather umbrella, with delicate, wispy feathers in shades of white and gray, delicately held aloft by a graceful woman walking along a serene lakeside promenade at sunset, the sky painted in hues of pink and orange.",
+        "A large, elegant feather umbrella stands gracefully in the hands of a well-dressed woman, gently shielding her from the rain as she walks along a quaint, cobblestone street lined with charming cafes and boutiques.",
+        "A large, elegant feather umbrella with intricate, shimmering patterns unfurled gracefully over a group of elegantly dressed women at a lavish outdoor tea party, its soft, downy feathers ruffling gently in the warm breeze."
+    ],
+    "negative_long_prompt": [
+        "A small, whimsical feather umbrella, with delicate, wispy feathers in shades of white and gray, adorably perched atop a child's head as they run joyfully through a bustling park on a sunny afternoon, the air filled with laughter and splashes of water from nearby fountains.",
+        "A small, delicate blue umbrella, adorned with intricate patterns, rests on a rustic wooden bench beside a quaint, cobblestone street lined with charming cafes and boutiques, as a gentle breeze rustles its feathers.",
+        "A small, delicate feather umbrella with intricate, shimmering patterns unfurled gracefully over a group of elegantly dressed women at a lavish outdoor tea party, its soft, downy feathers ruffling gently in the warm breeze."
+    ]
+}

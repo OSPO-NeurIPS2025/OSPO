@@ -1,0 +1,84 @@
+# Step 5
+
+base:
+  save_path: /home/elicer/checkpoints/janus_dpo
+  exp_name: 0602_tmp
+  world_size: 2
+  resume:
+
+model:
+  model_path: /mnt/elice/datahub/agilab-data/janus_dpo/checkpoints/Janus-Pro-7B 
+  parallel_size: 1                     
+  image_token_num_per_image: 576       
+  cache_dir: /mnt/elice/datahub/agilab-data/janus_dpo/checkpoints/hf_cache
+
+use_lora: True 
+lora:
+  lora_rank: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "down_proj", "up_proj"]
+  modules_to_save: # Keeps selected layers trainable without applying LoRA.
+
+dataset:
+  train:
+    batch_size: 16 
+    num_workers: 4
+    data_path: /home/elicer/OSPO/example/step4/train.json
+    num_samples:              
+  val:
+    batch_size: 1
+    num_workers: 1
+    text_path:
+    img_path:
+    s_idx:
+    e_idx: 
+    temperature: 1
+    cfg_weight: 5
+
+optimizer:
+  init_lr: 4e-5
+  betas: [0.9, 0.95]
+  weight_decay: 0.00 
+  eps: 1e-8
+  scheduler_type: constant # cosine
+  min_lr: 1e-6 
+
+experiment:
+  seed: 42
+  precision: bf16 # 32 / bf16
+
+  warmup_ratio: 0 
+  gradient_clip_val: 1.0
+  enable_checkpointing: True
+  gradient_checkpointing: True 
+  gradient_accumulation_steps: 4
+  max_training_steps: 100 
+  save_steps: 100
+  log_steps: 1
+  val_steps: 100
+
+  freeze:
+    vision_model: True
+    aligner: True
+    gen_vision_model: True
+    gen_aligner: True
+    gen_head: True
+    gen_embed: True
+    language_model: False
+
+tokenizer:
+  max_length: 2048
+  max_prompt_length: 1024
+  max_completion_length: 
+  max_target_length: 
+  truncation_mode: keep_end 
+  truncation_side: left 
+  label_pad_token_id: -100  
+
+algo:
+  beta: 10 
+  gamma_beta_ratio: 0.5 
+  sft_weight: 0
+  label_smoothing: 0 
+  loss_type: sigmoid 

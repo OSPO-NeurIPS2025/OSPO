@@ -1,0 +1,26 @@
+{
+    "prompt": "A sweater at the a watermelon",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000003",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A sweater on a watermelon",
+        "A watermelon at a sweater",
+        "A watermelon and a sweater"
+    ],
+    "long_prompt": [
+        "A cozy, chunky knit sweater draped over a vibrant red watermelon on a wooden table, with its green rind and red flesh contrasting sharply against the soft fabric.",
+        "A soft, knitted sweater in earthy tones hangs from a nearby tree branch, its sleeves draping gently over a vibrant red watermelon resting on the ground, creating a striking contrast between the natural and the artificial.",
+        "A cozy gray sweater with intricate embroidery rests at the base of a large, vibrant watermelon, its rind glistening under the warm sunlight, creating a visually appealing contrast in the garden."
+    ],
+    "negative_long_prompt": [
+        "A warm, chunky knit sweater draped over a vibrant red watermelon on a wooden table, its soft fabric enveloping the watermelon's smooth, rounded surface as the bright red rind and green flesh peek through the folds.",
+        "A ripe watermelon, its skin glistening under the warm sunlight, sits on the ground beside a cozy, oversized knitted sweater, its soft hues blending seamlessly with the natural surroundings.",
+        "A large, juicy watermelon sits beside a cozy gray sweater with intricate embroidery on a wooden table, both objects sharing a similar color palette, creating a harmonious visual composition."
+    ]
+}

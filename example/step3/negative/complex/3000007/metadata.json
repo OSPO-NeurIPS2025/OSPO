@@ -1,0 +1,26 @@
+{
+    "prompt": "the sleek, metallic silver bike slid silently on the concrete pathway, passing a shiny, golden statue flanked by ornate, red-brick walls.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000007",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the shiny, silver bike slid silently on the cobblestone pathway, passing a sleek, gold statue flanked by ornate, red-brick walls.",
+        "the red-brick, silver bike slid silently on the shiny, golden pathway, passing a red-brick, silver statue flanked by ornate, concrete walls.",
+        "the shiny, golden statue flanked by ornate, red-brick walls."
+    ],
+    "long_prompt": [
+        "The sleek, metallic silver bike glided effortlessly on the smooth concrete pathway, gliding past a shiny, golden statue flanked by ornate, red-brick walls.",
+        "The sleek, metallic silver bike glided silently along the concrete pathway, passing a shiny, golden statue flanked by ornate, red-brick walls.",
+        "The sleek, metallic silver bike glided smoothly along the concrete pathway, passing a shiny, golden statue that was flanked by ornate, red-brick walls."
+    ],
+    "negative_long_prompt": [
+        "The shiny, silver bike glided gracefully on the textured cobblestone pathway, gliding past a sleek, gold statue flanked by ornate, red-brick walls.",
+        "The red-brick, silver bike glided silently along the shiny, golden pathway, passing a red-brick, silver statue flanked by ornate, concrete walls.",
+        "The shiny, golden statue stood flanked by ornate, red-brick walls, its golden presence accentuated by the surrounding architecture."
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "prompt": "the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000009",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the dark, glossy, multicolored tips of the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees.",
+        "the dark, lush, iridescent peacock feathers spread elegantly behind two small, leafless, tall palm trees.",
+        "the dark, lush canopy with iridescent, peacock feathers spread elegantly behind two tall, leafy palm trees."
+    ],
+    "long_prompt": [
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+        "The iridescent peacock feathers spread elegantly behind two tall, leafy palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies."
+    ],
+    "negative_long_prompt": [
+        "The dark, glossy, multicolored tips of the iridescent peacock feathers spread elegantly behind two tall, leafy palm trees.",
+        "The dark, lush, iridescent peacock feathers spread elegantly behind two small, leafless, tall palm trees, their glossy, multicolored tips sparking vibrant hues against the dark, lush canopies.",
+        "The dark, lush canopy was adorned with iridescent, peacock feathers spread elegantly behind two tall, leafy palm trees."
+    ]
+}

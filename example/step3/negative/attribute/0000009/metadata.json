@@ -1,0 +1,26 @@
+{
+    "prompt": "A curved vertical diagonal towel and a lime desk",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000009",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a straight vertical diagonal towel and a green desk",
+        "a lime desk and a curved vertical diagonal towel",
+        "a lime desk"
+    ],
+    "long_prompt": [
+        "A curved, vertical, diagonal towel hangs elegantly from a sleek, modern lime-green desk, with a subtle sheen of glossy lacquer reflecting the soft ambient light of a minimalist home office.",
+        "A curved, vertical diagonal lime-green desk sits against a white wall, topped with a vibrant, colorful assortment of towels arranged neatly, with a large, curved, diagonal towel draped over the edge.",
+        "A curved, vertical diagonal towel draped elegantly over the edge of a lime-colored desk, which is covered in a sleek, modern finish, creating a visually striking contrast with the surrounding office decor."
+    ],
+    "negative_long_prompt": [
+        "A straight, vertical, diagonal towel drapes gracefully over a sleek, modern lime-green desk, with a subtle sheen of glossy lacquer reflecting the soft ambient light of a minimalist home office.",
+        "A lime-green desk sits against a white wall, topped with a collection of colorful towels arranged neatly, with a large, curved, diagonal towel draped over the edge.",
+        "A lime-colored desk with a minimalist design, featuring smooth, polished surfaces and a sleek, modern finish, serving as the centerpiece of a modern office workspace."
+    ]
+}

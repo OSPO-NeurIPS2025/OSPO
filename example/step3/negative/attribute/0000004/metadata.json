@@ -1,0 +1,26 @@
+{
+    "prompt": "A moist desk",
+    "category": "attribute",
+    "sub_category": "attribute1_texture",
+    "item_id": "0000004",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "a wooden desk",
+        "a dry desk",
+        "a dry desk"
+    ],
+    "long_prompt": [
+        "A wooden desk, polished to a high shine, sits in the corner of a cozy study, its surface damp from recent rainfall, with soft morning sunlight filtering through the windows and casting gentle shadows on the surrounding bookshelves.",
+        "A cluttered, wooden desk in a dimly lit study, covered in a thick layer of condensation, with a damp stack of old books and a rusty typewriter resting on its surface, the scent of damp wood and ink fills the air.",
+        "A damp, worn desk with faded wood and water-stained papers, surrounded by a cluttered office filled with the faint scent of leather and old books, as the rain beats against the windows."
+    ],
+    "negative_long_prompt": [
+        "A wooden desk, well-worn and sturdy, occupies the center of a sunlit study, its surface dry and smooth, with the faint scent of aged parchment and ink wafting through the air.",
+        "A polished, wooden desk in a bright, sunlit office, devoid of any condensation, with a sleek laptop and a modern coffee mug resting on its surface, the scent of fresh paper and ink fills the air.",
+        "A clean, polished desk with a sleek wooden finish and neatly arranged papers, situated in a bright, sunlit home office, where the only sounds are the gentle hum of the computer and the occasional chirping of birds outside."
+    ]
+}

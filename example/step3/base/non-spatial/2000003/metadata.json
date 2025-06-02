@@ -1,0 +1,26 @@
+{
+    "prompt": "a person is reading a book while sitting on a couch surrounded by other comfortable pillows.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000003",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A person is watching a movie on a couch surrounded by other comfortable pillows while reading a book.",
+        "a person is reading a while sitting on a couch surrounded by other  pillows.",
+        "A person is lying on a couch with other comfortable pillows while reading a book."
+    ],
+    "long_prompt": [
+        "A person reclines comfortably on a plush, deep-cushioned couch, surrounded by soft, inviting pillows that cushion their body. The air is filled with the scent of a good book, and the pages turn quietly as they read.",
+        "A person reclines comfortably on a plush couch, surrounded by several soft, fluffy pillows of varying sizes and textures. The air is filled with the scent of fresh books and the soft hum of their favorite novel.",
+        "A person sits comfortably on a plush couch surrounded by a collection of soft, fluffy pillows in various colors, gently turning the pages of a book as they read."
+    ],
+    "negative_long_prompt": [
+        "A person sits in the same plush, deep-cushioned couch, surrounded by soft, inviting pillows that make the seat feel like a cloud. They hold a book in one hand and a movie in the other, flipping between the two as they decide what to watch next.",
+        "A person lounges on the same couch, surrounded by an assortment of plush pillows, each one inviting and cozy. The room is bathed in warm light, creating a peaceful atmosphere for the reader.",
+        "A person lies down on the same couch, surrounded by a similar assortment of pillows, flipping through the pages of a book while reading quietly in the cozy evening light."
+    ]
+}

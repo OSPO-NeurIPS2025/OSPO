@@ -1,0 +1,26 @@
+{
+    "prompt": "a child wearing a protective helmet is running through water and splashing their young brother.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000006",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A child is riding a bicycle through water and splashing their young brother wearing a protective helmet.",
+        "a child wearing a is running through water and splashing their young brother.",
+        "A child jumps into water and splashes their young brother while wearing a protective helmet."
+    ],
+    "long_prompt": [
+        "A young child, clad in a bright yellow protective helmet, energetically runs through a shallow stream, laughing and splashing water onto their younger brother who also wears a similar helmet.",
+        "A child in a bright orange helmet, designed to protect their head from falls, runs energetically through a shallow, sparkling stream, causing their young brother to laugh and splash playfully in the water.",
+        "A young child, clad in a bright yellow helmet, is running energetically through shallow water, their long legs splashing and creating small waves as they go. They are chasing after their younger brother, who is laughing and playing with a small ball, the sound of their giggles echoing through the air."
+    ],
+    "negative_long_prompt": [
+        "A young child rides a bike through the same shallow stream, their laughter echoing through the air as they splash water onto their younger brother who wears a bright yellow protective helmet, their cheeks flushed with excitement.",
+        "A child in a bright orange helmet, designed to protect their head from falls, runs energetically through a shallow, sparkling stream, causing their young brother to laugh and splash playfully in the water.",
+        "A young child, donning a bright red helmet, leaps joyfully into a small pool, sending a splash of water flying as they land with a splash. They are playing with their younger brother, who is splashing water and laughing, their small hands splashing in the water as they chase each other around the pool."
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "prompt": "a chef carefully watches the ingredients as she combines them together.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000008",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A chef is tasting the ingredients as she combines them together.",
+        "a chef carefully watches the while she combines them together.",
+        "A chef is measuring ingredients carefully as she combines them together."
+    ],
+    "long_prompt": [
+        "A chef stands at the edge of a spotless kitchen counter, her eyes fixed intently on the ingredients she is carefully combining, her hands moving with precision as she measures each component.",
+        "A chef meticulously observes the ingredients she is combining, carefully selecting each one and measuring out precise amounts. Her hands move with practiced ease, stirring and mixing the mixture with a sense of precision and attention to detail.",
+        "A seasoned chef, with a practiced eye, carefully observes the ingredients she has meticulously arranged on the kitchen counter, her fingers poised to combine them together in harmony. The soft aroma of freshly cut herbs fills the air."
+    ],
+    "negative_long_prompt": [
+        "A chef is tasting the ingredients as she combines them together, her taste buds fully engaged, her eyes squinting in concentration as she adjusts the seasoning to perfection.",
+        "The same chef, fully focused on her task, carefully observes the ingredients she is combining, ensuring that each one is properly measured and mixed. The air is filled with the tantalizing aroma of the dish she is preparing, and her eyes are fixed intently on the task at hand.",
+        "The same chef, now focused on the precision of her measurements, carefully mixes together the ingredients she has carefully selected, her eyes scanning the ingredients as she adds each one to the mixture."
+    ]
+}

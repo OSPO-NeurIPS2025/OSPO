@@ -1,0 +1,26 @@
+{
+    "prompt": "a child wearing a protective helmet is running through water and splashing their young brother.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000001",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A child is jumping through water and splashing their young brother while wearing a protective helmet.",
+        "a child wearing a while running through water and splashing their while running through water and splashing their.",
+        "A child is swimming through water and splashing their young brother while wearing a protective helmet."
+    ],
+    "long_prompt": [
+        "A young child, wearing a bright orange helmet for safety, is running joyfully through shallow water in a small stream, splashing their younger brother who giggles and chases after them.",
+        "A child, wearing a bright yellow helmet and sturdy water shoes, runs through a shallow, crystal-clear stream with their younger brother, who is splashing water and laughing with joy. The siblings splash and tumble together, creating a playful and carefree atmosphere.",
+        "A young child, wearing a bright orange protective helmet, runs joyfully through a shallow stream, splashing water as they chase after their younger brother, who splashes back with delight."
+    ],
+    "negative_long_prompt": [
+        "A young child, donning a colorful helmet, is jumping with abandon in the same shallow water, splashing their younger brother who is laughing and eagerly following them, both enjoying the playful water play.",
+        "A child, donning a vibrant red helmet and water-resistant boots, races through the same stream, chasing their younger brother, who is joyfully splashing water and causing playful chaos. The siblings frolic and splash, enjoying the warm summer day together.",
+        "A young child swims with great skill and confidence through the same shallow stream, splashing water as they playfully chase after their younger brother, who splashes back with joy."
+    ]
+}

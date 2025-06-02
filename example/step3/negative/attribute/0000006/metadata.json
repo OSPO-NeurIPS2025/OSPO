@@ -1,0 +1,26 @@
+{
+    "prompt": "A black violin and a pet skateboard",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000006",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a red violin and a pet skateboard",
+        "a pet skateboard and a black violin",
+        "a black skateboard"
+    ],
+    "long_prompt": [
+        "A sleek, black violin resting on a polished wooden table, accompanied by a small, red skateboard resting nearby, both objects reflecting the warm glow of the evening sunlight streaming through the windows of a cozy music studio.",
+        "A sleek, black violin resting on a polished wooden stand in a cozy music room, next to a pet skateboard leaning against the wall, its wheels slightly ajar, waiting for a playful moment.",
+        "A black violin with intricate silver details rests on a wooden music stand, next to a playful pet skateboard resting on a polished hardwood floor, with a mischievous cat peeking from behind the curtain."
+    ],
+    "negative_long_prompt": [
+        "A vibrant, red violin resting on a polished wooden table, accompanied by a small, blue skateboard resting nearby, both objects reflecting the cool, soft light of the evening breeze filtering through the windows of a serene music studio.",
+        "A pet skateboard leaning against the wall in a cozy music room, next to a sleek, black violin resting on a polished wooden stand, its strings slightly loose, ready for a spirited performance.",
+        "A sleek, black skateboard rests on a polished hardwood floor, next to a playful pet violin resting on a wooden music stand, with a mischievous cat peeking from behind the curtain."
+    ]
+}

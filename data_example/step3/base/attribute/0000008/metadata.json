@@ -1,0 +1,26 @@
+{
+    "prompt": "A gritty book and a gray banjo",
+    "category": "attribute",
+    "sub_category": "attribute2",
+    "item_id": "0000008",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "a soft book and a dark banjo",
+        "a gray book and a gritty banjo",
+        "a gray book and a gritty banjo"
+    ],
+    "long_prompt": [
+        "A worn, leather-bound book with scribbled pages and a torn spine lies on a dusty, weathered wooden table, next to a vintage gray banjo with its strings tangled and a cracked headstock, bathed in the soft, flickering light of a single candle.",
+        "A weathered, gritty hardcover book with faded lettering rests atop a dusty, worn gray banjo leaning against a rough-hewn wooden wall in a dimly lit, dimly lit, forgotten music room, where the air is thick with the scent of old leather and wood.",
+        "A worn, gritty book with yellowed pages and a worn cover rests on a dusty wooden shelf, next to a well-worn gray banjo with a rough finish and an old-fashioned design, both items evoking a sense of history and nostalgia in a dimly lit antique shop."
+    ],
+    "negative_long_prompt": [
+        "A soft, leather-bound book with neatly written pages and a smooth spine rests on a well-polished wooden table, next to a dark, polished banjo with its strings perfectly tuned and a shiny headstock, illuminated by the warm glow of a chandelier in a grand, ornate room.",
+        "A plain, gray hardcover book with worn lettering sits beside a rough-hewn wooden gray banjo leaning against a dusty, forgotten music room wall, where the air is thick with the scent of old leather and wood.",
+        "A plain, gray book with unmarked pages and a worn cover lies on a dusty wooden shelf, next to a well-worn gray banjo with a rough finish and an old-fashioned design, both items evoking a sense of history and nostalgia in a dimly lit antique shop."
+    ]
+}

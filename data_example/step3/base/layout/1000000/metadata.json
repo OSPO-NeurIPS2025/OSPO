@@ -1,0 +1,26 @@
+{
+    "prompt": "A towel near to a banjo",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000000",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A banjo near a towel",
+        "A banjo near to a towel",
+        "A banjo and a towel"
+    ],
+    "long_prompt": [
+        "A fluffy white towel lies on a wooden floor beside a shiny banjo, with its strings humming softly as the musician strums it.",
+        "A white, fluffy towel hangs from a wooden hook beside a shiny, polished banjo on a rustic wooden floor, the banjo's strings and tuning pegs reflecting the warm light from a nearby window.",
+        "A soft, white towel lies near a shiny banjo on a wooden music stand, its fluffy texture contrasting with the banjo's smooth surface."
+    ],
+    "negative_long_prompt": [
+        "A shiny banjo rests near a fluffy white towel on a wooden floor, its strings vibrating gently as the musician plays it.",
+        "A rustic wooden floor is adorned with a shiny, polished banjo and a white, fluffy towel, the banjo's strings and tuning pegs reflecting the soft light from a nearby window, creating a cozy atmosphere in a small, country-style music room.",
+        "A shiny banjo sits on a wooden music stand, with a soft, white towel draped over its neck, creating a contrast between the banjo's smooth surface and the towel's fluffy texture."
+    ]
+}

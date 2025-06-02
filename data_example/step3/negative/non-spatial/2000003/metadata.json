@@ -1,0 +1,26 @@
+{
+    "prompt": "emma holds a microphone while singing a song on stage with her friends and bandmates.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000003",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "Emma is holding a microphone while dancing a song on stage with her friends and bandmates.",
+        "Emma holds a while singing a song on stage with her friends and bandmates.",
+        "Emma is conducting a rehearsal with her friends and bandmates while holding a microphone and singing a song."
+    ],
+    "long_prompt": [
+        "Emma stands confidently on stage, microphone in hand, as she belts out a heartfelt song with her friends and bandmates. They are all smiling and enjoying the performance, the bright lights and enthusiastic crowd adding to the lively atmosphere.",
+        "Emma, wearing a bright smile and sparkling stage lights reflecting off her sunglasses, holds a microphone tightly in her hand as she belts out a heartfelt song with her friends and bandmates on stage. The music fills the air, and the audience cheers along.",
+        "Emma stands confidently on stage, microphone in hand, with her bandmates gathered around her in a rehearsal setting. The room is filled with the soft hum of music, and they're working together to perfect their performance."
+    ],
+    "negative_long_prompt": [
+        "Emma is moving energetically on stage, her microphone still in hand, as she dances to the rhythm of her friends and bandmates. The same bright lights and enthusiastic crowd surround them, creating a fun and dynamic concert experience.",
+        "Emma, clad in a vibrant band shirt and her bandmates by her side, holds a microphone and sings with all her heart, the music pouring out of her as the audience cheers and claps along.",
+        "Emma leads the bandmates through a rehearsal on stage, guiding them with a steady hand as she holds the microphone and sings along. The energy in the room is electric, with each member contributing their unique talents to create a harmonious performance."
+    ]
+}

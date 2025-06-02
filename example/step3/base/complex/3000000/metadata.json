@@ -1,0 +1,26 @@
+{
+    "prompt": "the crystal clear, deep blue ocean surrounded by soft, fluffy white clouds, with a sleek, black wooden fishing boat resting on its calm water. on the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000000",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the clear, blue ocean surrounding the soft, fluffy white clouds, with a dark, wooden sinking boat on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "the calm, deep blue ocean surrounded by soft, fluffy white clouds, with a sleek, white wooden boat floating on its calm water. On the right, atop the horizon, the golden, setting sun rises above the horizon, painting the sky with warm, fiery hues.",
+        "the soft, fluffy white clouds surrounded by the crystal clear, deep blue ocean, with a sleek, black wooden fishing boat resting on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
+    ],
+    "long_prompt": [
+        "The crystal clear, deep blue ocean surrounded by soft, fluffy white clouds was dotted with a sleek, black wooden fishing boat resting on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "The crystal clear, deep blue ocean was surrounded by soft, fluffy white clouds, with a sleek, black wooden fishing boat resting on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "The crystal clear, deep blue ocean surrounded by soft, fluffy white clouds gently cradled a sleek, black wooden fishing boat, which rested calmly on its tranquil water. On the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
+    ],
+    "negative_long_prompt": [
+        "The clear, blue ocean was surrounded by soft, fluffy white clouds, where a dark, wooden sinking boat rested on its calm water. On the right, atop the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues.",
+        "The calm, deep blue ocean was surrounded by soft, fluffy white clouds, with a sleek, white wooden boat floating on its calm water. On the right, atop the horizon, the golden, rising sun painted the sky with warm, fiery hues.",
+        "The soft, fluffy white clouds surrounded the crystal clear, deep blue ocean, in which a sleek, black wooden fishing boat rested calmly on its tranquil water. On the horizon, the golden, setting sun dipped into the horizon, painting the sky with warm, fiery hues."
+    ]
+}

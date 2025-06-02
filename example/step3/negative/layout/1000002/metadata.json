@@ -1,0 +1,26 @@
+{
+    "prompt": "A banjo around a curry",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000002",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A banjo next to a curry",
+        "A curry around a banjo",
+        "A banjo and a curry"
+    ],
+    "long_prompt": [
+        "A rustic banjo, its body adorned with colorful patterns, is wrapped around a steaming bowl of curry on a wooden table, with steam rising gently above the curry's surface and a spoon resting beside it.",
+        "A banjo with a worn leather strap sits on a rustic wooden table, its frets and strings neatly arranged, while a steaming bowl of fragrant curry rests beside it, its vibrant colors and aromas filling the air.",
+        "A vibrant red banjo with intricate carvings sits around a steaming curry placed on a wooden serving platter, its bright colors contrasting sharply with the warm, earthy tones of the dish."
+    ],
+    "negative_long_prompt": [
+        "A traditional banjo, its body wrapped in a colorful cloth, sits next to a steaming bowl of curry on a wooden table, with steam rising faintly above the curry's surface and a spoon resting beside it.",
+        "A fragrant bowl of curry sits on a rustic wooden table, its rich aroma filling the air, while a banjo with a worn leather strap rests beside it, its frets and strings neatly arranged, ready to play a lively tune.",
+        "A matte black banjo with subtle detailing rests beside a steaming curry placed on a wooden serving platter, its sleek form blending into the warm, earthy tones of the dish."
+    ]
+}

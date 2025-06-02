@@ -1,0 +1,26 @@
+{
+    "prompt": "a toddler is pushing her small toy car on a rough sidewalk and watching as a stranger looks at her from across the street.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000004",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A toddler is pushing her small toy car across a rough sidewalk while a stranger looks at her from across the street.",
+        "a toddler is pushing her  on a rough sidewalk and watching as a stranger looks at her from across the street.",
+        "A toddler is running with her small toy car on a rough sidewalk while a stranger looks at her from across the street."
+    ],
+    "long_prompt": [
+        "A young toddler stands on a rugged, cracked sidewalk, her tiny feet making soft sounds as she pushes a small red toy car forward. She watches a curious stranger, standing at the edge of the street, gazing across at her with an expression of wonder.",
+        "A toddler pushes her small toy car along a rough, uneven sidewalk, her chubby hands gripping the handle tightly as she watches a stranger, dressed in a long coat, cross the street and look directly at her with curiosity.",
+        "A toddler, with a bright smile and rosy cheeks, pushes her small toy car across a rugged, uneven sidewalk, her tiny legs covered in tiny shoes. She pauses occasionally to watch a stranger who is standing at the edge of the sidewalk, gazing at her with a curious expression."
+    ],
+    "negative_long_prompt": [
+        "A young toddler pushes a red toy car across the same rough, cracked sidewalk, her bright eyes fixed on a stranger who stands across the street, watching her with an expression of surprise and curiosity.",
+        "A toddler pushes her toy car along the same rough sidewalk, this time watching a stranger, dressed in a long coat, cross the street and look directly at her with curiosity.",
+        "A toddler runs energetically along the same rough sidewalk, her laughter echoing off the surrounding buildings. She holds her small toy car tightly in her tiny hand, watching as a stranger who is standing at the edge of the sidewalk, also gazing at her with a curious expression."
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "prompt": "Two parrots and three books",
+    "category": "layout",
+    "sub_category": "layout3",
+    "item_id": "1000009",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "one parrot and two books",
+        "three parrots and two books",
+        "two parrots"
+    ],
+    "long_prompt": [
+        "Two vibrant green parrots with bright red beaks are perched on a wooden shelf in a cozy study, surrounded by three classic novels and a vase of fresh flowers.",
+        "Two colorful parrots are perched on a wooden bookshelf, while three books of varying sizes and colors are stacked neatly beside them.",
+        "Two vibrant green parrots with red heads perch on a wooden perch, surrounded by three colorful books stacked on a cozy bookshelf in a quiet study room."
+    ],
+    "negative_long_prompt": [
+        "A single bright green parrot with a red beak is perched on a wooden shelf in a cozy study, surrounded by two ancient tomes and a vase of fresh flowers.",
+        "Three vibrant parrots are perched on a wooden bookshelf, while two books of varying sizes and colors are stacked neatly beside them.",
+        "Two small green parrots with red heads sit on a wooden perch, next to a single book placed on the same bookshelf in the same quiet study room."
+    ]
+}

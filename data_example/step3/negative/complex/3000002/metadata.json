@@ -1,0 +1,26 @@
+{
+    "prompt": "the vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000002",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the vibrant, green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky.",
+        "the cheerful, blue-painted wooden fence danced its whimsical, swaying fingers on the left side of the lush, sandy dunes, its vibrant green, swaying trees swaying gently beside the cheerful, blue-painted wooden fence.",
+        "the pink, flowered garden near the cheerful, wooden fence on the right-hand side from atop the gentle, sandy dunes, their bright, tropical blooms sparkling under the clear, starlit sky."
+    ],
+    "long_prompt": [
+        "The vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden, their bright, tropical blooms sparkling under the clear, starlit sky.",
+        "The vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden, which was situated near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes. Their bright, tropical blooms sparkled under the clear, starlit sky.",
+        "The vibrant green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden, which was situated near the cheerful, blue-painted wooden fence on the right-hand side from atop the gentle, sandy dunes. Their bright, tropical blooms sparkled under the clear, starlit sky."
+    ],
+    "negative_long_prompt": [
+        "The vibrant, green trees danced their whimsical, swaying fingers on the left side of the lush, pink flowered garden, their bright, tropical blooms sparkling under the clear, starlit sky.",
+        "The cheerful, blue-painted wooden fence danced its whimsical, swaying fingers on the left side of the lush, sandy dunes, with its vibrant green, swaying trees swaying gently beside it.",
+        "The pink, flowered garden near the cheerful, wooden fence on the right-hand side from atop the gentle, sandy dunes, whose bright, tropical blooms sparkled under the clear, starlit sky."
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "prompt": "the shiny silver necklace hung from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+    "category": "complex",
+    "sub_category": "complex",
+    "item_id": "3000003",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "the blue, golden, elongated, oval-shaped necklace hung from a dark, reflective, elongated, oval-shaped picture frame, its mirror surface reflecting bright, red sunlight while the plain, blue, golden walls faded into the background, creating a beautiful yet simplistic setting.",
+        "the pale, orange, faint silver necklace hung from a bright, blue, faded background, its elongated, oval-shaped picture frame reflecting silver sunlight while the plain, blue, faded walls faded into the background, creating a beautiful yet simplistic setting.",
+        "the plain, white, fading walls faded into the background, creating a beautiful yet simplistic setting. The elongated, oval-shaped picture frame hung from a shiny silver necklace, its mirrored surface reflecting faint, pale orange sunlight."
+    ],
+    "long_prompt": [
+        "The shiny silver necklace hung gracefully from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight, while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+        "The shiny silver necklace hung elegantly from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight, while the plain white walls faded into the background, creating a beautiful yet simplistic setting.",
+        "The shiny silver necklace hung elegantly from an elongated, oval-shaped picture frame, its mirrored surface reflecting faint, pale orange sunlight while the plain white walls faded into the background, creating a beautiful yet simplistic setting."
+    ],
+    "negative_long_prompt": [
+        "The blue, golden, elongated, oval-shaped necklace hung from a dark, reflective, elongated, oval-shaped picture frame, its mirror surface reflecting bright, red sunlight, while the plain, blue, golden walls faded into the background, creating a beautiful yet simplistic setting.",
+        "The pale, orange, faint silver necklace hung from a bright, blue, faded background, its elongated, oval-shaped picture frame reflecting silver sunlight, while the plain, blue, faded walls faded into the background, creating a beautiful yet simplistic setting.",
+        "The plain, white, fading walls faded into the background, creating a beautiful yet simplistic setting. The elongated, oval-shaped picture frame hung from a shiny silver necklace, its mirrored surface reflecting faint, pale orange sunlight."
+    ]
+}

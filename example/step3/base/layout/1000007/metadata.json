@@ -1,0 +1,26 @@
+{
+    "prompt": "Four sunflowers and three banjoes",
+    "category": "layout",
+    "sub_category": "layout3",
+    "item_id": "1000007",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "five sunflowers and two banjoes",
+        "three sunflowers and one banjo",
+        "four sunflowers"
+    ],
+    "long_prompt": [
+        "Four large, bright yellow sunflowers are arranged in a neat, circular bouquet on a rustic wooden table, while three traditional blue-and-white banjoes are lined up on the same table.",
+        "A lush field of four sunflowers, each with a unique yellow petal pattern, is dotted with three vintage banjoes in a rustic display near a country farmhouse.",
+        "Four tall sunflowers, each with a bright yellow center and long, green stalks, stand in a neat row on a wooden garden bench. Three blue-and-white striped banjoes sit in the background, adding a touch of vintage charm to the sunny outdoor scene."
+    ],
+    "negative_long_prompt": [
+        "Five large, radiant yellow sunflowers are positioned in a beautiful, sunlit garden, with two classic blue-and-white banjoes resting on a wooden bench nearby.",
+        "A serene countryside scene features three sunflowers, each with distinct patterns, growing alongside a single rustic banjo leaning against a weathered fence near a quaint barn.",
+        "Four sunflowers, each with a bright yellow center and long, green stalks, stand in a neat row on a wooden garden bench."
+    ]
+}

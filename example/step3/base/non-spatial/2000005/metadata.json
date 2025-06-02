@@ -1,0 +1,26 @@
+{
+    "prompt": "three young chefs are speaking with a client in a fancy chef's training restaurant.",
+    "category": "non-spatial",
+    "sub_category": "non-spatial",
+    "item_id": "2000005",
+    "perturbed_method": [
+        "replace",
+        "drop",
+        "replace"
+    ],
+    "negative_prompt": [
+        "A client is listening to three young chefs in a fancy chef's training restaurant.",
+        "three young chefs are speaking with a while in a fancy chef's training restaurant.",
+        "Three young chefs are discussing menu options with a client in a fancy chef's training restaurant."
+    ],
+    "long_prompt": [
+        "In a sleek, modern training restaurant, three young chefs are animatedly discussing a complex recipe with a curious client, their white chef coats pristine and their expressions focused.",
+        "Three young chefs, each wearing crisp white chef's coats and black aprons, converse with a potential client in a sleek, modern chef's training restaurant, its walls adorned with photographs of past culinary triumphs.",
+        "In a luxurious, upscale chef's training restaurant, three young chefs in tailored white coats and gleaming black aprons are engaged in a lively discussion with a discerning client, discussing menu options and culinary techniques with great enthusiasm."
+    ],
+    "negative_long_prompt": [
+        "A client, dressed in a sharp suit, leans in with rapt attention as three young chefs explain a intricate dish in the same fancy chef's training restaurant, their eyes shining with anticipation.",
+        "Three young chefs, each dressed in pristine white chef's coats and black aprons, engage with a new client in the same elegant chef's training restaurant, its polished floors reflecting the warm glow of the ambient lighting.",
+        "In the same upscale chef's training restaurant, the three young chefs are intensely discussing menu options, brainstorming innovative dishes and perfecting their culinary skills, as the client listens attentively, appreciating their passion and expertise."
+    ]
+}

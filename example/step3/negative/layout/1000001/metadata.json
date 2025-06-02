@@ -1,0 +1,26 @@
+{
+    "prompt": "A skateboard within a turtle",
+    "category": "layout",
+    "sub_category": "layout1",
+    "item_id": "1000001",
+    "perturbed_method": [
+        "replace",
+        "swap",
+        "drop"
+    ],
+    "negative_prompt": [
+        "A turtle on top of a skateboard",
+        "A turtle within a skateboard",
+        "A turtle and a skateboard"
+    ],
+    "long_prompt": [
+        "A vibrant skateboard with a wooden deck and black metal trucks sits within the shell of a slow-moving turtle, its wheels partially submerged in the water of a tranquil pond.",
+        "A skateboard with intricate graphic designs lies within a shelled turtle, its wheels resting on the turtle's bony feet as it bobs gently in a shallow pond, its eyes peering out at the world beyond.",
+        "A skateboard lies within the shell of a slow-moving turtle on a warm beach, its wheels partially buried in the sand, as the turtle's head rests peacefully on the surface."
+    ],
+    "negative_long_prompt": [
+        "A slow-moving turtle gently sits atop a vibrant skateboard with a wooden deck and black metal trucks, its shell resting on the wheels of the board in a peaceful, sunlit pond.",
+        "A turtle shelled by time lies within a skateboard, its bony feet resting on the skateboard's deck as it bobs gently in a shallow pond, its eyes peering out at the world beyond.",
+        "A slow-moving turtle and a bright red skateboard rest side by side on a sunny beach, the turtle's shell partially covering the skateboard, as the sun casts gentle shadows across the scene."
+    ]
+}

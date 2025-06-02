@@ -1,0 +1,26 @@
+{
+    "prompt": "A violin",
+    "category": "layout",
+    "sub_category": "layout2",
+    "item_id": "1000006",
+    "perturbed_method": [
+        "replace",
+        "replace",
+        "replace"
+    ],
+    "negative_prompt": [
+        "two violins",
+        "two violins",
+        "two violins"
+    ],
+    "long_prompt": [
+        "A shiny red violin with a curved neck rests in the hands of a young musician in a dimly lit concert hall, where the air is filled with the sweet scent of wood and the soft sound of the strings.",
+        "A single violin, crafted from dark wood with intricate carvings, rests on a wooden stand in the corner of a rustic music room, its strings awaiting the touch of a skilled musician.",
+        "A beautifully crafted wooden violin with a rich, glossy finish rests on a soft music stand in a cozy music room."
+    ],
+    "negative_long_prompt": [
+        "Two shiny red violins with curved necks sit side by side on a dark wooden music stand in a small, cozy music room, where the walls are adorned with sheet music and the floor is covered with a soft, plush carpet.",
+        "Two violins, one with a glossy finish and the other with a weathered patina, lie side by side on a wooden music stand in a dimly lit room, their necks stretching towards each other as if in silent conversation.",
+        "Two violins, one with a dark brown finish and the other with a light natural wood finish, are placed on a wooden music stand in a warm and inviting music room."
+    ]
+}
